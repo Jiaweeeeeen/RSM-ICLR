@@ -1,0 +1,39 @@
+name: match_pattern_8m
+output_root: outputs/match-pattern-8m
+contracts: [environments/8m/match_pattern.yaml]
+training_seeds: [42, 100, 2026]
+pilot_seeds: []
+conditions: [full_context, full_dual_relational, full_dual_content, full_gru]
+model:
+  attention_backend: vanilla
+  width: 256
+  layers: 3
+  heads: 8
+  feedforward_multiplier: 4
+  dat:
+    layer_indices: [0, 1, 2]
+    relational_heads: 4
+    relation_channels: 8
+    relation_projection_dim: 16
+    relation_activation: identity
+    symmetric_relations: true
+    symbol_dim: 256
+    max_relative_distance: 6
+    relational_backend: dense
+    position_method: fixed
+    cache_dtype: float32
+    control_content_head_dim: 56
+    control_second_head_dim: 16
+tiers:
+  match_pattern:
+    tier: 4
+    purpose: Optional full-history relational diagnostic
+    primary: [full_context, full_dual_relational, full_dual_content, full_gru]
+    supplementary: []
+    qualification_reference: full_context
+    practical_effect: 0.05
+    primary_contrasts:
+    - {name: DAT full - ordinary full, left: full_dual_relational, right: full_context}
+    - {name: DAT full - dual content, left: full_dual_relational, right: full_dual_content}
+    companion_contrasts:
+    - {name: DAT full - GRU, left: full_dual_relational, right: full_gru}

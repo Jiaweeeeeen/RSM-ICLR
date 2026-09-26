@@ -1,0 +1,161 @@
+{
+  "condition": "raw_summary_residual",
+  "development_evaluation_seconds": 348.81,
+  "endpoint_epoch": 999,
+  "endpoint_reached": true,
+  "metric": "goal_success",
+  "modes": {
+    "current-token": 0.0,
+    "retained": 1.0,
+    "summary-cleared": 0.0
+  },
+  "protocol": "tmaze-passive-l32-256-v3",
+  "run_directory": "outputs/tmaze-v3-8m/tmaze-passive-l32-256-v3/raw_summary_residual/seed-42",
+  "schema": "summary-memory-development.v2",
+  "seed": 42,
+  "selected_epoch": 50,
+  "selected_primary": 1.0,
+  "series": [
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 50,
+      "evaluation_seconds": 20.598128558020107,
+      "primary": 1.0
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 100,
+      "evaluation_seconds": 26.28545205993578,
+      "primary": 1.0
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 150,
+      "evaluation_seconds": 19.335446888930164,
+      "primary": 1.0
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 200,
+      "evaluation_seconds": 15.289905700017698,
+      "primary": 1.0
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 250,
+      "evaluation_seconds": 22.17012963804882,
+      "primary": 1.0
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 300,
+      "evaluation_seconds": 14.678826736053452,
+      "primary": 1.0
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 350,
+      "evaluation_seconds": 13.399732892983593,
+      "primary": 1.0
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 400,
+      "evaluation_seconds": 5.546028850018047,
+      "primary": 1.0
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 450,
+      "evaluation_seconds": 5.701701165991835,
+      "primary": 1.0
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 500,
+      "evaluation_seconds": 5.709773651906289,
+      "primary": 1.0
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 550,
+      "evaluation_seconds": 5.866091653006151,
+      "primary": 1.0
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 600,
+      "evaluation_seconds": 6.705185318016447,
+      "primary": 1.0
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 650,
+      "evaluation_seconds": 6.023057908983901,
+      "primary": 1.0
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 700,
+      "evaluation_seconds": 15.67754100507591,
+      "primary": 1.0
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 750,
+      "evaluation_seconds": 14.426986110047437,
+      "primary": 1.0
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 800,
+      "evaluation_seconds": 12.886610894929618,
+      "primary": 1.0
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 850,
+      "evaluation_seconds": 13.727071521803737,
+      "primary": 1.0
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 900,
+      "evaluation_seconds": 12.612159559968859,
+      "primary": 1.0
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 950,
+      "evaluation_seconds": 12.562489146832377,
+      "primary": 1.0
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 999,
+      "evaluation_seconds": 13.314456134103239,
+      "primary": 1.0
+    }
+  ],
+  "task_cap": null
+}

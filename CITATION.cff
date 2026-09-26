@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "Recurrent Summary Memory: bounded-state in-context reinforcement learning"
+type: software
+version: 0.8.0
+authors:
+  - name: "Anonymous authors"
+abstract: >-
+  Code, configurations, pre-declarations and summary results for Recurrent
+  Summary Memory (RSM), a Transformer policy for in-context reinforcement
+  learning that combines exact attention over a short working buffer with a
+  fixed-capacity summary rewritten at every segment boundary, trained with
+  AMAGO's off-policy actor-critic and compared with full-history, accumulating
+  (Memo), recurrent (GRU) and sliding-window memories on Dark Key-to-Door,
+  CountRecallMedium, a passive T-Maze and MazeRunner.

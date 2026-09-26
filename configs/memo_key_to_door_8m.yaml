@@ -1,0 +1,94 @@
+name: memo_key_to_door_8m
+output_root: outputs/memo-key-to-door-8m  # the comparator's own root; the 8M study root is read, never written
+contracts:
+- environments/8m/dark_key_to_door.yaml   # the tier-0 contract, unchanged: task, 8M recipe, rosters (plus its `confirmation` split)
+training_seeds:
+- 42
+- 100
+- 2026
+pilot_seeds: []
+conditions:  # the union roster every name of this study resolves through
+- memo           # fitted under this root: Memo (AMAGO adaptation, matched 8M), jittered training segments (ME2)
+- memo_fixed     # fitted under this root: the same recipe with training-segment jitter 0 (ME4, figure redesign)
+- fixed_summary  # frozen reference endpoints of the 8M root (tier 0, label 999), re-scored on the confirmation split
+- full_context
+- full_gru
+- fixed_window   # re-scored for Figure 2's single-roster column
+- fixed_segment  # figure refinement: Figure 2's DAT segment column and the summary - segment contrast on the confirmation roster
+- full_dual_relational  # Figure 2's "DAT full" column is the full DAT cell, not full_context
+- raw_summary           # paper split (docs/EXPERIMENTS.md section 3): the ordinary-writer pair joins as frozen references once its endpoints land; declared before any of its confirmation panels was read
+- raw_segment
+- raw_summary_residual  # the residual-rewrite carrier, frozen 8M-root reference once fitted
+model:  # the 8M study's backbone, unchanged, plus the Memo recipe locked in ME0 (docs/METHOD.md)
+  attention_backend: vanilla
+  width: 256
+  layers: 3
+  heads: 8
+  feedforward_multiplier: 4
+  dat:  # carried so the frozen DAT-backed reference `fixed_summary` resolves to its recorded identity; the memo cell binds no dual-attention block
+    layer_indices:
+    - 0
+    - 1
+    - 2
+    relational_heads: 4
+    relation_channels: 8
+    relation_projection_dim: 16
+    relation_activation: identity
+    symmetric_relations: true
+    symbol_dim: 256
+    max_relative_distance: 500
+    relational_backend: dense
+    position_method: fixed
+    cache_dtype: float32
+    control_content_head_dim: 96
+    control_second_head_dim: 16
+  summary:  # the reference summary carrier's identity (C32/M4, timestep-record route), as in the 8M study
+    segment_length: 32
+    memory_tokens: 4
+    detach: none
+    position: segment-local
+    cache_dtype: float32
+  window:  # the frozen `fixed_window` reference's identity (W = 40, the measured state match), as in the 8M study
+    segment_length: 40
+    cache_dtype: float32
+  memo:  # ME0 locked recipe: L = 32 records per segment, S = 4 summary tokens per boundary (8x, the paper's main compression ratio)
+    segment_length: 32
+    summary_tokens: 4
+    carry: accumulate            # summaries are appended, never overwritten (Memo's method; overwrite would be RMT)
+    training_segment_jitter: 0.2 # `memo`: one uniform draw per learner forward from [26, 38] (the paper's +/-20 %); `memo_fixed` derives 0 from its condition row; rollout and rebuild at 32 for both
+    detach: none                 # full-task gradients through every accumulated summary
+    position: concatenated       # positions are the slot index of [summaries | records | queries]
+    cache_dtype: float32
+tiers:
+  dark_key_to_door:
+    tier: 0
+    purpose: Memo comparator on Key-to-Door (published-method comparator at matched 8M experience)
+    primary: [memo, memo_fixed]
+    supplementary: []
+    reference_cells: [fixed_summary, full_context, full_gru, fixed_window, fixed_segment, full_dual_relational, raw_summary, raw_segment, raw_summary_residual]  # frozen 8M endpoints, read from reference_root, never fitted here; fixed_segment/full_dual_relational joined (Figures 2/3 refinement), raw_summary/raw_segment (paper split, section 3), each before its confirmation panel was read
+    reference_root: outputs/summary-memory-8m
+    qualification_reference: full_context  # tier 0's qualification (R6, C2 pass) is inherited through the frozen reference; no new gate is run
+    practical_effect: 1.0  # the tier-0 margin: one completed door per 500-call task
+    primary_contrasts:
+    - {name: summary - Memo, left: fixed_summary, right: memo}
+    companion_contrasts:
+    - {name: full context - Memo, left: full_context, right: memo}
+    - {name: GRU - Memo, left: full_gru, right: memo}
+    - {name: summary - Memo fixed, left: fixed_summary, right: memo_fixed}  # ME4, declared before any Memo panel was read
+    - {name: Memo - Memo fixed, left: memo, right: memo_fixed}  # ME4: the paper's segment-jitter ablation at matched experience
+    - {name: summary - segment, left: fixed_summary, right: fixed_segment}  # The carrier's own gain on the confirmation roster, beside the Memo rows (Figure 2)
+    # Paper split (docs/EXPERIMENTS.md section 4): the bounded-summary paper's contrast family on the ordinary writer (RSM = raw_summary),
+    # declared before the raw pair's endpoints existed; Memo - Memo fixed is the row above.
+    - {name: RSM - RSM no carry, left: raw_summary, right: raw_segment}
+    - {name: full history - RSM, left: full_context, right: raw_summary}
+    - {name: RSM - Memo, left: raw_summary, right: memo}
+    - {name: RSM - Memo fixed, left: raw_summary, right: memo_fixed}
+    - {name: RSM - GRU, left: raw_summary, right: full_gru}
+    # The residual-rewrite carrier, frozen from the 8M root once its endpoints land, read with RSM's
+    # family; declared before any of its confirmation panels exists. The paper's final method is chosen by the rule in that entry.
+    - {name: RSM residual - RSM, left: raw_summary_residual, right: raw_summary}
+    - {name: RSM residual - RSM no carry, left: raw_summary_residual, right: raw_segment}
+    - {name: full history - RSM residual, left: full_context, right: raw_summary_residual}
+    - {name: RSM residual - Memo, left: raw_summary_residual, right: memo}
+    - {name: RSM residual - Memo fixed, left: raw_summary_residual, right: memo_fixed}
+    - {name: RSM residual - GRU, left: raw_summary_residual, right: full_gru}

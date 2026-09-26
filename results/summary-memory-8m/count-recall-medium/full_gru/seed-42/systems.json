@@ -1,0 +1,61 @@
+{
+  "parameters": {
+    "tokenizer": 29760,
+    "fusion": 0,
+    "backbone": 1103104,
+    "heads_and_other": 2522198
+  },
+  "peak_gpu_bytes": 171144704,
+  "cache_bytes": 49152,
+  "cache_float_bytes": 49152,
+  "cache_dtypes": [
+    "torch.float32"
+  ],
+  "peak_gpu_reserved_bytes": 199229440,
+  "checkpoint_seconds": 9.610629449947737,
+  "validation_seconds": 21.52614013105631,
+  "attention": {
+    "backend_map": {}
+  },
+  "runtime_seconds": 13871.07471773104,
+  "gradient_steps": 127872,
+  "context_actions": 103,
+  "nominal_collection_product": 8000000,
+  "measured": {
+    "scalar_training_transitions": 8000000,
+    "charged_calls": 8000000,
+    "physical_actions": 8000000,
+    "reset_only_steps": 0,
+    "tasks_started": 77680,
+    "tasks_completed": 77664,
+    "validation": {
+      "charged_calls": 32960,
+      "physical_actions": 32960,
+      "reset_only_steps": 0,
+      "tasks_started": 640,
+      "tasks_completed": 320
+    }
+  },
+  "resumes": [],
+  "state_match": null,
+  "persistent_state_bytes": 3072,
+  "state_tensor_bytes": {
+    "hidden": 3072
+  },
+  "shared_state_bytes": 0,
+  "decision_latency_seconds": 0.0007699749316088855,
+  "decision_latency_p95_seconds": 0.0010656745114829389,
+  "boundary_latency_seconds": null,
+  "boundary_latency_p95_seconds": null,
+  "boundary_latency_max_seconds": null,
+  "decision_flops_counted": 2097152,
+  "boundary_flops_counted": null,
+  "flops_method": "torch.utils.flop_counter.FlopCounterMode over one cached decision of the whole actor batch at the probe's last steady-state step (and its last boundary crossing for the summary carrier): matrix-multiply-class operators only; softmax, normalization and elementwise work excluded",
+  "latency_probe": {
+    "rows": 16,
+    "steps": 16,
+    "probes": 0,
+    "decisions_timed": 15,
+    "boundaries_timed": 0
+  }
+}

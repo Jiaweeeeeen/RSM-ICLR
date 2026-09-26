@@ -1,0 +1,24 @@
+| environment | horizon | horizon_unit | records | state | RSM-O (ours) | RSM-R (residual ablation) | w/o memory | Full-history Transformer | GRU | Memo (accumulating) | Memo, fixed segments |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Dark Key-to-Door | 500 | charged calls | 501 | average | 249.9 KB | 249.9 KB | 249.9 KB | 1.54 MB | 3.1 KB | 280.2 KB | 280.2 KB |
+| Dark Key-to-Door | 500 | charged calls | 501 | peak | 249.9 KB | 249.9 KB | 249.9 KB | 3.08 MB | 3.1 KB | 540.7 KB | 540.7 KB |
+| Dark Key-to-Door | 1000 | charged calls | 1001 | average | 249.9 KB | 249.9 KB | 249.9 KB | 3.08 MB | 3.1 KB | 472.9 KB | 472.9 KB |
+| Dark Key-to-Door | 1000 | charged calls | 1001 | peak | 249.9 KB | 249.9 KB | 249.9 KB | 6.15 MB | 3.1 KB | 933.9 KB | 933.9 KB |
+| Dark Key-to-Door | 2000 | charged calls | 2001 | average | 249.9 KB | 249.9 KB | 249.9 KB | 6.15 MB | 3.1 KB | 857.1 KB | 857.1 KB |
+| Dark Key-to-Door | 2000 | charged calls | 2001 | peak | 249.9 KB | 249.9 KB | 249.9 KB | 12.29 MB | 3.1 KB | 1.70 MB | 1.70 MB |
+| Dark Key-to-Door | 4000 | charged calls | 4001 | average | 249.9 KB | 249.9 KB | 249.9 KB | 12.29 MB | 3.1 KB | 1.63 MB | 1.63 MB |
+| Dark Key-to-Door | 4000 | charged calls | 4001 | peak | 249.9 KB | 249.9 KB | 249.9 KB | 24.58 MB | 3.1 KB | 3.24 MB | 3.24 MB |
+| CountRecall | 103 | records in the stream | 104 | average | 249.9 KB | 249.9 KB | 249.9 KB | 322.6 KB | 3.1 KB | 124.1 KB | 124.1 KB |
+| CountRecall | 103 | records in the stream | 104 | peak | 249.9 KB | 249.9 KB | 249.9 KB | 639.0 KB | 3.1 KB | 245.8 KB | 245.8 KB |
+| MazeRunner | 15 | maze size | 501 | average | 249.9 KB | 249.9 KB | 249.9 KB | 1.54 MB | 3.1 KB | 280.2 KB | 280.2 KB |
+| MazeRunner | 15 | maze size | 501 | peak | 249.9 KB | 249.9 KB | 249.9 KB | 3.08 MB | 3.1 KB | 540.7 KB | 540.7 KB |
+| MazeRunner | 17 | maze size | 643 | average | 249.9 KB | 249.9 KB | 249.9 KB | 1.98 MB | 3.1 KB | 335.6 KB | 335.6 KB |
+| MazeRunner | 17 | maze size | 643 | peak | 249.9 KB | 249.9 KB | 249.9 KB | 3.95 MB | 3.1 KB | 663.6 KB | 663.6 KB |
+| MazeRunner | 19 | maze size | 803 | average | 249.9 KB | 249.9 KB | 249.9 KB | 2.47 MB | 3.1 KB | 397.2 KB | 397.2 KB |
+| MazeRunner | 19 | maze size | 803 | peak | 249.9 KB | 249.9 KB | 249.9 KB | 4.93 MB | 3.1 KB | 786.4 KB | 786.4 KB |
+| MazeRunner | 21 | maze size | 981 | average | 249.9 KB | 249.9 KB | 249.9 KB | 3.02 MB | 3.1 KB | 465.2 KB | 465.2 KB |
+| MazeRunner | 21 | maze size | 981 | peak | 249.9 KB | 249.9 KB | 249.9 KB | 6.03 MB | 3.1 KB | 909.3 KB | 909.3 KB |
+| MazeRunner | 25 | maze size | 1390 | average | 249.9 KB | 249.9 KB | 249.9 KB | 4.27 MB | 3.1 KB | 622.4 KB | 622.4 KB |
+| MazeRunner | 25 | maze size | 1390 | peak | 249.9 KB | 249.9 KB | 249.9 KB | 8.54 MB | 3.1 KB | 1.23 MB | 1.23 MB |
+| Passive T-Maze | 128 | corridor length | 130 | average | 249.9 KB | 249.9 KB | 249.9 KB | 402.4 KB | 3.1 KB | 137.8 KB | 137.8 KB |
+| Passive T-Maze | 128 | corridor length | 130 | peak | 249.9 KB | 249.9 KB | 249.9 KB | 798.7 KB | 3.1 KB | 270.3 KB | 270.3 KB |

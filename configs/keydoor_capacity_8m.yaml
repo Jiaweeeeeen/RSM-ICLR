@@ -1,0 +1,47 @@
+name: keydoor_capacity_8m
+output_root: outputs/keydoor-capacity-8m  # its own root; the 8M root is read for the frozen references, never written
+contracts:
+- environments/8m/dark_key_to_door_m16.yaml   # the 500-call task, recipe and rosters with memory.summary M = 16
+training_seeds:
+- 42
+- 100
+- 2026
+pilot_seeds: []
+conditions:  # the union roster every name of this study resolves through
+- raw_summary    # fitted under this root: RSM-O (replacing rewrite, the method) with a 16-token consolidated memory (C = 32 unchanged); the primary cell
+- raw_summary_residual  # fitted under this root: RSM-R (residual rewrite, the method, now the rewrite ablation) at M = 16, the supplementary row
+- full_context   # frozen 8M-root references (no summary identity, so the M = 16 block does not touch them), re-read on the confirmation roster
+- full_gru
+model:  # the 8M study's backbone; memory_tokens 16 is restated by the contract's memory block
+  attention_backend: vanilla
+  width: 256
+  layers: 3
+  heads: 8
+  feedforward_multiplier: 4
+  summary:
+    segment_length: 32
+    memory_tokens: 16
+    detach: none
+    position: segment-local
+    cache_dtype: float32
+  window:  # recorded geometry only; no window cell is declared
+    segment_length: 40
+    cache_dtype: float32
+tiers:
+  dark_key_to_door:
+    tier: 6
+    purpose: Capacity sensitivity of the consolidated memory on Key-to-Door (M = 16 against the paper's M = 4; moved to RSM-O with the M = 1 and M = 8 arms)
+    primary: [raw_summary]  # The method RSM-O (its fits exist); RSM-R's fits stay as the supplementary row
+    supplementary: [raw_summary_residual]
+    reference_cells: [full_context, full_gru]  # frozen 8M endpoints (label 999) read from the 8M root
+    reference_root: outputs/summary-memory-8m
+    qualification_reference: full_context  # inherited through the frozen reference, as in the Memo comparator; no new gate is run
+    practical_effect: 1.0  # the tier-0 margin: one completed door per 500-call task
+    primary_contrasts:
+    - {name: full history - RSM M16, left: full_context, right: raw_summary}
+    companion_contrasts:
+    - {name: RSM M16 - GRU, left: raw_summary, right: full_gru}
+    - {name: RSM M16 - RSM residual M16, left: raw_summary, right: raw_summary_residual}  # the rewrite ablation at the wider memory (sides swapped)
+    - {name: full history - RSM residual M16, left: full_context, right: raw_summary_residual}  # the RSM-R arm's primary contrast, kept
+    # RSM M16 - RSM M4 (the capacity read itself) pairs this root's panels with the 8M root's raw_summary panels on the
+    # same 256 confirmation tasks, at 500 calls and at the extended horizons; declared in the study protocol.

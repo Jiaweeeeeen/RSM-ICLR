@@ -1,0 +1,190 @@
+panel,condition,x,estimate
+keydoor bins,retained,25.5,0.40234375
+keydoor bins,retained,75.5,1.2942708333333333
+keydoor bins,retained,125.5,2.046875
+keydoor bins,retained,175.5,2.6705729166666665
+keydoor bins,retained,225.5,3.1106770833333335
+keydoor bins,retained,275.5,3.4778645833333335
+keydoor bins,retained,325.5,3.7903645833333335
+keydoor bins,retained,375.5,3.9700520833333335
+keydoor bins,retained,425.5,4.083333333333333
+keydoor bins,retained,475.5,4.20703125
+keydoor bins,transplant-b8,25.5,0.40234375
+keydoor bins,transplant-b8,75.5,1.2942708333333333
+keydoor bins,transplant-b8,125.5,2.046875
+keydoor bins,transplant-b8,175.5,2.6705729166666665
+keydoor bins,transplant-b8,225.5,3.1106770833333335
+keydoor bins,transplant-b8,275.5,0.5690104166666666
+keydoor bins,transplant-b8,325.5,0.3072916666666667
+keydoor bins,transplant-b8,375.5,0.4544270833333333
+keydoor bins,transplant-b8,425.5,0.5911458333333334
+keydoor bins,transplant-b8,475.5,0.6901041666666666
+keydoor bins,cleared-once-b8,25.5,0.40234375
+keydoor bins,cleared-once-b8,75.5,1.2942708333333333
+keydoor bins,cleared-once-b8,125.5,2.046875
+keydoor bins,cleared-once-b8,175.5,2.6705729166666665
+keydoor bins,cleared-once-b8,225.5,3.1106770833333335
+keydoor bins,cleared-once-b8,275.5,0.8411458333333334
+keydoor bins,cleared-once-b8,325.5,1.13671875
+keydoor bins,cleared-once-b8,375.5,1.9036458333333333
+keydoor bins,cleared-once-b8,425.5,2.5846354166666665
+keydoor bins,cleared-once-b8,475.5,3.0078125
+donor key,retained,0,0.0984251968503937
+donor key,cleared-once-b8,1,0.21916010498687663
+donor key,transplant-b8,2,0.8320209973753281
+countrecall queries,retained true,65,0.9609375
+countrecall queries,retained true,66,0.9635416666666666
+countrecall queries,retained true,67,0.9765625
+countrecall queries,retained true,68,0.97265625
+countrecall queries,retained true,69,0.984375
+countrecall queries,retained true,70,0.9895833333333334
+countrecall queries,retained true,71,0.984375
+countrecall queries,retained true,72,0.9895833333333334
+countrecall queries,retained true,73,0.9921875
+countrecall queries,retained true,74,0.9856770833333334
+countrecall queries,retained true,75,0.9934895833333334
+countrecall queries,retained true,76,0.9791666666666666
+countrecall queries,retained true,77,0.9895833333333334
+countrecall queries,retained true,78,0.9830729166666666
+countrecall queries,retained true,79,0.9869791666666666
+countrecall queries,retained true,80,0.984375
+countrecall queries,retained true,81,0.9856770833333334
+countrecall queries,retained true,82,0.9817708333333334
+countrecall queries,retained true,83,0.984375
+countrecall queries,retained true,84,0.9921875
+countrecall queries,retained true,85,0.9921875
+countrecall queries,retained true,86,0.9908854166666666
+countrecall queries,retained true,87,0.9869791666666666
+countrecall queries,retained true,88,0.9856770833333334
+countrecall queries,retained true,89,0.9869791666666666
+countrecall queries,retained true,90,0.9856770833333334
+countrecall queries,retained true,91,0.9856770833333334
+countrecall queries,retained true,92,0.9869791666666666
+countrecall queries,retained true,93,0.9869791666666666
+countrecall queries,retained true,94,0.984375
+countrecall queries,retained true,95,0.9869791666666666
+countrecall queries,retained true,96,0.98828125
+countrecall queries,retained true,97,0.984375
+countrecall queries,retained true,98,0.9921875
+countrecall queries,retained true,99,0.9947916666666666
+countrecall queries,retained true,100,0.9895833333333334
+countrecall queries,retained true,101,0.9986979166666666
+countrecall queries,retained true,102,0.9895833333333334
+countrecall queries,retained true,103,0.99609375
+countrecall queries,transplant-b2 true,65,0.13671875
+countrecall queries,transplant-b2 true,66,0.14713541666666666
+countrecall queries,transplant-b2 true,67,0.11848958333333333
+countrecall queries,transplant-b2 true,68,0.14713541666666666
+countrecall queries,transplant-b2 true,69,0.12369791666666667
+countrecall queries,transplant-b2 true,70,0.14322916666666666
+countrecall queries,transplant-b2 true,71,0.14973958333333334
+countrecall queries,transplant-b2 true,72,0.14453125
+countrecall queries,transplant-b2 true,73,0.12760416666666666
+countrecall queries,transplant-b2 true,74,0.16015625
+countrecall queries,transplant-b2 true,75,0.11067708333333333
+countrecall queries,transplant-b2 true,76,0.15104166666666666
+countrecall queries,transplant-b2 true,77,0.140625
+countrecall queries,transplant-b2 true,78,0.15494791666666666
+countrecall queries,transplant-b2 true,79,0.13151041666666666
+countrecall queries,transplant-b2 true,80,0.14713541666666666
+countrecall queries,transplant-b2 true,81,0.14322916666666666
+countrecall queries,transplant-b2 true,82,0.14713541666666666
+countrecall queries,transplant-b2 true,83,0.13151041666666666
+countrecall queries,transplant-b2 true,84,0.16276041666666666
+countrecall queries,transplant-b2 true,85,0.13671875
+countrecall queries,transplant-b2 true,86,0.15104166666666666
+countrecall queries,transplant-b2 true,87,0.1484375
+countrecall queries,transplant-b2 true,88,0.13802083333333334
+countrecall queries,transplant-b2 true,89,0.12890625
+countrecall queries,transplant-b2 true,90,0.11067708333333333
+countrecall queries,transplant-b2 true,91,0.11848958333333333
+countrecall queries,transplant-b2 true,92,0.13541666666666666
+countrecall queries,transplant-b2 true,93,0.14973958333333334
+countrecall queries,transplant-b2 true,94,0.1875
+countrecall queries,transplant-b2 true,95,0.14583333333333334
+countrecall queries,transplant-b2 true,96,0.17578125
+countrecall queries,transplant-b2 true,97,0.13671875
+countrecall queries,transplant-b2 true,98,0.20833333333333334
+countrecall queries,transplant-b2 true,99,0.20442708333333334
+countrecall queries,transplant-b2 true,100,0.2578125
+countrecall queries,transplant-b2 true,101,0.26171875
+countrecall queries,transplant-b2 true,102,0.3216145833333333
+countrecall queries,transplant-b2 true,103,0.3671875
+countrecall queries,transplant-b2 donor,65,0.9583333333333334
+countrecall queries,transplant-b2 donor,66,0.96484375
+countrecall queries,transplant-b2 donor,67,0.9583333333333334
+countrecall queries,transplant-b2 donor,68,0.9674479166666666
+countrecall queries,transplant-b2 donor,69,0.97265625
+countrecall queries,transplant-b2 donor,70,0.97265625
+countrecall queries,transplant-b2 donor,71,0.9791666666666666
+countrecall queries,transplant-b2 donor,72,0.9856770833333334
+countrecall queries,transplant-b2 donor,73,0.97265625
+countrecall queries,transplant-b2 donor,74,0.9778645833333334
+countrecall queries,transplant-b2 donor,75,0.9791666666666666
+countrecall queries,transplant-b2 donor,76,0.9674479166666666
+countrecall queries,transplant-b2 donor,77,0.9856770833333334
+countrecall queries,transplant-b2 donor,78,0.97265625
+countrecall queries,transplant-b2 donor,79,0.9674479166666666
+countrecall queries,transplant-b2 donor,80,0.96875
+countrecall queries,transplant-b2 donor,81,0.9505208333333334
+countrecall queries,transplant-b2 donor,82,0.9479166666666666
+countrecall queries,transplant-b2 donor,83,0.9596354166666666
+countrecall queries,transplant-b2 donor,84,0.9609375
+countrecall queries,transplant-b2 donor,85,0.9583333333333334
+countrecall queries,transplant-b2 donor,86,0.9140625
+countrecall queries,transplant-b2 donor,87,0.9010416666666666
+countrecall queries,transplant-b2 donor,88,0.88671875
+countrecall queries,transplant-b2 donor,89,0.8463541666666666
+countrecall queries,transplant-b2 donor,90,0.8802083333333334
+countrecall queries,transplant-b2 donor,91,0.8515625
+countrecall queries,transplant-b2 donor,92,0.8098958333333334
+countrecall queries,transplant-b2 donor,93,0.8333333333333334
+countrecall queries,transplant-b2 donor,94,0.8385416666666666
+countrecall queries,transplant-b2 donor,95,0.7786458333333334
+countrecall queries,transplant-b2 donor,96,0.76171875
+countrecall queries,transplant-b2 donor,97,0.5611979166666666
+countrecall queries,transplant-b2 donor,98,0.5533854166666666
+countrecall queries,transplant-b2 donor,99,0.5455729166666666
+countrecall queries,transplant-b2 donor,100,0.4713541666666667
+countrecall queries,transplant-b2 donor,101,0.5052083333333334
+countrecall queries,transplant-b2 donor,102,0.4856770833333333
+countrecall queries,transplant-b2 donor,103,0.4127604166666667
+countrecall queries,cleared-once-b2 true,65,0.0
+countrecall queries,cleared-once-b2 true,66,0.0
+countrecall queries,cleared-once-b2 true,67,0.0
+countrecall queries,cleared-once-b2 true,68,0.0
+countrecall queries,cleared-once-b2 true,69,0.0
+countrecall queries,cleared-once-b2 true,70,0.0
+countrecall queries,cleared-once-b2 true,71,0.0
+countrecall queries,cleared-once-b2 true,72,0.0
+countrecall queries,cleared-once-b2 true,73,0.0
+countrecall queries,cleared-once-b2 true,74,0.0
+countrecall queries,cleared-once-b2 true,75,0.0
+countrecall queries,cleared-once-b2 true,76,0.0
+countrecall queries,cleared-once-b2 true,77,0.0
+countrecall queries,cleared-once-b2 true,78,0.0
+countrecall queries,cleared-once-b2 true,79,0.0
+countrecall queries,cleared-once-b2 true,80,0.0
+countrecall queries,cleared-once-b2 true,81,0.0
+countrecall queries,cleared-once-b2 true,82,0.0
+countrecall queries,cleared-once-b2 true,83,0.0
+countrecall queries,cleared-once-b2 true,84,0.0
+countrecall queries,cleared-once-b2 true,85,0.0
+countrecall queries,cleared-once-b2 true,86,0.0
+countrecall queries,cleared-once-b2 true,87,0.0
+countrecall queries,cleared-once-b2 true,88,0.0
+countrecall queries,cleared-once-b2 true,89,0.0
+countrecall queries,cleared-once-b2 true,90,0.0
+countrecall queries,cleared-once-b2 true,91,0.0
+countrecall queries,cleared-once-b2 true,92,0.0
+countrecall queries,cleared-once-b2 true,93,0.0
+countrecall queries,cleared-once-b2 true,94,0.0
+countrecall queries,cleared-once-b2 true,95,0.0
+countrecall queries,cleared-once-b2 true,96,0.0
+countrecall queries,cleared-once-b2 true,97,0.0
+countrecall queries,cleared-once-b2 true,98,0.0
+countrecall queries,cleared-once-b2 true,99,0.0
+countrecall queries,cleared-once-b2 true,100,0.0
+countrecall queries,cleared-once-b2 true,101,0.0
+countrecall queries,cleared-once-b2 true,102,0.0
+countrecall queries,cleared-once-b2 true,103,0.0

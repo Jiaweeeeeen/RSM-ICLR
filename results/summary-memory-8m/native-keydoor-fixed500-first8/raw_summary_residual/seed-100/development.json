@@ -1,0 +1,161 @@
+{
+  "condition": "raw_summary_residual",
+  "development_evaluation_seconds": 5218.63,
+  "endpoint_epoch": 999,
+  "endpoint_reached": true,
+  "metric": "doors_completed",
+  "modes": {
+    "attempt-cleared": 2.625,
+    "retained": 32.65625,
+    "summary-cleared": 2.859375
+  },
+  "protocol": "native-keydoor-fixed500-first8",
+  "run_directory": "outputs/summary-memory-8m/native-keydoor-fixed500-first8/raw_summary_residual/seed-100",
+  "schema": "summary-memory-development.v2",
+  "seed": 100,
+  "selected_epoch": 700,
+  "selected_primary": 32.65625,
+  "series": [
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 50,
+      "evaluation_seconds": 82.69924578908831,
+      "primary": 0.890625
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 100,
+      "evaluation_seconds": 90.80444418895058,
+      "primary": 0.875
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 150,
+      "evaluation_seconds": 92.39839182095602,
+      "primary": 2.78125
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 200,
+      "evaluation_seconds": 142.39565639104694,
+      "primary": 7.375
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 250,
+      "evaluation_seconds": 72.18106281000655,
+      "primary": 11.03125
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 300,
+      "evaluation_seconds": 77.40255473798607,
+      "primary": 15.9375
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 350,
+      "evaluation_seconds": 195.20024568901863,
+      "primary": 16.390625
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 400,
+      "evaluation_seconds": 46.37213105603587,
+      "primary": 20.265625
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 450,
+      "evaluation_seconds": 93.58822682406753,
+      "primary": 20.375
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 500,
+      "evaluation_seconds": 139.48874008504208,
+      "primary": 20.671875
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 550,
+      "evaluation_seconds": 48.91920407593716,
+      "primary": 29.734375
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 600,
+      "evaluation_seconds": 60.68639584002085,
+      "primary": 30.421875
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 650,
+      "evaluation_seconds": 36.44317864894401,
+      "primary": 30.921875
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 700,
+      "evaluation_seconds": 18.535390548058785,
+      "primary": 32.65625
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 750,
+      "evaluation_seconds": 17.91364953201264,
+      "primary": 32.484375
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 800,
+      "evaluation_seconds": 18.12460338603705,
+      "primary": 30.09375
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 850,
+      "evaluation_seconds": 18.08820735302288,
+      "primary": 31.046875
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 900,
+      "evaluation_seconds": 18.582652993965894,
+      "primary": 32.4375
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 950,
+      "evaluation_seconds": 18.63662722497247,
+      "primary": 30.484375
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 999,
+      "evaluation_seconds": 203.31956521095708,
+      "primary": 30.03125
+    }
+  ],
+  "task_cap": null
+}

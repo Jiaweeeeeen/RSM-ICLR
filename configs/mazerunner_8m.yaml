@@ -1,0 +1,67 @@
+name: mazerunner_8m
+output_root: outputs/mazerunner-8m  # the study's own root
+contracts:
+- environments/8m/mazerunner.yaml   # the M6.1 task (15x15, three ordered goals, 500 steps, randomised actions) at the paper's 8M recipe; development / final-revised / confirmation rosters
+training_seeds:
+- 42
+- 100
+- 2026
+pilot_seeds: []
+conditions:  # the paper's cells on MazeRunner
+- raw_summary_residual  # RSM-R, the residual write (the rewrite ablation; kept first: launch order)
+- raw_summary           # RSM (RSM-O, replacing rewrite), the paper's method
+- full_context          # full-history Transformer
+- memo                  # Memo, jittered training segments (the published recipe)
+- memo_fixed            # Memo, fixed segments (the segmentation control, appendix)
+- full_gru              # GRU
+- raw_segment           # RSM, no carry (the carry control of both write rules)
+- raw_window            # sliding window at the method's state (W = 40, ordinary backbone)
+model:  # the 8M study's backbone, unchanged, plus the Memo recipe locked in ME0 (docs/METHOD.md)
+  attention_backend: vanilla
+  width: 256
+  layers: 3
+  heads: 8
+  feedforward_multiplier: 4
+  summary:  # RSM's identity (C32/M4, timestep-record route), as in the 8M study; the contract restates C32/M4
+    segment_length: 32
+    memory_tokens: 4
+    detach: none
+    position: segment-local
+    cache_dtype: float32
+  window:  # raw_window's identity: W = 40, the largest window within RSM's 249,868 B per actor (246,084 B)
+    segment_length: 40
+    cache_dtype: float32
+  memo:  # ME0 locked recipe: L = 32 records per segment, S = 4 summary tokens per boundary (about fifteen boundaries per 500-decision episode)
+    segment_length: 32
+    summary_tokens: 4
+    carry: accumulate            # summaries are appended, never overwritten (Memo's method)
+    training_segment_jitter: 0.2 # `memo`: one uniform draw per learner forward from [26, 38]; `memo_fixed` derives 0 from its condition row; rollout and rebuild at 32 for both
+    detach: none                 # full-task gradients through every accumulated summary
+    position: concatenated       # positions are the slot index of [summaries | records | queries]
+    cache_dtype: float32
+tiers:
+  mazerunner:
+    tier: 5
+    purpose: "MazeRunner 15x15 with randomised actions at the paper's 8M recipe: the fourth benchmark, a meta-RL task in which the agent explores a hidden maze for three ordered goals under a hidden action permutation; the beyond-horizon axis (declared separately) walks the frozen policy in larger mazes with proportionally longer timers"
+    primary: [raw_summary_residual, raw_summary, full_context, memo, memo_fixed, full_gru, raw_segment]
+    supplementary: [raw_window]  # never gates the tier's completeness
+    qualification_reference: full_context
+    practical_effect: 0.1  # delta in goal fraction (one goal in three per ten tasks), pre-declared before any 8M read
+    primary_contrasts:  # the method's carry contrast: RSM = raw_summary (RSM-O)
+    - {name: RSM - RSM no carry, left: raw_summary, right: raw_segment}
+    companion_contrasts:  # the method's family, then the rewrite ablation (RSM-R) and its own family as companions
+    - {name: full history - RSM, left: full_context, right: raw_summary}
+    - {name: RSM - Memo, left: raw_summary, right: memo}
+    - {name: RSM - Memo fixed, left: raw_summary, right: memo_fixed}
+    - {name: Memo - Memo fixed, left: memo, right: memo_fixed}
+    - {name: RSM - GRU, left: raw_summary, right: full_gru}
+    - {name: RSM - RSM residual, left: raw_summary, right: raw_summary_residual}  # the two write rules
+    - {name: RSM residual - RSM no carry, left: raw_summary_residual, right: raw_segment}
+    - {name: full history - RSM residual, left: full_context, right: raw_summary_residual}
+    - {name: RSM residual - Memo, left: raw_summary_residual, right: memo}
+    - {name: RSM residual - Memo fixed, left: raw_summary_residual, right: memo_fixed}
+    - {name: RSM residual - GRU, left: raw_summary_residual, right: full_gru}
+    # The sliding-window baseline's rows, declared before any fit.
+    - {name: RSM - window, left: raw_summary, right: raw_window}
+    - {name: window - RSM no carry, left: raw_window, right: raw_segment}
+    - {name: full history - window, left: full_context, right: raw_window}

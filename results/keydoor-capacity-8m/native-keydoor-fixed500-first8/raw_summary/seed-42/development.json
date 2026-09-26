@@ -1,0 +1,161 @@
+{
+  "condition": "raw_summary",
+  "development_evaluation_seconds": 11671.14,
+  "endpoint_epoch": 999,
+  "endpoint_reached": true,
+  "metric": "doors_completed",
+  "modes": {
+    "attempt-cleared": 2.15625,
+    "retained": 32.140625,
+    "summary-cleared": 3.90625
+  },
+  "protocol": "native-keydoor-fixed500-first8",
+  "run_directory": "outputs/keydoor-capacity-8m/native-keydoor-fixed500-first8/raw_summary/seed-42",
+  "schema": "summary-memory-development.v2",
+  "seed": 42,
+  "selected_epoch": 850,
+  "selected_primary": 32.140625,
+  "series": [
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 50,
+      "evaluation_seconds": 32.02811334200669,
+      "primary": 0.9375
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 100,
+      "evaluation_seconds": 3098.2956037370022,
+      "primary": 1.828125
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 150,
+      "evaluation_seconds": 150.627627181937,
+      "primary": 1.25
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 200,
+      "evaluation_seconds": 76.59233725001104,
+      "primary": 2.171875
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 250,
+      "evaluation_seconds": 49.172331921057776,
+      "primary": 2.1875
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 300,
+      "evaluation_seconds": 61.904552483931184,
+      "primary": 3.5
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 350,
+      "evaluation_seconds": 28.906832957058214,
+      "primary": 5.859375
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 400,
+      "evaluation_seconds": 30.33021485398058,
+      "primary": 8.703125
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 450,
+      "evaluation_seconds": 28.957092778058723,
+      "primary": 9.359375
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 500,
+      "evaluation_seconds": 30.14648313098587,
+      "primary": 11.296875
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 550,
+      "evaluation_seconds": 30.401272999937646,
+      "primary": 19.8125
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 600,
+      "evaluation_seconds": 27.484073641942814,
+      "primary": 28.4375
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 650,
+      "evaluation_seconds": 29.157966666971333,
+      "primary": 24.890625
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 700,
+      "evaluation_seconds": 262.3149509190116,
+      "primary": 27.71875
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 750,
+      "evaluation_seconds": 324.50443798303604,
+      "primary": 31.140625
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 800,
+      "evaluation_seconds": 338.296747946064,
+      "primary": 31.3125
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 850,
+      "evaluation_seconds": 272.21151941793505,
+      "primary": 32.140625
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 900,
+      "evaluation_seconds": 271.9943359970348,
+      "primary": 28.28125
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 950,
+      "evaluation_seconds": 465.00095427199267,
+      "primary": 29.265625
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 999,
+      "evaluation_seconds": 81.60011092596687,
+      "primary": 29.53125
+    }
+  ],
+  "task_cap": null
+}

@@ -1,0 +1,121 @@
+protocol: mazerunner-15-randomized-actions
+status: C0
+environment:
+  name: mazerunner
+  benchmark: mazerunner-15-randomized-actions
+  size: 15
+  attempts: 1
+  horizon: 500
+  goals: 3
+  randomized_actions: true
+  parallel_envs: 16
+training:
+  epochs: 500
+  start_learning_epoch: 1
+  timesteps_per_epoch: 500
+  batches_per_epoch: 128
+  validation_timesteps: 500
+  validation_interval: 50
+  checkpoint_interval: 50
+  batch_size: 16
+  max_sequence_length: 500
+  trajectory_length: 501
+  replay_capacity: 10000
+  reward_multiplier: 1.0
+  epsilon_anneal_steps: 50000
+  learning_rate: 0.0001
+  warmup_steps: 128
+  gradient_clip: 1.0
+  weight_decay: 0.001
+  mixed_precision: 'no'
+  dataloader_workers: 0
+  torch_compile: false
+  exploration: epsilon_greedy
+  exploration_rollout_horizon: 500
+  verbose: false
+evaluation:
+  splits:
+    development:
+      source: development
+      count: 64
+    final:
+      source: final
+      count: 256
+  rollout_seeds:
+  - 0
+  primary_metric: goal_fraction
+  sampling_unit: map
+  checkpoint_rule: best-development-primary-ties-earliest
+qualification:
+  reference: random-policy fraction of goals completed on the development map roster. The summary-memory
+    plan additionally reads a 0.60 goal-fraction screen with some full sequences on the raw reference's
+    selected development checkpoint (task M6.3).
+  minimum_improvement: 0.1
+  maximum_primary: 0.95
+  sustained_checkpoints: 3
+  maximum_fits: 2
+  maximum_device_hours: 24.0
+  fallback: Recipe changes apply to every cell of the protocol at once under the summary-memory change
+    protocol (implementation plan section 2) and are logged there. A raw reference not qualified by
+     drops the environment from the paper (fallback F4); its reference is reported.
+    All training, references, diagnostics and evaluations charge the family 24-hour ceiling. The 11x11
+    protocols are separate identities and never pooled with this one.
+  evidence_diagnostic: Actual bounded public histories; exact equality of every current packet field,
+    RL2 feedback and time; conflicting correct answers/actions plus public-history resolution. Route ties
+    and weak random policies are not necessity evidence. See docs/DAT_BENCHMARK_M5_RETRY.md.
+documentation:
+  source:
+    amago: 3.4.0
+    environment: https://github.com/UT-Austin-RPL/amago/blob/v3.4.0/amago/envs/builtin/mazerunner.py (MazeRunnerAMAGOEnv)
+    example: https://github.com/UT-Austin-RPL/amago/blob/v3.4.0/examples/13_mazerunner_relabeling.py
+    adapter: reasoned_icrl.environments.mazerunner.MazeRunnerEnv (size 15, randomized-actions) with the
+      project-owned HindsightGoalRelabeler; recipe resolved by experiments/benchmarks.py
+    popgym: not used
+    recipe_note: 'Declared for the summary-memory study (task M6.1): the M5 training block
+      of mazerunner.yaml on a 15x15 maze with a 500-step timer; 500 epochs, 16 actors, 500 decisions/actor/epoch,
+      128 batches/epoch, batch 16; 4,000,000 scalar transitions and 63,872 updates. Learning rate 0.0001,
+      anneal 50000, FP32, full context (500 decisions, 501 tokens) and native objectives retained.'
+    relabeling_note: 'Project-owned native-inspired hindsight replay: some draws a uniform replacement
+      count, randomly samples achieved timestep alternatives, chronologically merges with achieved original
+      goals, and retains remaining original goals. Preserve time-zero, distinct-goal, causal-packet and
+      finite-horizon corrections; not byte-for-byte upstream reproduction. Unchanged from the 11x11 protocols.'
+  information:
+    observation: 'RelabelInfoWrapper: obs float vector(7)=[position(2), public wall distances(4),timer];
+      goals int array(3,2). Every coordinate is divided by the maze dimension (15). Completed goal rows use
+      -1 despite native declared lower bound 0.'
+    action: Discrete(5); the five action identities (west, north, east, south, stay) are independently
+      permuted once at every outer reset from a generator reseeded with the map identity. The permutation
+      is hidden and excluded; it must be inferred from public movement outcomes.
+    feedback: AMAGO RL2 carries previous selected action and native reward; goals in observation reflect
+      progress after that action.
+    reward: 1 for each active goal reached in sequence; native return 0..3. Initial reward_multiplier=1.
+    projection: Concatenate obs and flattened goals/maze_size into float32 width13; allow -1 goal sentinel.
+      Never include achieved helper in actor input.
+    policy_fields:
+    - obs
+    - goals
+    - rl2_reward
+    - rl2_previous_action
+    excluded_fields:
+    - achieved
+    - maze
+    - action_dirs
+    - action_permutation
+    - rng_state
+    - task_seed
+    - optimal_path
+  lifecycle:
+    task_variation: New 15x15 maze, three ordered goals and one action permutation each episode.
+    persistence: Map, mapping and remaining goal sequence persist for one native episode.
+    termination: Full sequence completion or timer>=500; timeout also sets terminated=True as a finite-horizon
+      task.
+    bootstrap: No bootstrap at full-sequence completion or native finite-horizon timeout.
+    reset: Clear history at each native episode; no invented physical attempts; 501 observation tokens
+      maximum.
+    relabeling: 'Project-owned HindsightGoalRelabeler, strategy=some: uniformly sample zero through remaining
+      goal count, randomly sample distinct achieved timestep alternatives, chronologically merge with
+      achieved original goals, and retain uncompleted original goals at the tail. Seed from training seed
+      for all conditions. Native horizon permits incomplete instructions to terminate; full completion
+      truncates early. Exclude time-zero/start and duplicate goals. Rebuild goals, rewards, dones, RL2
+      and every transition field. No achieved or privileged metadata enters replay/policy.'
+  history: []

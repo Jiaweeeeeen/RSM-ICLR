@@ -1,0 +1,9 @@
+{
+  "notes": {
+    "figure": "per-agent deployment state against task length: measured peaks at 4,000 steps, linear in the step for the full history and Memo, flat for RSM (RSM-R and w/o memory alike), the window and the GRU",
+    "missing": []
+  },
+  "sources": [
+    "notebooks/outputs/data/figure_mazerunner_repeated_laps_state.csv"
+  ]
+}

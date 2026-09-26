@@ -1,0 +1,161 @@
+{
+  "condition": "raw_summary_detach",
+  "development_evaluation_seconds": 224.33,
+  "endpoint_epoch": 999,
+  "endpoint_reached": true,
+  "metric": "exact_accuracy",
+  "modes": {
+    "current-token": 0.035649271844660185,
+    "retained": 0.9076152912621359,
+    "summary-cleared": 0.30961771844660185
+  },
+  "protocol": "count-recall-medium",
+  "run_directory": "outputs/summary-memory-8m/count-recall-medium/raw_summary_detach/seed-100",
+  "schema": "summary-memory-development.v2",
+  "seed": 100,
+  "selected_epoch": 999,
+  "selected_primary": 0.9076152912621359,
+  "series": [
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 50,
+      "evaluation_seconds": 13.514491014066152,
+      "primary": 0.2149575242718446
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 100,
+      "evaluation_seconds": 15.595174024929293,
+      "primary": 0.2390776699029126
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 150,
+      "evaluation_seconds": 14.499884049990214,
+      "primary": 0.436134708737864
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 200,
+      "evaluation_seconds": 7.889529809937812,
+      "primary": 0.44265776699029125
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 250,
+      "evaluation_seconds": 5.670363054028712,
+      "primary": 0.5670509708737864
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 300,
+      "evaluation_seconds": 5.736204551998526,
+      "primary": 0.583131067961165
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 350,
+      "evaluation_seconds": 6.690379967913032,
+      "primary": 0.6142293689320388
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 400,
+      "evaluation_seconds": 5.619338780059479,
+      "primary": 0.6624696601941749
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 450,
+      "evaluation_seconds": 6.694376782979816,
+      "primary": 0.6735436893203883
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 500,
+      "evaluation_seconds": 5.7553273879457265,
+      "primary": 0.7363470873786407
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 550,
+      "evaluation_seconds": 10.140682760044001,
+      "primary": 0.7049453883495146
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 600,
+      "evaluation_seconds": 14.498585720080882,
+      "primary": 0.7900485436893203
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 650,
+      "evaluation_seconds": 9.139422866050154,
+      "primary": 0.8243325242718446
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 700,
+      "evaluation_seconds": 5.889145968016237,
+      "primary": 0.8366201456310679
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 750,
+      "evaluation_seconds": 5.642771816928871,
+      "primary": 0.886377427184466
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 800,
+      "evaluation_seconds": 6.910440128995106,
+      "primary": 0.8888046116504855
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 850,
+      "evaluation_seconds": 19.867281867889687,
+      "primary": 0.8963895631067961
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 900,
+      "evaluation_seconds": 5.687986343051307,
+      "primary": 0.892748786407767
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 950,
+      "evaluation_seconds": 5.57803078298457,
+      "primary": 0.9026092233009708
+    },
+    {
+      "charged_calls": null,
+      "checkpoint_sha256": null,
+      "epoch": 999,
+      "evaluation_seconds": 5.596273688017391,
+      "primary": 0.9076152912621359
+    }
+  ],
+  "task_cap": null
+}

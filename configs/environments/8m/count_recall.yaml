@@ -1,0 +1,89 @@
+protocol: count-recall-medium
+status: C0
+environment:
+  name: count_recall
+  benchmark: count-recall-medium
+  size: 4
+  attempts: 1
+  horizon: 103
+  parallel_envs: 16
+training:
+  epochs: 1000
+  start_learning_epoch: 1
+  timesteps_per_epoch: 500
+  batches_per_epoch: 128
+  validation_timesteps: 103
+  validation_interval: 50
+  checkpoint_interval: 50
+  batch_size: 16
+  max_sequence_length: 103
+  trajectory_length: 104
+  replay_capacity: 10000
+  reward_multiplier: 100.0
+  epsilon_anneal_steps: 50000
+  learning_rate: 0.0001
+  warmup_steps: 128
+  gradient_clip: 1.0
+  weight_decay: 0.001
+  mixed_precision: 'no'
+  dataloader_workers: 0
+  torch_compile: false
+  exploration: epsilon_greedy
+  exploration_rollout_horizon: 103
+  verbose: false
+  native_agent:
+    tau: 0.0025
+evaluation:
+  retention: complete
+  splits:
+    development:
+      source: development
+      count: 64
+    final:
+      source: final-revised
+      count: 256
+    confirmation:
+      source: confirmation  # ME5: the CountRecall Memo study's 256-stream panel, band 5,000,000-5,000,255, disjoint from every other split; opened only after both Memo endpoints exist
+      count: 256
+  rollout_seeds: [0]
+  primary_metric: exact_accuracy
+  sampling_unit: stream
+  checkpoint_rule: collection-endpoint-primary-development-selected-secondary
+memory:
+  summary:
+    segment_length: 32
+    memory_tokens: 4
+  window:
+    segment_length: 40  # recorded geometry; no window fit belongs to tier 2
+qualification:
+  reference: maximum of uniform-answer accuracy 1/27 and frozen training-only count/time priors, including current value/query equality
+  minimum_improvement: 0.05
+  maximum_primary: 0.95  # legacy loader field; revised C2 has no cap
+  sustained_checkpoints: 3
+  maximum_fits: 9
+  maximum_device_hours: 24.0  # legacy loader field, unused by R8; no time-based budget cutoff
+  fallback: Run every selected cell to 8M regardless of provisional full-DAT qualification. Preserve failures and negative evidence; no Easy promotion, Hard competence gate, extra neural reference, or recipe tuning.
+  evidence_diagnostic: At least 32 verified public-history pairs over 16 development streams, complete policy-input equality including RL2/time and conflicting public counts; current-token and summary-cleared interventions are evaluator-only.
+documentation:
+  source:
+    amago: 3.4.0
+    popgym: 1.0.7
+    environment: popgym.envs.count_recall.CountRecallMedium through amago.envs.builtin.popgym_envs.POPGym
+    adapter: reasoned_icrl.environments.count_recall.CountRecallEnv
+    recipe_note: 'R8: official Medium, 1000 x 500 x 16 = 8000000 charged training calls per fit, nominally 127872 updates; 3 cells x seeds 42/100/2026. FP32 and complete-stream replay with gradients through every carried write.'
+  information:
+    observation: Native MultiDiscrete([4,4]); public value/query one-hots and native timer/1000, Box(9) before public packet projection.
+    action: Discrete(27), answer counts 0 through 26.
+    feedback: Reset deals and counts the first value. Each action answers the already-visible query including the current value. The terminal observation is unscored.
+    reward: Correct +1/103, incorrect -1/103; complete native return equals 2*exact_accuracy-1. Learner multiplier is applied after native reward logging.
+    projection: Allowlisted native one-hot/timer wrapper; no info, state or evaluator counters enter policy inputs.
+    policy_fields: [value_onehot, query_onehot, timer, rl2_reward, rl2_previous_action]
+    excluded_fields: [counts, query_counts, get_state, state_space, task_seed, deck, true_count_label]
+  lifecycle:
+    task_variation: Two independently shuffled decks of four suits, 26 cards per suit, fresh per stream ID.
+    persistence: Counts accumulate within one stream; no internal attempts.
+    termination: Exactly 103 actions; natural deck exhaustion, terminated true and truncated false.
+    bootstrap: No bootstrap at natural exhaustion; preserve the final physical reward and terminal observation.
+    reset: Fresh decks/counts and independent empty actor history; 104 observations including reset and terminal.
+    relabeling: none
+  history: []

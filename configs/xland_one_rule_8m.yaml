@@ -1,0 +1,88 @@
+name: xland_one_rule_8m
+output_root: outputs/xland-one-rule-8m  # the conditional application's own root; never the 8M study root or the locked R7/R8 runners
+contracts:
+- environments/8m/xland_one_rule.yaml   # tier 3: the one-rule protocol, its manifest roster, fixed layouts and curriculum
+training_seeds:
+- 42
+- 100
+- 2026
+pilot_seeds: []  # the ordinary reference at seed 42 runs first under the same recipe and is counted once within the 18 fits
+conditions:  # the six required cells of the XLand protocol, then the figure-set supplements declared
+- full_context
+- full_dual_relational
+- full_dual_content
+- fixed_summary
+- fixed_segment
+- fixed_window
+- full_gru        # supplement: the recurrent comparison (Figures 4-5)
+- raw_summary     # supplement: the ordinary-writer pair at the same C64/M4 boundaries (Figure 3)
+- raw_segment
+- memo            # supplement: Memo (AMAGO adaptation, matched 8M) at L64/S8, jittered training segments (Figures 2-3)
+- memo_fixed      # supplement: the same recipe with training-segment jitter 0
+model:
+  attention_backend: vanilla
+  width: 256
+  layers: 3
+  heads: 8
+  feedforward_multiplier: 4
+  dat:  # block v2: the DAT paper's configuration, unchanged by R1
+    layer_indices:  # dual attention in every layer, so relations compose across layers
+    - 0
+    - 1
+    - 2
+    relational_heads: 4  # 1:1 sensory/relational, the paper's split in every experiment
+    relation_channels: 8  # d_proj = d_h * n_ra / d_r = 32 * 4 / 8 = 16, the paper's rule
+    relation_projection_dim: 16
+    relation_activation: identity
+    symmetric_relations: true  # same/different kernels: position, value and rank equality
+    symbol_dim: 256
+    max_relative_distance: 500
+    relational_backend: dense
+    position_method: fixed
+    cache_dtype: float32
+    control_content_head_dim: 96  # R3: derived per resolved environment (capacity_matched_control_dims at the cell's clipping distance); 96/16 is the match at 500 (+2.5 %), recorded in systems.json
+    control_second_head_dim: 16
+  summary:
+    segment_length: 32  # C; fixed per environment by the contracts (32 for tiers 0-2, 64 for XLand), no sweep (R4)
+    memory_tokens: 4    # M
+    detach: none
+    position: segment-local
+    cache_dtype: float32
+  window:
+    segment_length: 40  # W: each contract overrides it; R3 refuses any value that is not the measured DAT state match (contracts.match_window_to_summary)
+    cache_dtype: float32
+  memo:  # the XLand Memo recipe (XLAND_ONE_RULE_PLAN "Figure-set supplements"): the C64 boundary schedule at the paper's 8x ratio, so Memo writes on the same records as the summary
+    segment_length: 64
+    summary_tokens: 8
+    carry: accumulate            # summaries are appended, never overwritten
+    training_segment_jitter: 0.2 # `memo`: one uniform draw per learner forward from [52, 76]; `memo_fixed` derives 0 from its condition row; rollout and rebuild at 64 for both
+    detach: none                 # full-lifetime gradients through every accumulated summary
+    position: concatenated       # positions are the slot index of [summaries | records | queries]; capacity for the 645-record lifetime is 10 x 8 + 64 + 8 = 152 slots
+    cache_dtype: float32
+tiers:
+  xland_one_rule:
+    tier: 3
+    purpose: XLand one-rule conditional application (hidden object transformation, fixed-layout adaptation, bounded summary retention)
+    primary: [full_context, full_dual_relational, full_dual_content, fixed_summary, fixed_segment, fixed_window]
+    # The figure-set supplements (15 fits / 120M) declared before any comparative XLand outcome is read;
+    # none gates the six-cell report; launch order after the segment triple: writer pair, Memo pair, then dual content and GRU together, window last (plan "Additional fits").
+    supplementary: [full_gru, raw_summary, raw_segment, memo, memo_fixed]
+    qualification_reference: full_context
+    practical_effect: 0.05  # success probability on attempts 4-5
+    primary_contrasts:
+    - {name: DAT full - ordinary full, left: full_dual_relational, right: full_context}
+    - {name: DAT full - dual content, left: full_dual_relational, right: full_dual_content}
+    - {name: summary - segment, left: fixed_summary, right: fixed_segment}
+    - {name: summary - window, left: fixed_summary, right: fixed_window}
+    companion_contrasts:
+    - {name: full DAT - summary, left: full_dual_relational, right: fixed_summary}
+    # Supplement rows, the plan's "Figure-set supplements" table, at the tier's delta 0.05:
+    - {name: summary - GRU, left: fixed_summary, right: full_gru}
+    - {name: full DAT - GRU, left: full_dual_relational, right: full_gru}
+    - {name: ordinary summary - ordinary segment, left: raw_summary, right: raw_segment}
+    - {name: DAT summary - ordinary summary, left: fixed_summary, right: raw_summary}
+    - {name: summary - Memo, left: fixed_summary, right: memo}
+    - {name: summary - Memo fixed, left: fixed_summary, right: memo_fixed}
+    - {name: Memo - Memo fixed, left: memo, right: memo_fixed}
+    - {name: full DAT - Memo, left: full_dual_relational, right: memo}
+    - {name: GRU - Memo, left: full_gru, right: memo}

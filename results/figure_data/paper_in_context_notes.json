@@ -1,0 +1,13 @@
+{
+  "notes": {
+    "figure": "in-context adaptation at the native horizon; bands for RSM and w/o memory; T-Maze success over all tasks and by cue side (seed means, seeds faint), band = a fixed turn's success",
+    "missing": []
+  },
+  "sources": [
+    "notebooks/outputs/data/figure2_in_context_adaptation_countrecall_cumulative.csv",
+    "notebooks/outputs/data/figure2_in_context_adaptation_keydoor_attempts.csv",
+    "notebooks/outputs/data/figure2_in_context_adaptation_mazerunner_goals_reached.csv",
+    "notebooks/outputs/data/figure2_in_context_adaptation_tmaze_cue_side.csv",
+    "notebooks/outputs/data/figure2_in_context_adaptation_tmaze_success.csv"
+  ]
+}

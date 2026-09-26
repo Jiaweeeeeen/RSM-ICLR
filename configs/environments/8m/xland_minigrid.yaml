@@ -1,0 +1,148 @@
+protocol: xland-r1-9x9-small1m-goal-visible-5attempts
+status: C0
+environment:
+  name: xland_minigrid
+  benchmark: xland-r1-9x9-small1m-goal-visible-5attempts
+  size: 9
+  attempts: 5
+  scored_from: 4
+  horizon: 243
+  encoder: xland
+  parallel_envs: 16
+training:
+  epochs: 1000  # R1: 1000 x 500 x 16 = 8,000,000 nominal collected decisions
+  start_learning_epoch: 3
+  timesteps_per_epoch: 500
+  batches_per_epoch: 128
+  validation_timesteps: 1219
+  validation_interval: 50
+  checkpoint_interval: 50
+  batch_size: 16
+  max_sequence_length: 1219
+  trajectory_length: 1220
+  replay_capacity: 10000
+  reward_multiplier: 10.0
+  epsilon_anneal_steps: 200000
+  learning_rate: 0.0001
+  warmup_steps: 128
+  gradient_clip: 2.0
+  weight_decay: 0.001
+  mixed_precision: 'no'
+  dataloader_workers: 0
+  torch_compile: false
+  exploration: epsilon_greedy
+  exploration_rollout_horizon: 1219
+  verbose: false
+evaluation:
+  splits:
+    development:
+      source: development
+      count: 64
+    final:
+      source: final-revised  # untouched band; `final` was evaluated by the 4M pilot
+      count: 256
+  rollout_seeds:
+  - 0
+  primary_metric: success_last2
+  sampling_unit: task
+  checkpoint_rule: collection-endpoint-primary-development-selected-secondary
+memory:
+  summary:
+    segment_length: 64   # C; XLand's 1,219-decision outer task needs more retained records than tier 0
+    memory_tokens: 4     # M
+  window:
+    segment_length: 72   # R3 measured match: largest W within the DAT summary's 446,476 B per actor (window 442,948 B, residual 3,528 B)
+  critic:  # the pinned example's two-hot support: +-(attempts * 10 * 10), 32 bins
+    min_return: -500.0
+    max_return: 500.0
+    output_bins: 32
+qualification:
+  reference: random-policy success on attempts 4-5 (uniform actions) on the same development
+    ruleset roster and layout schedule
+  minimum_improvement: 0.1
+  maximum_primary: 0.95
+  sustained_checkpoints: 3
+  maximum_fits: 2
+  maximum_device_hours: 24.0
+  fallback: Recipe changes apply to every cell of the protocol at once under the summary-memory change
+    protocol (implementation plan section 2) and are logged there. The pilot (M10.9) fits raw seed 0
+    first; if it fails C2 or C3 within two fits, fallback F8 reports XLand-MiniGrid as an unqualified
+    extension with its measured reference series and no smaller grid or benchmark is substituted
+    before the deadline. Passing the pilot never requires a bounded cell to win. All training,
+    references, diagnostics and evaluations charge the family 24-hour ceiling.
+  evidence_diagnostic: Actual bounded public histories under a fixed exploration policy; exact equality
+    of every current packet field, RL2 feedback and episode step across rulesets; different
+    rewarded actions plus public-history resolution. The task diagnostic is a follow-up after
+    qualification (the observed-interaction ledger); it is not a condition of the pilot.
+documentation:
+  source:
+    amago: 3.4.0
+    environment: https://github.com/UT-Austin-RPL/amago/blob/v3.4.0/amago/envs/builtin/xland_minigrid.py
+      (the vectorised wrapper, reproduced observation-for-observation; not used, see adapter)
+    example: https://github.com/UT-Austin-RPL/amago/blob/v3.4.0/examples/11_xland_minigrid.py
+    simulator: xminigrid 0.9.3, XLand-MiniGrid-R1-9x9, benchmark small-1m (1,000,000 rulesets),
+      https://github.com/dunnolab/xland-minigrid
+    adapter: reasoned_icrl.environments.xland_minigrid.XLandMiniGridEnv; recipe resolved by
+      experiments/benchmarks.py; packets read by the xland trunk of model/step_encoder.py
+    popgym: not used
+    recipe_note: 'Declared for the summary-memory study (decision 15, task M10.4):
+      the Key-to-Door schedule (500 epochs, 16 actors, 500 decisions/actor/epoch, 128 batches/epoch,
+      batch 16; 4,000,000 scalar transitions and 63,872 updates) with the settings of the pinned
+      AMAGO example: reward multiplier 10, two-hot critic on [-500, 500] with 32 bins, gradient clip
+      2, epsilon-greedy exploration (the example anneals over 1,000,000 vector steps; 200,000 here,
+      five per cent of the per-actor budget), learning starts after two collection epochs (the
+      example''s traj_len // timesteps_per_epoch). Full context (1219 decisions, 1220 tokens). Memory
+      per protocol: C 32, M 4 (40 slots), W 40. The budget is provisional until the ten-epoch GPU
+      smoke (M10.8) measures the epoch time on the cluster; a change is logged as a recipe change.'
+    encoder_note: 'The example''s XLandMGTstepEncoder embeds the grid ids, then overwrites that
+      embedding with the CNN applied to the raw uint8 ids (lines 99-101 of the pinned example), so
+      its embedding is dead code. The xland trunk keeps the embedding path (the architecture the
+      example declares): Embedding(15, 8) per view layer -> GridworldCNN(32, 48, 64) -> Linear(128);
+      Embedding(15, 8) over the goal ids -> feed-forward -> 32; merged with the direction/done
+      flags and symlog(RL2) through 256 -> token width, layer-normalised.'
+  information:
+    observation: 'The native partial view (5 x 5 x 2: tile id 0..12, colour id 0..11), the direction
+      one-hot (4) and the episode-done flag (AMAGO''s direction_done), the goal encoding (5 ids in
+      0..14, AMAGO''s goal), and the step within the episode over 243; 61 packet values in [-1, 1]
+      through normalize_fields. Exactly what the pinned AMAGO wrapper exposes to its policy.'
+    action: 'Discrete(6): the native XLand actions (forward, turn right, turn left, pick up, put down,
+      toggle) in native index order.'
+    feedback: 'Native reward 1 - 0.9 * step / 243 once, when the goal condition holds; 0 otherwise.
+      Reset-only steps pay 0. Keep the previous action and reward once, in AMAGO RL2.'
+    reward: Store native feedback before reward_multiplier=10.
+    projection: 'Read img, direction and the ruleset goal directly; never the rule encoding, the
+      ruleset id or the simulator state.'
+    policy_fields:
+    - grid_tile
+    - grid_color
+    - direction
+    - attempt_done
+    - goal
+    - attempt_time
+    - rl2_reward
+    - rl2_previous_action
+    excluded_fields:
+    - rule_encoding
+    - rules
+    - init_tiles
+    - ruleset_id
+    - task_seed
+    - state
+    - grid
+    - agent_position
+    - carry
+    - success_label
+  lifecycle:
+    task_variation: 'One small-1m ruleset per outer reset, selected by the task identity through the
+      pinned permutation (training, development and final identities select disjoint rulesets);
+      objects and the agent are repositioned at every episode reset from a key derived from the
+      ruleset, the episode index and the actor seed.'
+    persistence: The goal and the hidden rules persist for all five episodes; the layout changes per episode.
+    termination: 'An episode ends when the goal condition holds or at 243 steps; the following step
+      resets without executing its action. The outer task ends with the fifth episode (terminated and
+      truncated).'
+    bootstrap: No value bootstrap at the outer terminal; episode completion is not a learner terminal.
+    reset: Retain history across episodes and reset-only steps; clear at outer reset. At most 1219
+      decision tokens plus the initial token.
+    relabeling: none
+  history: []

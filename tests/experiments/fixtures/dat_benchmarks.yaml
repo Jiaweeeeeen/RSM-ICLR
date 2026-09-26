@@ -1,0 +1,43 @@
+# Retired DAT-benchmark roster, kept as a test fixture so the transition-DAT
+# condition rows and the DAT runtime tests keep a study to resolve against.
+# Not launchable: the study itself was retired.
+name: dat_benchmarks
+output_root: outputs/dat-benchmarks
+contracts:
+- ../../../configs/environments/dark_key_to_door.yaml
+- ../../../configs/environments/count_recall.yaml
+- ../../../configs/environments/mazerunner.yaml
+pilot_seeds:
+- 101
+training_seeds:
+- 0
+- 1
+- 2
+conditions:
+- transition
+- transition_dat
+control_conditions:
+- transition_dat_symbol_only
+- transition_dual_content
+control_protocol: mazerunner-randomized-actions
+model:
+  attention_backend: vanilla
+  width: 256
+  layers: 3
+  heads: 8
+  feedforward_multiplier: 4
+  dat:
+    layer_indices:
+    - 2
+    relational_heads: 2
+    relation_channels: 4
+    relation_projection_dim: 16
+    relation_activation: identity
+    symmetric_relations: false
+    symbol_dim: 256
+    max_relative_distance: 500
+    relational_backend: dense
+    position_method: fixed
+    cache_dtype: float32
+    control_content_head_dim: 56
+    control_second_head_dim: 48

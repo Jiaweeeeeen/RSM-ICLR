@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.python-version.local
+
+# Environments and packaging
+.venv
+.venv/
+venv/
+dist/
+build/
+*.egg-info/
+
+# Test and analysis caches
+.coverage
+coverage.xml
+htmlcov/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.claude/
+
+# Editors and operating systems
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Research outputs and local secrets
+.c1/
+outputs/
+checkpoints/
+wandb/
+slurm-logs/
+*.ckpt
+*.pt
+*.pth
+.env
+.env.*
+!.env.example
+notebooks/.ipynb_checkpoints
+datasets/
+# Local documentation archives
+/docs/archive/
+paper_draft/
+
+# Derived notebook analysis and figures
+/notebooks/outputs/
+/notebooks/archive/outputs/

@@ -1,0 +1,11 @@
+panel,condition,x,estimate
+state,full_context,500.0,3072768.5
+state,full_context,4000.0,24582148.0
+state,memo,500.0,405505.5
+state,memo,4000.0,3244044.0
+state,raw_window,500.0,246084.0
+state,raw_window,4000.0,246084.0
+state,raw_summary,500.0,249868.0
+state,raw_summary,4000.0,249868.0
+state,full_gru,500.0,3072.0
+state,full_gru,4000.0,3072.0

@@ -1,0 +1,17 @@
+{
+  "notes": {
+    "figure": "interventions on the frozen RSM policy: summary cleared at every boundary, summary or earlier buffer unreadable (read bias infinity; Key-to-Door and CountRecall), against the policy trained without a summary; bars: means, whiskers: 95 % joint intervals, dots: seeds where saved",
+    "missing": []
+  },
+  "sources": [
+    "notebooks/outputs/data/figure2_in_context_adaptation_countrecall_summary_cleared_blocks.csv",
+    "notebooks/outputs/data/figure2_in_context_adaptation_keydoor_summary_cleared.csv",
+    "notebooks/outputs/data/figure2_in_context_adaptation_mazerunner_interventions.csv",
+    "notebooks/outputs/data/figure2_in_context_adaptation_tmaze_interventions.csv",
+    "notebooks/outputs/data/figure_attention_summary_dose.csv",
+    "notebooks/outputs/data/tables_three_benchmarks_table1_endpoints.csv",
+    "outputs/mazerunner-8m/reports/mazerunner/confirmation/laps/retained/goals_per_window.csv",
+    "outputs/mazerunner-8m/reports/mazerunner/confirmation/laps/summary-cleared/goals_per_window.csv",
+    "outputs/summary-memory-8m/reports/native-keydoor-fixed500-first8/confirmation/representation/transplant.csv"
+  ]
+}

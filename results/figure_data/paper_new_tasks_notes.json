@@ -1,0 +1,36 @@
+{
+  "notes": {
+    "figure": "a new Key-to-Door layout every 500 calls and a new MazeRunner map every 1,000 calls; per-100-call rates from the saved panels; first door censored at 500 calls; band RSM's 95 % joint seed/task interval",
+    "missing": []
+  },
+  "sources": [
+    "notebooks/outputs/data/figure_mazerunner_map_change_first_lap.csv",
+    "notebooks/outputs/data/figure_mazerunner_map_change_per_map.csv",
+    "outputs/mazerunner-8m/mazerunner-15-randomized-actions/full_context/seed-100/eval/confirmation-retained-endpoint-relayout1000-calls4000/benchmark_results.json",
+    "outputs/mazerunner-8m/mazerunner-15-randomized-actions/full_context/seed-2026/eval/confirmation-retained-endpoint-relayout1000-calls4000/benchmark_results.json",
+    "outputs/mazerunner-8m/mazerunner-15-randomized-actions/full_context/seed-42/eval/confirmation-retained-endpoint-relayout1000-calls4000/benchmark_results.json",
+    "outputs/mazerunner-8m/mazerunner-15-randomized-actions/full_gru/seed-100/eval/confirmation-retained-endpoint-relayout1000-calls4000/benchmark_results.json",
+    "outputs/mazerunner-8m/mazerunner-15-randomized-actions/full_gru/seed-2026/eval/confirmation-retained-endpoint-relayout1000-calls4000/benchmark_results.json",
+    "outputs/mazerunner-8m/mazerunner-15-randomized-actions/full_gru/seed-42/eval/confirmation-retained-endpoint-relayout1000-calls4000/benchmark_results.json",
+    "outputs/mazerunner-8m/mazerunner-15-randomized-actions/memo/seed-100/eval/confirmation-retained-endpoint-relayout1000-calls4000/benchmark_results.json",
+    "outputs/mazerunner-8m/mazerunner-15-randomized-actions/memo/seed-2026/eval/confirmation-retained-endpoint-relayout1000-calls4000/benchmark_results.json",
+    "outputs/mazerunner-8m/mazerunner-15-randomized-actions/memo/seed-42/eval/confirmation-retained-endpoint-relayout1000-calls4000/benchmark_results.json",
+    "outputs/mazerunner-8m/mazerunner-15-randomized-actions/memo_fixed/seed-100/eval/confirmation-retained-endpoint-relayout1000-calls4000/benchmark_results.json",
+    "outputs/mazerunner-8m/mazerunner-15-randomized-actions/memo_fixed/seed-2026/eval/confirmation-retained-endpoint-relayout1000-calls4000/benchmark_results.json",
+    "outputs/mazerunner-8m/mazerunner-15-randomized-actions/memo_fixed/seed-42/eval/confirmation-retained-endpoint-relayout1000-calls4000/benchmark_results.json",
+    "outputs/mazerunner-8m/mazerunner-15-randomized-actions/raw_segment/seed-100/eval/confirmation-retained-endpoint-relayout1000-calls4000/benchmark_results.json",
+    "outputs/mazerunner-8m/mazerunner-15-randomized-actions/raw_segment/seed-2026/eval/confirmation-retained-endpoint-relayout1000-calls4000/benchmark_results.json",
+    "outputs/mazerunner-8m/mazerunner-15-randomized-actions/raw_segment/seed-42/eval/confirmation-retained-endpoint-relayout1000-calls4000/benchmark_results.json",
+    "outputs/mazerunner-8m/mazerunner-15-randomized-actions/raw_summary/seed-100/eval/confirmation-retained-endpoint-relayout1000-calls4000/benchmark_results.json",
+    "outputs/mazerunner-8m/mazerunner-15-randomized-actions/raw_summary/seed-2026/eval/confirmation-retained-endpoint-relayout1000-calls4000/benchmark_results.json",
+    "outputs/mazerunner-8m/mazerunner-15-randomized-actions/raw_summary/seed-42/eval/confirmation-retained-endpoint-relayout1000-calls4000/benchmark_results.json",
+    "outputs/mazerunner-8m/mazerunner-15-randomized-actions/raw_summary_residual/seed-100/eval/confirmation-retained-endpoint-relayout1000-calls4000/benchmark_results.json",
+    "outputs/mazerunner-8m/mazerunner-15-randomized-actions/raw_summary_residual/seed-2026/eval/confirmation-retained-endpoint-relayout1000-calls4000/benchmark_results.json",
+    "outputs/mazerunner-8m/mazerunner-15-randomized-actions/raw_summary_residual/seed-42/eval/confirmation-retained-endpoint-relayout1000-calls4000/benchmark_results.json",
+    "outputs/memo-key-to-door-8m/reports/dark-key-to-door/confirmation/horizon/h4000-relayout500-raw_summary_residual/windows.csv",
+    "outputs/memo-key-to-door-8m/reports/dark-key-to-door/confirmation/horizon/h4000-relayout500/windows.csv",
+    "outputs/summary-memory-8m/native-keydoor-fixed500-first8/raw_summary_residual/seed-100/eval/confirmation-retained-endpoint-h4000-relayout500/benchmark_results.json",
+    "outputs/summary-memory-8m/native-keydoor-fixed500-first8/raw_summary_residual/seed-2026/eval/confirmation-retained-endpoint-h4000-relayout500/benchmark_results.json",
+    "outputs/summary-memory-8m/native-keydoor-fixed500-first8/raw_summary_residual/seed-42/eval/confirmation-retained-endpoint-h4000-relayout500/benchmark_results.json"
+  ]
+}

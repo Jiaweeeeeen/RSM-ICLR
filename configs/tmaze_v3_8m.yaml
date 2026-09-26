@@ -1,0 +1,71 @@
+name: tmaze_v3_8m
+# Contrast names in this file follow the declaration in force when the study was fitted: here "RSM"
+# names raw_summary_residual (RSM-R) and "RSM overwrite" names raw_summary. The paper's RSM is
+# raw_summary (RSM-O); see docs/EXPERIMENTS.md.
+output_root: outputs/tmaze-v3-8m  # the v3 study's own root
+contracts:
+- environments/8m/tmaze_v3.yaml   # v3: training corridors drawn from 32 to 256 per task, evaluation at 128, 8M recipe, development / final-revised / confirmation rosters
+training_seeds:
+- 42
+- 100
+- 2026
+pilot_seeds: []
+conditions:  # the seven paper cells, every one fitted under this root
+- full_context   # full-history Transformer
+- full_gru       # GRU
+- raw_summary    # RSM (RSM-O, replacing rewrite), the paper's method
+- raw_segment    # RSM w/o memory
+- memo           # Memo, jittered training segments
+- memo_fixed     # Memo, fixed segments
+- raw_summary_residual  # RSM-R, the residual rewrite (the paper's rewrite ablation)
+- raw_summary_gated  # T3: the gated residual write, memory + sigmoid(gate) * write, one learned gate logit per slot initialised near closed; the conditional structural fallback, T-Maze v3 only, supplementary
+model:  # the 8M study's backbone, unchanged, plus the Memo recipe locked in ME0 (docs/METHOD.md)
+  attention_backend: vanilla
+  width: 256
+  layers: 3
+  heads: 8
+  feedforward_multiplier: 4
+  summary:  # RSM's identity (C32/M4, timestep-record route), as in the 8M study; the contract restates C32/M4
+    segment_length: 32
+    memory_tokens: 4
+    detach: none
+    position: segment-local
+    cache_dtype: float32
+  window:  # recorded geometry only; no window cell is declared on this benchmark
+    segment_length: 40
+    cache_dtype: float32
+  memo:  # ME0 locked recipe: L = 32 records per segment, S = 4 summary tokens per boundary (four boundaries per 130-record episode, 16 accumulated tokens by the junction)
+    segment_length: 32
+    summary_tokens: 4
+    carry: accumulate            # summaries are appended, never overwritten (Memo's method; overwrite would be RMT)
+    training_segment_jitter: 0.2 # `memo`: one uniform draw per learner forward from [26, 38]; `memo_fixed` derives 0 from its condition row; rollout and rebuild at 32 for both
+    detach: none                 # full-task gradients through every accumulated summary
+    position: concatenated       # positions are the slot index of [summaries | records | queries]
+    cache_dtype: float32
+tiers:
+  tmaze:
+    tier: 4
+    purpose: Passive T-Maze v3, training corridors 32-256 drawn per task and evaluation at 128; the paper's appendix benchmark, evaluated at its trained corridor
+    primary: [full_context, full_gru, raw_summary, raw_segment, memo, memo_fixed, raw_summary_residual]
+    supplementary: [raw_summary_gated]  # T3: the gated write beside the seven paper cells; its read never changes the paper cells' panels
+    qualification_reference: full_context
+    practical_effect: 0.25  # delta in greedy success: a quarter of the roster, half of one cue class
+    primary_contrasts:  # the method's carry contrast: RSM = raw_summary_residual
+    - {name: RSM - RSM no carry, left: raw_summary_residual, right: raw_segment}
+    companion_contrasts:  # the method's family, then the overwrite ablation's own family as companions
+    - {name: full history - RSM, left: full_context, right: raw_summary_residual}
+    - {name: RSM - Memo, left: raw_summary_residual, right: memo}
+    - {name: RSM - Memo fixed, left: raw_summary_residual, right: memo_fixed}
+    - {name: Memo - Memo fixed, left: memo, right: memo_fixed}
+    - {name: RSM - GRU, left: raw_summary_residual, right: full_gru}
+    - {name: RSM - RSM overwrite, left: raw_summary_residual, right: raw_summary}  # the rewrite ablation
+    - {name: RSM overwrite - RSM no carry, left: raw_summary, right: raw_segment}
+    - {name: full history - RSM overwrite, left: full_context, right: raw_summary}
+    - {name: RSM overwrite - Memo, left: raw_summary, right: memo}
+    - {name: RSM overwrite - Memo fixed, left: raw_summary, right: memo_fixed}
+    - {name: RSM overwrite - GRU, left: raw_summary, right: full_gru}
+    # T3: the gated write against the method at 128, and against the controls
+    - {name: RSM gated - RSM, left: raw_summary_gated, right: raw_summary_residual}
+    - {name: RSM gated - RSM no carry, left: raw_summary_gated, right: raw_segment}
+    - {name: RSM gated - GRU, left: raw_summary_gated, right: full_gru}
+    - {name: RSM gated - Memo, left: raw_summary_gated, right: memo}

@@ -1,0 +1,12 @@
+protocol,split,checkpoint_rule,condition,dependence,metric,estimate,lower,upper,per_seed,seeds,tasks
+tmaze-passive-l32-256-v3,confirmation,endpoint,full_context,retained - current-token,goal_success,0.6380208333333334,0.4140625,1.0,"42: +0.457, 100: +1.000, 2026: +0.457",3,256
+tmaze-passive-l32-256-v3,confirmation,endpoint,full_gru,retained - current-token,goal_success,0.4856770833333333,0.4140625,0.5365234374999996,"42: +0.543, 100: +0.457, 2026: +0.457",3,256
+tmaze-passive-l32-256-v3,confirmation,endpoint,memo,retained - current-token,goal_success,0.5143229166666666,0.4583333333333333,0.5859375,"42: +0.543, 100: +0.543, 2026: +0.457",3,256
+tmaze-passive-l32-256-v3,confirmation,endpoint,memo_fixed,retained - current-token,goal_success,0.8190104166666666,0.47265625,1.0,"42: +1.000, 100: +1.000, 2026: +0.457",3,256
+tmaze-passive-l32-256-v3,confirmation,endpoint,raw_segment,retained - current-token,goal_success,0.0,0.0,0.0,"42: +0.000, 100: +0.000, 2026: +0.000",3,256
+tmaze-passive-l32-256-v3,confirmation,endpoint,raw_summary,retained - current-token,goal_success,0.5143229166666666,0.4596028645833334,0.5859375,"42: +0.457, 100: +0.543, 2026: +0.543",3,256
+tmaze-passive-l32-256-v3,confirmation,endpoint,raw_summary_residual,retained - current-token,goal_success,0.5143229166666666,0.4596028645833334,0.58984375,"42: +0.543, 100: +0.457, 2026: +0.543",3,256
+tmaze-passive-l32-256-v3,confirmation,endpoint,memo,retained - summary-cleared,goal_success,0.5143229166666666,0.4609375,0.58203125,"42: +0.543, 100: +0.543, 2026: +0.457",3,256
+tmaze-passive-l32-256-v3,confirmation,endpoint,memo_fixed,retained - summary-cleared,goal_success,0.8190104166666666,0.46875,1.0,"42: +1.000, 100: +1.000, 2026: +0.457",3,256
+tmaze-passive-l32-256-v3,confirmation,endpoint,raw_summary,retained - summary-cleared,goal_success,0.5143229166666666,0.4609375,0.5859375,"42: +0.457, 100: +0.543, 2026: +0.543",3,256
+tmaze-passive-l32-256-v3,confirmation,endpoint,raw_summary_residual,retained - summary-cleared,goal_success,0.5143229166666666,0.4609375,0.5859375,"42: +0.543, 100: +0.457, 2026: +0.543",3,256

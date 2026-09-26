@@ -1,0 +1,117 @@
+protocol: concentration-hard
+status: C0
+environment:
+  name: concentration
+  benchmark: concentration-hard
+  size: 52
+  attempts: 1
+  horizon: 104
+  parallel_envs: 16
+training:
+  epochs: 500
+  start_learning_epoch: 1
+  timesteps_per_epoch: 500
+  batches_per_epoch: 128
+  validation_timesteps: 104
+  validation_interval: 50
+  checkpoint_interval: 50
+  batch_size: 16
+  max_sequence_length: 104
+  trajectory_length: 105
+  replay_capacity: 10000
+  reward_multiplier: 100.0
+  epsilon_anneal_steps: 50000
+  learning_rate: 0.0001
+  warmup_steps: 128
+  gradient_clip: 1.0
+  weight_decay: 0.001
+  mixed_precision: 'no'
+  dataloader_workers: 0
+  torch_compile: false
+  exploration: epsilon_greedy
+  exploration_rollout_horizon: 104
+  verbose: false
+  native_agent:
+    tau: 0.0025
+evaluation:
+  splits:
+    development:
+      source: development
+      count: 64
+    final:
+      source: final
+      count: 256
+  rollout_seeds:
+  - 0
+  primary_metric: pair_fraction
+  sampling_unit: task
+  checkpoint_rule: best-development-primary-ties-earliest
+memory:
+  summary:
+    segment_length: 16
+    memory_tokens: 4
+  window:
+    segment_length: 24
+qualification:
+  reference: random-policy pair fraction (uniform flips) on the same development board roster
+  minimum_improvement: 0.1
+  maximum_primary: 0.95
+  sustained_checkpoints: 3
+  maximum_fits: 2
+  maximum_device_hours: 24.0
+  fallback: Recipe changes apply to every cell of the protocol at once under the summary-memory change
+    protocol (implementation plan section 2) and are logged there. If the raw reference fails C2 on
+    the native deck, fallback F7 reduces the deck once (a project-owned reduced-rank variant, a new
+    protocol identity) and reruns the gate; a second failure reports Concentration as unqualified
+    with its measured reference series. All training, references, diagnostics and evaluations charge
+    the family 24-hour ceiling.
+  evidence_diagnostic: Actual bounded public histories under a fixed exploration policy; exact equality
+    of every current packet field, RL2 feedback and time across boards; incompatible partner flips
+    plus public-board resolution. Route ties and weak random policies are not necessity evidence.
+documentation:
+  source:
+    amago: 3.4.0
+    environment: https://github.com/UT-Austin-RPL/amago/blob/v3.4.0/amago/envs/builtin/popgym_envs.py
+      (POPGym)
+    example: https://github.com/UT-Austin-RPL/amago/blob/v3.4.0/examples/03_popgym_suite.py
+    adapter: reasoned_icrl.environments.concentration.ConcentrationEnv (variant hard); recipe resolved
+      by experiments/benchmarks.py
+    popgym: 1.0.7
+    recipe_note: 'Declared for the summary-memory study (decision 14, tasks M6.1 and
+      M6.4): the accepted DAT-M5 training block on the native ConcentrationHard deck; 500 epochs, 16
+      actors, 500 decisions/actor/epoch, 128 batches/epoch, batch 16; 4,000,000 scalar transitions
+      and 63,872 updates. Learning rate 0.0001, anneal 50000, FP32, full context (104 flips, 105
+      tokens) and native objectives retained. Memory per protocol: C 16, M 4 (24 slots), W 24.'
+  information:
+    observation: 'Native MultiDiscrete([14] * 52) over one shuffled deck of 13 ranks x 4; AMAGO POPGym
+      produces Box(729): 52 position one-hots of width 14 (13 ranks plus the face-down sentinel) and
+      timer/1000.'
+    action: Discrete(52), one flip of one position. At most two cards are in play.
+    feedback: A matching second flip (same rank, different position) pays +1/26 and both cards stay
+      face up; a mismatch or the same position twice pays -2/104 and both are hidden on the next
+      observation; a first flip pays 0; a flip of an already-matched card pays -1/104 per card in play
+      and discards the pending card.
+    reward: Native rewards as above; a perfect board returns 1.0. Apply the learner reward multiplier
+      only after logging native reward.
+    projection: Use the pinned AMAGO POPGym public one-hot/timer wrapper; never flatten info or get_state.
+    policy_fields:
+    - board_onehot
+    - timer
+    - rl2_reward
+    - rl2_previous_action
+    excluded_fields:
+    - deck
+    - state
+    - get_state
+    - state_space
+    - task_seed
+    - face_up_idx
+    - in_play_idx
+  lifecycle:
+    task_variation: A fresh shuffle of the 52-card deck per task seed; ranks fixed to positions for the board.
+    persistence: Matched pairs stay face up within one board; no meta-attempt wrapper.
+    termination: terminated=True when all 26 pairs are matched; truncated at the 104th flip.
+    bootstrap: No bootstrap at the natural end of the board; preserve the terminal observation.
+    reset: A fully face-down board and empty history at outer reset; 105 observation tokens for at most 104 flips.
+    relabeling: none
+  history: []

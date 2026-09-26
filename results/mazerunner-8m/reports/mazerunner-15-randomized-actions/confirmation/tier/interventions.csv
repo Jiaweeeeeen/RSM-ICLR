@@ -1,0 +1,12 @@
+protocol,split,checkpoint_rule,condition,dependence,metric,estimate,lower,upper,per_seed,seeds,tasks
+mazerunner-15-randomized-actions,confirmation,endpoint,full_context,retained - goal-cleared,goal_fraction,0.26562500000000006,0.2256944444444445,0.30208333333333337,"42: +0.286, 100: +0.277, 2026: +0.233",3,256
+mazerunner-15-randomized-actions,confirmation,endpoint,full_gru,retained - goal-cleared,goal_fraction,0.10763888888888891,0.07290581597222225,0.14539930555555558,"42: +0.085, 100: +0.143, 2026: +0.095",3,256
+mazerunner-15-randomized-actions,confirmation,endpoint,memo,retained - goal-cleared,goal_fraction,0.21657986111111116,0.16665581597222223,0.26171875000000006,"42: +0.165, 100: +0.247, 2026: +0.237",3,256
+mazerunner-15-randomized-actions,confirmation,endpoint,memo_fixed,retained - goal-cleared,goal_fraction,0.2217881944444445,0.1879231770833334,0.25653211805555554,"42: +0.227, 100: +0.197, 2026: +0.242",3,256
+mazerunner-15-randomized-actions,confirmation,endpoint,raw_segment,retained - goal-cleared,goal_fraction,0.000868055555555556,-0.012586805555555558,0.015190972222222224,"42: +0.000, 100: -0.004, 2026: +0.007",3,256
+mazerunner-15-randomized-actions,confirmation,endpoint,raw_summary,retained - goal-cleared,goal_fraction,0.15625,0.12064887152777783,0.1905490451388889,"42: +0.176, 100: +0.126, 2026: +0.167",3,256
+mazerunner-15-randomized-actions,confirmation,endpoint,raw_summary_residual,retained - goal-cleared,goal_fraction,0.14800347222222224,0.11371527777777779,0.18359375000000003,"42: +0.138, 100: +0.129, 2026: +0.177",3,256
+mazerunner-15-randomized-actions,confirmation,endpoint,memo,retained - summary-cleared,goal_fraction,0.20789930555555558,0.17361111111111116,0.24393446180555556,"42: +0.195, 100: +0.204, 2026: +0.224",3,256
+mazerunner-15-randomized-actions,confirmation,endpoint,memo_fixed,retained - summary-cleared,goal_fraction,0.20529513888888892,0.16708984375000002,0.2452365451388889,"42: +0.229, 100: +0.207, 2026: +0.180",3,256
+mazerunner-15-randomized-actions,confirmation,endpoint,raw_summary,retained - summary-cleared,goal_fraction,0.14800347222222224,0.10026041666666669,0.19922960069444443,"42: +0.109, 100: +0.138, 2026: +0.197",3,256
+mazerunner-15-randomized-actions,confirmation,endpoint,raw_summary_residual,retained - summary-cleared,goal_fraction,0.15190972222222224,0.10546875,0.19574652777777776,"42: +0.112, 100: +0.184, 2026: +0.160",3,256

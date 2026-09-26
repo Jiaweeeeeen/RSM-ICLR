@@ -1,0 +1,107 @@
+{
+  "parameters": {
+    "tokenizer": 26304,
+    "fusion": 0,
+    "backbone": 1103104,
+    "heads_and_other": 1968106
+  },
+  "peak_gpu_bytes": 562318336,
+  "cache_bytes": 49152,
+  "cache_float_bytes": 49152,
+  "cache_dtypes": [
+    "torch.float32"
+  ],
+  "peak_gpu_reserved_bytes": 662700032,
+  "checkpoint_seconds": 11.594943426258396,
+  "validation_seconds": 155.77687338914257,
+  "attention": {
+    "backend_map": {}
+  },
+  "runtime_seconds": 32086.249623125943,
+  "gradient_steps": 127872,
+  "context_actions": 500,
+  "nominal_collection_product": 8000000,
+  "measured": {
+    "scalar_training_transitions": 8000000,
+    "charged_calls": 8000000,
+    "physical_actions": 7526794,
+    "reset_only_steps": 473206,
+    "tasks_started": 16016,
+    "tasks_completed": 16000,
+    "validation": {
+      "charged_calls": 160000,
+      "physical_actions": 151511,
+      "reset_only_steps": 8489,
+      "tasks_started": 640,
+      "tasks_completed": 320
+    },
+    "counters": "carried across resume"
+  },
+  "resumes": [
+    {
+      "actual_device": "cuda",
+      "allow_missing_replay": true,
+      "git_commit": "bff6e405c9ced599fe9ac75cd4c51c3a8aab612d",
+      "git_dirty": true,
+      "gpu": "NVIDIA RTX 6000 Ada Generation",
+      "host": "node-3",
+      "lockfile_sha256": "49250ac263c5106c3189d22bab1ca50f4908592db900344646b1367bc65ce336",
+      "next_epoch": 51,
+      "replay_deviation": null,
+      "resumed_label": 50,
+      "schema": "reasoned-icrl-resume.v1",
+      "slurm_job_id": "140759",
+      "wandb": {
+        "id": "gailybtf",
+        "name": "native-keydoor-fixed500-first8/full_gru/seed-42",
+        "project": "reasoned-icrl",
+        "url": "https://wandb.ai/<entity>/reasoned-icrl/runs/gailybtf"
+      }
+    }
+  ],
+  "sessions": [
+    {
+      "session": 1,
+      "labels": [
+        0,
+        50
+      ],
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+      "slurm_job_id": "140814",
+      "hours_to_last_saved_label": 0.3606366675429874,
+      "ended": "died; epochs after label 50 were recollected"
+    },
+    {
+      "session": 2,
+      "labels": [
+        51,
+        999
+      ],
+      "gpu": "NVIDIA RTX 6000 Ada Generation",
+      "slurm_job_id": "140759",
+      "hours": 8.912847117534984,
+      "ended": "completed"
+    }
+  ],
+  "state_match": null,
+  "persistent_state_bytes": 3072,
+  "state_tensor_bytes": {
+    "hidden": 3072
+  },
+  "shared_state_bytes": 0,
+  "decision_latency_seconds": 0.002083079881655673,
+  "decision_latency_p95_seconds": 0.0025753989117220043,
+  "boundary_latency_seconds": null,
+  "boundary_latency_p95_seconds": null,
+  "boundary_latency_max_seconds": null,
+  "decision_flops_counted": 2097152,
+  "boundary_flops_counted": null,
+  "flops_method": "torch.utils.flop_counter.FlopCounterMode over one cached decision of the whole actor batch at the probe's last steady-state step (and its last boundary crossing for the summary carrier): matrix-multiply-class operators only; softmax, normalization and elementwise work excluded",
+  "latency_probe": {
+    "rows": 16,
+    "steps": 16,
+    "probes": 0,
+    "decisions_timed": 15,
+    "boundaries_timed": 0
+  }
+}

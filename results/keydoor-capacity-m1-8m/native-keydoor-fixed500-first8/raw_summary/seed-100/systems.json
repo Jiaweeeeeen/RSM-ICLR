@@ -1,0 +1,94 @@
+{
+  "parameters": {
+    "tokenizer": 26304,
+    "fusion": 0,
+    "backbone": 2459172,
+    "heads_and_other": 1968106
+  },
+  "peak_gpu_bytes": 1232811520,
+  "cache_bytes": 3358912,
+  "cache_float_bytes": 3358720,
+  "cache_dtypes": [
+    "torch.float32",
+    "torch.int32",
+    "torch.int64"
+  ],
+  "peak_gpu_reserved_bytes": 1392508928,
+  "checkpoint_seconds": 14.819288948085159,
+  "validation_seconds": 224.9014915758744,
+  "attention": {
+    "backend_map": {
+      "0": {
+        "content": "vanilla"
+      },
+      "1": {
+        "content": "vanilla"
+      },
+      "2": {
+        "content": "vanilla"
+      }
+    }
+  },
+  "runtime_seconds": 91087.84679398383,
+  "gradient_steps": 127872,
+  "context_actions": 500,
+  "nominal_collection_product": 8000000,
+  "measured": {
+    "scalar_training_transitions": 8000000,
+    "charged_calls": 8000000,
+    "physical_actions": 7694558,
+    "reset_only_steps": 305442,
+    "tasks_started": 16016,
+    "tasks_completed": 16000,
+    "validation": {
+      "charged_calls": 160000,
+      "physical_actions": 154017,
+      "reset_only_steps": 5983,
+      "tasks_started": 640,
+      "tasks_completed": 320
+    }
+  },
+  "resumes": [],
+  "sessions": [
+    {
+      "session": 1,
+      "labels": [
+        0,
+        999
+      ],
+      "gpu": "NVIDIA GeForce RTX 2080 Ti",
+      "slurm_job_id": "144272",
+      "hours": 25.30217966499551,
+      "ended": "completed"
+    }
+  ],
+  "state_match": null,
+  "persistent_state_bytes": 209932,
+  "state_tensor_bytes": {
+    "memory": 1024,
+    "lengths": 4,
+    "segment": 8,
+    "layer_0.content_keys": 34816,
+    "layer_0.content_values": 34816,
+    "layer_1.content_keys": 34816,
+    "layer_1.content_values": 34816,
+    "layer_2.content_keys": 34816,
+    "layer_2.content_values": 34816
+  },
+  "shared_state_bytes": 1024,
+  "decision_latency_seconds": 0.009486548989697034,
+  "decision_latency_p95_seconds": 0.009702804638072849,
+  "boundary_latency_seconds": 0.02768043751711957,
+  "boundary_latency_p95_seconds": 0.027935398917179555,
+  "boundary_latency_max_seconds": 0.02800653502345085,
+  "decision_flops_counted": 80893952,
+  "boundary_flops_counted": 245082112,
+  "flops_method": "torch.utils.flop_counter.FlopCounterMode over one cached decision of the whole actor batch at the probe's last steady-state step (and its last boundary crossing for the summary carrier): matrix-multiply-class operators only; softmax, normalization and elementwise work excluded",
+  "latency_probe": {
+    "rows": 16,
+    "steps": 258,
+    "probes": 8,
+    "decisions_timed": 249,
+    "boundaries_timed": 8
+  }
+}

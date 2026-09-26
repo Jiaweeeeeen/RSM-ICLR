@@ -1,0 +1,49 @@
+environment,contrast,role,placement,left,right,delta,estimate,lower,upper,per_seed,positive_seeds,inside_delta,disposition
+keydoor,RSM-O - no carry,primary,main,raw_summary,raw_segment,1.0,27.01171875,24.39833984375,29.82841796875,"42: +26.398, 100: +29.156, 2026: +25.480",3.0,False,consistent practical gain
+keydoor,full history - RSM-O,equivalence,main,full_context,raw_summary,1.0,-1.6276041666666667,-4.6954101562499995,1.340039062499999,"42: +0.547, 100: -3.797, 2026: -1.633",1.0,False,inconclusive
+keydoor,RSM-O - Memo,companion,main,raw_summary,memo,1.0,-0.5286458333333334,-2.844791666666665,1.707063802083333,"42: +0.527, 100: -0.273, 2026: -1.840",1.0,False,inconclusive
+keydoor,RSM-O - Memo fixed,companion,appendix,raw_summary,memo_fixed,1.0,2.2877604166666665,-1.4090820312499996,5.4505859375,"42: -1.094, 100: +3.887, 2026: +4.070",2.0,False,inconclusive
+keydoor,Memo - Memo fixed,companion,appendix,memo,memo_fixed,1.0,2.81640625,-1.8168945312499991,6.8515625,"42: -1.621, 100: +4.160, 2026: +5.910",2.0,False,inconclusive
+keydoor,RSM-O - GRU,companion,main,raw_summary,full_gru,1.0,-0.5442708333333334,-4.982714843749998,3.309179687499997,"42: -4.895, 100: +0.441, 2026: +2.820",2.0,False,inconclusive
+keydoor,RSM-O - RSM-R,write rule,main,raw_summary,raw_summary_residual,1.0,,,,,,,not in report
+keydoor,RSM-R - no carry,RSM-R family,main,raw_summary_residual,raw_segment,1.0,27.803385416666668,24.951269531250002,30.50569661458333,"42: +28.805, 100: +25.484, 2026: +29.121",3.0,False,consistent practical gain
+keydoor,full history - RSM-R,RSM-R family,main,full_context,raw_summary_residual,1.0,-2.4192708333333335,-5.574804687499999,0.8166992187499984,"42: -1.859, 100: -0.125, 2026: -5.273",0.0,False,inconclusive
+keydoor,RSM-R - Memo,RSM-R family,main,raw_summary_residual,memo,1.0,0.2630208333333333,-4.050162760416666,3.820312499999993,"42: +2.934, 100: -3.945, 2026: +1.801",2.0,False,inconclusive
+keydoor,RSM-R - Memo fixed,RSM-R family,appendix,raw_summary_residual,memo_fixed,1.0,3.0794270833333335,-0.9453125,7.407714843749999,"42: +1.312, 100: +0.215, 2026: +7.711",3.0,False,inconclusive
+keydoor,RSM-R - GRU,RSM-R family,main,raw_summary_residual,full_gru,1.0,0.24739583333333334,-4.282910156249999,5.80732421875,"42: -2.488, 100: -3.230, 2026: +6.461",1.0,False,inconclusive
+countrecall,RSM-O - no carry,primary,main,raw_summary,raw_segment,0.05,0.3094660194174757,0.2922349059466019,0.33032937651699024,"42: +0.295, 100: +0.303, 2026: +0.331",3.0,False,consistent practical gain
+countrecall,full history - RSM-O,equivalence,main,full_context,raw_summary,0.05,0.00929156553398058,0.00670004045307443,0.012338187702265371,"42: +0.010, 100: +0.010, 2026: +0.008",3.0,True,inconclusive
+countrecall,RSM-O - Memo,companion,main,raw_summary,memo,0.05,0.03295661407766989,0.024612219356796104,0.04207467384708734,"42: +0.043, 100: +0.032, 2026: +0.024",3.0,True,inconclusive
+countrecall,RSM-O - Memo fixed,companion,appendix,raw_summary,memo_fixed,0.05,0.04511781957928801,0.0365212252224919,0.057270175970873735,"42: +0.058, 100: +0.038, 2026: +0.039",3.0,False,inconclusive
+countrecall,Memo - Memo fixed,companion,appendix,memo,memo_fixed,0.05,0.012161205501618122,0.006825192152103561,0.017787659283980576,"42: +0.016, 100: +0.006, 2026: +0.015",3.0,True,inconclusive
+countrecall,RSM-O - GRU,companion,main,raw_summary,full_gru,0.05,0.05893507281553397,0.017103117415048535,0.09485076608009707,"42: +0.016, 100: +0.065, 2026: +0.096",3.0,False,consistent practical gain
+countrecall,RSM-O - RSM-R,write rule,main,raw_summary,raw_summary_residual,0.05,,,,,,,not in report
+countrecall,RSM-R - no carry,RSM-R family,main,raw_summary_residual,raw_segment,0.05,0.31074281957928795,0.29107156401699025,0.3329035194174757,"42: +0.292, 100: +0.307, 2026: +0.334",3.0,False,consistent practical gain
+countrecall,full history - RSM-R,RSM-R family,main,full_context,raw_summary_residual,0.05,0.00801476537216828,0.004538013248381875,0.012287621359223296,"42: +0.013, 100: +0.006, 2026: +0.005",3.0,True,inconclusive
+countrecall,RSM-R - Memo,RSM-R family,main,raw_summary_residual,memo,0.05,0.03423341423948218,0.02779884708737863,0.04046571601941746,"42: +0.040, 100: +0.036, 2026: +0.027",3.0,True,inconclusive
+countrecall,RSM-R - Memo fixed,RSM-R family,appendix,raw_summary_residual,memo_fixed,0.05,0.04639461974110031,0.04012407716423947,0.05514259708737862,"42: +0.055, 100: +0.042, 2026: +0.042",3.0,False,inconclusive
+countrecall,RSM-R - GRU,RSM-R family,main,raw_summary_residual,full_gru,0.05,0.06021187297734628,0.014372534890776695,0.09720115291262134,"42: +0.014, 100: +0.069, 2026: +0.098",3.0,False,consistent practical gain
+mazerunner,RSM-O - no carry,primary,main,raw_summary,raw_segment,0.1,0.06553819444444445,0.032552083333333336,0.10460069444444443,"42: +0.049, 100: +0.060, 2026: +0.087",3.0,False,inconclusive
+mazerunner,full history - RSM-O,equivalence,main,full_context,raw_summary,0.1,-0.06727430555555557,-0.09765625,-0.037760416666666664,"42: -0.060, 100: -0.065, 2026: -0.077",0.0,True,negative
+mazerunner,RSM-O - Memo,companion,main,raw_summary,memo,0.1,-0.05946180555555555,-0.10286458333333333,-0.01736111111111111,"42: -0.066, 100: -0.025, 2026: -0.087",0.0,False,negative
+mazerunner,RSM-O - Memo fixed,companion,appendix,raw_summary,memo_fixed,0.1,-0.032552083333333336,-0.07335069444444445,0.005208333333333333,"42: -0.010, 100: -0.061, 2026: -0.026",0.0,True,inconclusive
+mazerunner,Memo - Memo fixed,companion,appendix,memo,memo_fixed,0.1,0.02690972222222222,-0.037760416666666664,0.07988281249999989,"42: +0.056, 100: -0.036, 2026: +0.061",2.0,True,inconclusive
+mazerunner,RSM-O - GRU,companion,main,raw_summary,full_gru,0.1,0.16102430555555555,0.12282986111111112,0.19921875,"42: +0.172, 100: +0.169, 2026: +0.142",3.0,False,consistent practical gain
+mazerunner,RSM-O - RSM-R,write rule,main,raw_summary,raw_summary_residual,0.1,0.048177083333333336,0.015614149305555575,0.0842013888888889,"42: +0.061, 100: +0.052, 2026: +0.031",3.0,True,inconclusive
+mazerunner,RSM-R - no carry,RSM-R family,main,raw_summary_residual,raw_segment,0.1,0.017361111111111115,-0.023014322916666646,0.06251085069444438,"42: -0.012, 100: +0.008, 2026: +0.056",2.0,True,inconclusive
+mazerunner,full history - RSM-R,RSM-R family,main,full_context,raw_summary_residual,0.1,-0.019097222222222224,-0.05815972222222223,0.01909722222222222,"42: +0.001, 100: -0.013, 2026: -0.046",1.0,True,inconclusive
+mazerunner,RSM-R - Memo,RSM-R family,main,raw_summary_residual,memo,0.1,-0.10763888888888888,-0.1501736111111111,-0.0646701388888889,"42: -0.128, 100: -0.077, 2026: -0.118",0.0,False,negative
+mazerunner,RSM-R - Memo fixed,RSM-R family,appendix,raw_summary_residual,memo_fixed,0.1,-0.08072916666666667,-0.12415364583333331,-0.038628472222222224,"42: -0.072, 100: -0.113, 2026: -0.057",0.0,False,negative
+mazerunner,RSM-R - GRU,RSM-R family,main,raw_summary_residual,full_gru,0.1,0.11284722222222222,0.07897135416666672,0.14756944444444445,"42: +0.111, 100: +0.117, 2026: +0.111",3.0,False,consistent practical gain
+tmaze,RSM-O - no carry,primary,appendix,raw_summary,raw_segment,0.25,0.4856770833333333,0.41015625,0.5364583333333334,"42: +0.543, 100: +0.457, 2026: +0.457",3.0,False,consistent practical gain
+tmaze,full history - RSM-O,equivalence,appendix,full_context,raw_summary,0.25,0.0,0.0,0.0,"42: +0.000, 100: +0.000, 2026: +0.000",0.0,True,inconclusive
+tmaze,RSM-O - Memo,companion,appendix,raw_summary,memo,0.25,0.0,0.0,0.0,"42: +0.000, 100: +0.000, 2026: +0.000",0.0,True,inconclusive
+tmaze,RSM-O - Memo fixed,companion,appendix,raw_summary,memo_fixed,0.25,0.0,0.0,0.0,"42: +0.000, 100: +0.000, 2026: +0.000",0.0,True,inconclusive
+tmaze,Memo - Memo fixed,companion,appendix,memo,memo_fixed,0.25,0.0,0.0,0.0,"42: +0.000, 100: +0.000, 2026: +0.000",0.0,True,inconclusive
+tmaze,RSM-O - GRU,companion,appendix,raw_summary,full_gru,0.25,0.0,0.0,0.0,"42: +0.000, 100: +0.000, 2026: +0.000",0.0,True,inconclusive
+tmaze,RSM-O - RSM-R,write rule,appendix,raw_summary,raw_summary_residual,0.25,,,,,,,not in report
+tmaze,RSM-R - no carry,RSM-R family,appendix,raw_summary_residual,raw_segment,0.25,0.4856770833333333,0.41015625,0.5364583333333334,"42: +0.543, 100: +0.457, 2026: +0.457",3.0,False,consistent practical gain
+tmaze,full history - RSM-R,RSM-R family,appendix,full_context,raw_summary_residual,0.25,0.0,0.0,0.0,"42: +0.000, 100: +0.000, 2026: +0.000",0.0,True,inconclusive
+tmaze,RSM-R - Memo,RSM-R family,appendix,raw_summary_residual,memo,0.25,0.0,0.0,0.0,"42: +0.000, 100: +0.000, 2026: +0.000",0.0,True,inconclusive
+tmaze,RSM-R - Memo fixed,RSM-R family,appendix,raw_summary_residual,memo_fixed,0.25,0.0,0.0,0.0,"42: +0.000, 100: +0.000, 2026: +0.000",0.0,True,inconclusive
+tmaze,RSM-R - GRU,RSM-R family,appendix,raw_summary_residual,full_gru,0.25,0.0,0.0,0.0,"42: +0.000, 100: +0.000, 2026: +0.000",0.0,True,inconclusive

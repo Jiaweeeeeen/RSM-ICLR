@@ -1,0 +1,9 @@
+{
+  "notes": {
+    "figure": "position-adjusted summary share by Key-to-Door room cell (the seed's mean at the decision's segment position subtracted), attempt 1 against later attempts, training horizon, every confirmation task, seeds pooled",
+    "missing": []
+  },
+  "sources": [
+    "outputs/summary-memory-8m/reports/native-keydoor-fixed500-first8/confirmation/representation/grid.csv"
+  ]
+}

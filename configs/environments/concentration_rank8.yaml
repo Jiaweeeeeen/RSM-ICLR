@@ -1,0 +1,136 @@
+protocol: concentration-rank8
+status: C0
+environment:
+  name: concentration
+  benchmark: concentration-rank8
+  size: 32
+  attempts: 1
+  horizon: 64
+  parallel_envs: 16
+training:
+  epochs: 500
+  start_learning_epoch: 1
+  timesteps_per_epoch: 500
+  batches_per_epoch: 128
+  validation_timesteps: 64
+  validation_interval: 50
+  checkpoint_interval: 50
+  batch_size: 16
+  max_sequence_length: 64
+  trajectory_length: 65
+  replay_capacity: 10000
+  reward_multiplier: 100.0
+  epsilon_anneal_steps: 50000
+  learning_rate: 0.0001
+  warmup_steps: 128
+  gradient_clip: 1.0
+  weight_decay: 0.001
+  mixed_precision: 'no'
+  dataloader_workers: 0
+  torch_compile: false
+  exploration: epsilon_greedy
+  exploration_rollout_horizon: 64
+  verbose: false
+  native_agent:
+    tau: 0.0025
+evaluation:
+  splits:
+    development:
+      source: development
+      count: 64
+    final:
+      source: final
+      count: 256
+    final_ood:  # decision 17: the uneven deck (copies 6/6/6/6/2/2/2/2 per rank, assigned per board)
+      source: final-ood
+      count: 256
+  rollout_seeds:
+  - 0
+  primary_metric: pair_fraction
+  sampling_unit: task
+  checkpoint_rule: best-development-primary-ties-earliest
+memory:
+  summary:
+    segment_length: 16
+    memory_tokens: 4
+  window:
+    segment_length: 24
+qualification:
+  reference: random-policy pair fraction (uniform flips) on the same development board roster
+  minimum_improvement: 0.1
+  maximum_primary: 0.95
+  sustained_checkpoints: 3
+  maximum_fits: 2
+  maximum_device_hours: 24.0
+  fallback: Recipe changes apply to every cell of the protocol at once under the summary-memory change
+    protocol (implementation plan section 2) and are logged there. This deck is the one reduction
+    fallback F7 allows, taken after the native deck's raw reference
+    failed C2 and C3 (its record stays under outputs/summary-memory/concentration-hard/). If the raw
+    reference fails C2 here as well, Concentration is reported as unqualified with both measured
+    reference series; no second reduction is made. All training, references, diagnostics and
+    evaluations charge the family 24-hour ceiling.
+  evidence_diagnostic: Actual bounded public histories under a fixed exploration policy; exact equality
+    of every current packet field, RL2 feedback and time across boards; incompatible partner flips
+    plus public-board resolution. Route ties and weak random policies are not necessity evidence.
+documentation:
+  source:
+    amago: 3.4.0
+    environment: https://github.com/UT-Austin-RPL/amago/blob/v3.4.0/amago/envs/builtin/popgym_envs.py
+      (the POPGym wrapper chain, applied to the project-owned game)
+    example: https://github.com/UT-Austin-RPL/amago/blob/v3.4.0/examples/03_popgym_suite.py
+    adapter: reasoned_icrl.environments.concentration.ConcentrationEnv (variant rank8, a project-owned
+      reduced-rank deck built by reduced_rank_native over POPGym's Deck and Concentration classes;
+      POPGym registers no reduced deck and neither upstream package is patched); recipe resolved by
+      experiments/benchmarks.py
+    popgym: 1.0.7
+    recipe_note: 'Declared under fallback F7 (decision 16, task M6.6): the native
+      52-card deck''s raw reference failed C2 (selected development primary 0.056 at e350, random
+      reference 0.102, required 0.202; series e50 0.022 to e499 0.053) and C3 (current-token
+      dependence -0.003), so the deck is reduced once to 8 of the 13 ranks x 4 suits: 32 cards, 16
+      pairs, a 64-flip budget (POPGym''s ceil(2n - n/(2n-1))), 65 tokens. The accepted DAT-M5 training
+      block is unchanged: 500 epochs, 16 actors, 500 decisions/actor/epoch, 128 batches/epoch, batch 16;
+      4,000,000 scalar transitions and 63,872 updates; learning rate 0.0001, anneal 50000, FP32, full
+      context (64 flips, 65 tokens) and native objectives retained. Memory per protocol unchanged:
+      C 16, M 4 (24 slots), W 24 - five segments and four carried writes per board.'
+  information:
+    observation: 'The same MultiDiscrete layout as the native deck over 32 positions of 9 values
+      (8 ranks plus the face-down sentinel); AMAGO''s POPGym wrapper chain produces Box(289): 32
+      position one-hots of width 9 and timer/1000.'
+    action: Discrete(32), one flip of one position. At most two cards are in play.
+    feedback: A matching second flip (same rank, different position) pays +1/16 and both cards stay
+      face up; a mismatch or the same position twice pays -2/64 and both are hidden on the next
+      observation; a first flip pays 0; a flip of an already-matched card pays -1/64 per card in play
+      and discards the pending card.
+    reward: Native rewards as above; a perfect board returns 1.0. Apply the learner reward multiplier
+      only after logging native reward.
+    projection: Use the pinned AMAGO POPGym public one-hot/timer wrapper; never flatten info or get_state.
+    policy_fields:
+    - board_onehot
+    - timer
+    - rl2_reward
+    - rl2_previous_action
+    excluded_fields:
+    - deck
+    - state
+    - get_state
+    - state_space
+    - task_seed
+    - face_up_idx
+    - in_play_idx
+  lifecycle:
+    task_variation: A fresh shuffle of the 32-card deck (8 ranks x 4 suits) per task seed; ranks fixed
+      to positions for the board. On the final_ood split (decision 17) the deck is uneven - four
+      ranks hold six cards and four hold two, which ranks drawn from the task seed - so every
+      channel stays trained and the equality rule is unchanged while the binding structure shifts.
+    persistence: Matched pairs stay face up within one board; no meta-attempt wrapper.
+    termination: terminated=True when all 16 pairs are matched; truncated at the 64th flip.
+    bootstrap: No bootstrap at the natural end of the board; preserve the terminal observation.
+    reset: A fully face-down board and empty history at outer reset; 65 observation tokens for at most 64 flips.
+    relabeling: none
+  history:
+  - 'concentration-hard (configs/environments/concentration_hard.yaml): the native deck, gated
+    and failed (fallback F7); its record is outputs/summary-memory/concentration-hard/.'
+  - 'This deck was gated and failed C2 and C3 (decision 18; the record stays under
+    outputs/summary-memory/concentration-rank8/); it is no longer a study contract. Decision 19 moved
+    the study''s Concentration contract to the colour deck concentration-easy
+    (configs/environments/concentration.yaml).'

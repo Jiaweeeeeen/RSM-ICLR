@@ -1,0 +1,32 @@
+{
+  "notes": {
+    "figure": "the long-running tasks: the same task repeated and a new layout or map inside the run; top row the value at the end of the run (bars: mean over 256 confirmation tasks x 3 seeds, whiskers 95 % joint seed/task intervals, dots the seeds, dashed line RSM w/o memory), bottom row per 500-call window over the run (bands 95 % joint intervals, RSM strongest)",
+    "missing": []
+  },
+  "sources": [
+    "notebooks/outputs/data/figure3_beyond_the_training_horizon_keydoor_windows.csv",
+    "notebooks/outputs/data/figure_mazerunner_map_change_per_map.csv",
+    "notebooks/outputs/data/figure_mazerunner_map_change_windows.csv",
+    "notebooks/outputs/data/figure_mazerunner_repeated_laps_windows.csv",
+    "outputs/memo-key-to-door-8m/native-keydoor-fixed500-first8/memo/seed-100/eval/confirmation-retained-endpoint-h4000-relayout500/benchmark_results.json",
+    "outputs/memo-key-to-door-8m/native-keydoor-fixed500-first8/memo/seed-2026/eval/confirmation-retained-endpoint-h4000-relayout500/benchmark_results.json",
+    "outputs/memo-key-to-door-8m/native-keydoor-fixed500-first8/memo/seed-42/eval/confirmation-retained-endpoint-h4000-relayout500/benchmark_results.json",
+    "outputs/memo-key-to-door-8m/native-keydoor-fixed500-first8/memo_fixed/seed-100/eval/confirmation-retained-endpoint-h4000-relayout500/benchmark_results.json",
+    "outputs/memo-key-to-door-8m/native-keydoor-fixed500-first8/memo_fixed/seed-2026/eval/confirmation-retained-endpoint-h4000-relayout500/benchmark_results.json",
+    "outputs/memo-key-to-door-8m/native-keydoor-fixed500-first8/memo_fixed/seed-42/eval/confirmation-retained-endpoint-h4000-relayout500/benchmark_results.json",
+    "outputs/memo-key-to-door-8m/reports/dark-key-to-door/confirmation/horizon/h4000-relayout500/windows.csv",
+    "outputs/memo-key-to-door-8m/reports/dark-key-to-door/confirmation/horizon/h4000/windows.csv",
+    "outputs/summary-memory-8m/native-keydoor-fixed500-first8/full_context/seed-100/eval/confirmation-retained-endpoint-h4000-relayout500/benchmark_results.json",
+    "outputs/summary-memory-8m/native-keydoor-fixed500-first8/full_context/seed-2026/eval/confirmation-retained-endpoint-h4000-relayout500/benchmark_results.json",
+    "outputs/summary-memory-8m/native-keydoor-fixed500-first8/full_context/seed-42/eval/confirmation-retained-endpoint-h4000-relayout500/benchmark_results.json",
+    "outputs/summary-memory-8m/native-keydoor-fixed500-first8/full_gru/seed-100/eval/confirmation-retained-endpoint-h4000-relayout500/benchmark_results.json",
+    "outputs/summary-memory-8m/native-keydoor-fixed500-first8/full_gru/seed-2026/eval/confirmation-retained-endpoint-h4000-relayout500/benchmark_results.json",
+    "outputs/summary-memory-8m/native-keydoor-fixed500-first8/full_gru/seed-42/eval/confirmation-retained-endpoint-h4000-relayout500/benchmark_results.json",
+    "outputs/summary-memory-8m/native-keydoor-fixed500-first8/raw_segment/seed-100/eval/confirmation-retained-endpoint-h4000-relayout500/benchmark_results.json",
+    "outputs/summary-memory-8m/native-keydoor-fixed500-first8/raw_segment/seed-2026/eval/confirmation-retained-endpoint-h4000-relayout500/benchmark_results.json",
+    "outputs/summary-memory-8m/native-keydoor-fixed500-first8/raw_segment/seed-42/eval/confirmation-retained-endpoint-h4000-relayout500/benchmark_results.json",
+    "outputs/summary-memory-8m/native-keydoor-fixed500-first8/raw_summary/seed-100/eval/confirmation-retained-endpoint-h4000-relayout500/benchmark_results.json",
+    "outputs/summary-memory-8m/native-keydoor-fixed500-first8/raw_summary/seed-2026/eval/confirmation-retained-endpoint-h4000-relayout500/benchmark_results.json",
+    "outputs/summary-memory-8m/native-keydoor-fixed500-first8/raw_summary/seed-42/eval/confirmation-retained-endpoint-h4000-relayout500/benchmark_results.json"
+  ]
+}

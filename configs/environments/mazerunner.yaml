@@ -1,0 +1,122 @@
+protocol: mazerunner-fixed-actions
+status: C1
+environment:
+  name: mazerunner
+  benchmark: mazerunner-fixed-actions
+  size: 11
+  attempts: 1
+  horizon: 250
+  goals: 3
+  randomized_actions: false
+  parallel_envs: 16
+training:
+  epochs: 500
+  start_learning_epoch: 1
+  timesteps_per_epoch: 500
+  batches_per_epoch: 128
+  validation_timesteps: 250
+  validation_interval: 50
+  checkpoint_interval: 50
+  batch_size: 16
+  max_sequence_length: 250
+  trajectory_length: 251
+  replay_capacity: 10000
+  reward_multiplier: 1.0
+  epsilon_anneal_steps: 50000
+  learning_rate: 0.0001
+  warmup_steps: 128
+  gradient_clip: 1.0
+  weight_decay: 0.001
+  mixed_precision: 'no'
+  dataloader_workers: 0
+  torch_compile: false
+  exploration: epsilon_greedy
+  exploration_rollout_horizon: 250
+  verbose: false
+evaluation:
+  splits:
+    development:
+      source: development
+      count: 64
+    final:
+      source: final
+      count: 256
+  rollout_seeds:
+  - 0
+  primary_metric: goal_fraction
+  sampling_unit: map
+  checkpoint_rule: best-development-primary-ties-earliest
+qualification:
+  reference: random-policy fraction of goals completed on the development map roster
+  minimum_improvement: 0.1
+  maximum_primary: 0.95
+  sustained_checkpoints: 3
+  maximum_fits: 2
+  maximum_device_hours: 24.0
+  fallback: One extended ordinary-transition retry at the declared 500-epoch/128-batch recipe replaces
+    the unused LR fallback. Together with the original pilot, maximum two ordinary fits. No automatic
+    further retuning; preserve negative evidence. All training, references, diagnostics and evaluations
+    charge the family 24-hour ceiling. Fixed actions only. Randomized actions require separate protocol
+    qualification and a declared additional fit allowance before execution.
+  evidence_diagnostic: Actual bounded public histories; exact equality of every current packet field,
+    RL2 feedback and time; conflicting correct answers/actions plus public-history resolution. Route ties
+    and weak random policies are not necessity evidence. See docs/DAT_BENCHMARK_M5_RETRY.md.
+documentation:
+  source:
+    amago: 3.4.0
+    environment: https://github.com/UT-Austin-RPL/amago/blob/v3.4.0/amago/envs/builtin/mazerunner.py (MazeRunnerAMAGOEnv)
+    example: https://github.com/UT-Austin-RPL/amago/blob/v3.4.0/examples/13_mazerunner_relabeling.py
+    adapter: reasoned_icrl.environments.mazerunner.MazeRunnerEnv with project-owned HindsightGoalRelabeler;
+      recipe resolved by experiments/benchmarks.py
+    popgym: not used
+    recipe_note: 'Prospectively revised: fresh 500-epoch fit, 16 actors, 500 decisions/actor/epoch,
+      128 batches/epoch, batch16; 4,000,000 scalar transitions and 63,872 updates. Learning rate 0.0001,
+      anneal50000, FP32, full context and native objectives retained. Replaces the unused LR retry; original
+      100-epoch negative evidence is historical.'
+    relabeling_note: 'Project-owned native-inspired hindsight replay: some draws a uniform replacement
+      count, randomly samples achieved timestep alternatives, chronologically merges with achieved original
+      goals, and retains remaining original goals. Preserve time-zero, distinct-goal, causal-packet and
+      finite-horizon corrections; not byte-for-byte upstream reproduction.'
+  information:
+    observation: 'RelabelInfoWrapper: obs float vector(7)=[position(2), public wall distances(4),timer];
+      goals int array(3,2). Completed goal rows use -1 despite native declared lower bound 0.'
+    action: Discrete(5); action mapping fixed initially, independently permuted at each outer reset in
+      randomized variant.
+    feedback: AMAGO RL2 carries previous selected action and native reward; goals in observation reflect
+      progress after that action.
+    reward: 1 for each active goal reached in sequence; native return 0..3. Initial reward_multiplier=1.
+    projection: Concatenate obs and flattened goals/maze_size into float32 width13; allow -1 goal sentinel.
+      Never include achieved helper in actor input.
+    policy_fields:
+    - obs
+    - goals
+    - rl2_reward
+    - rl2_previous_action
+    excluded_fields:
+    - achieved
+    - maze
+    - action_dirs
+    - rng_state
+    - task_seed
+    - optimal_path
+  lifecycle:
+    task_variation: New maze and three ordered goals each episode; random-action candidate also varies
+      mapping.
+    persistence: Map, mapping and remaining goal sequence persist for one native episode.
+    termination: Full sequence completion or timer>=250; timeout also sets terminated=True as a finite-horizon
+      task.
+    bootstrap: No bootstrap at full-sequence completion or native finite-horizon timeout.
+    reset: Clear history at each native episode; no invented physical attempts; 251 observation tokens
+      maximum.
+    relabeling: 'Project-owned HindsightGoalRelabeler, strategy=some: uniformly sample zero through remaining
+      goal count, randomly sample distinct achieved timestep alternatives, chronologically merge with
+      achieved original goals, and retain uncompleted original goals at the tail. Seed from training seed
+      for all conditions. Native horizon permits incomplete instructions to terminate; full completion
+      truncates early. Exclude time-zero/start and duplicate goals. Rebuild goals, rewards, dones, RL2
+      and every transition field. No achieved or privileged metadata enters replay/policy. This changes
+      the historical pilot recipe; fresh comparisons required.'
+  history:
+  - 'M5 historical: original 100-epoch ordinary pilot failed C2. Original diagnostic passes are superseded
+    by corrected full-input checks; original reported hours excluded external evaluation.'
+  - 'M5 pending: revised extended fit and corrected neural qualification have NOT been run. C1 is unchanged;
+    M5 exit remains not passed.'

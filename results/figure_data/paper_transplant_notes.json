@@ -1,0 +1,11 @@
+{
+  "notes": {
+    "figure": "summary transplant at one boundary (Key-to-Door call 257, CountRecall query 65), donor = the task 128 roster places later",
+    "missing": []
+  },
+  "sources": [
+    "outputs/summary-memory-8m/reports/count-recall-medium/confirmation/representation/transplant_queries.csv",
+    "outputs/summary-memory-8m/reports/native-keydoor-fixed500-first8/confirmation/representation/transplant.csv",
+    "outputs/summary-memory-8m/reports/native-keydoor-fixed500-first8/confirmation/representation/transplant_bins.csv"
+  ]
+}

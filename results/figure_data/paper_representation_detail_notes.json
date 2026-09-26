@@ -1,0 +1,14 @@
+{
+  "notes": {
+    "figure": "what the summary holds: projections for every seed (components fitted on each seed's development captures), ridge read-out per target (bars: seed mean, dots: seeds), and over repeated MazeRunner attempts on one map the centred similarity across rewrites and the mean centred norm per segment",
+    "missing": []
+  },
+  "sources": [
+    "outputs/mazerunner-8m/reports/mazerunner-15-randomized-actions/confirmation/representation/first64/norms.csv",
+    "outputs/mazerunner-8m/reports/mazerunner-15-randomized-actions/confirmation/representation/first64/similarity.csv",
+    "outputs/summary-memory-8m/reports/count-recall-medium/confirmation/representation/projection.csv",
+    "outputs/summary-memory-8m/reports/count-recall-medium/confirmation/representation/readout.csv",
+    "outputs/summary-memory-8m/reports/native-keydoor-fixed500-first8/confirmation/representation/projection.csv",
+    "outputs/summary-memory-8m/reports/native-keydoor-fixed500-first8/confirmation/representation/readout.csv"
+  ]
+}

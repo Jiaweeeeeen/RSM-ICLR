@@ -1,0 +1,147 @@
+name: summary_memory_8m
+output_root: outputs/summary-memory-8m  # distinct descriptive root; legacy outputs and names are untouched
+contracts:
+- environments/8m/dark_key_to_door.yaml   # tier 0
+- environments/8m/concentration.yaml      # tier 1 (Easy)
+- environments/8m/count_recall.yaml       # tier 2 (official Medium, R8)
+- environments/8m/xland_minigrid.yaml     # tier 3 (declared subset, qualified in R5/R7)
+training_seeds:
+- 42
+- 100
+- 2026
+pilot_seeds: []  # R6's development pilot is seed 42 run first at the full recipe, not a separate seed;
+                 # a pilot at any other recipe is retained separately and never substituted for seed 42
+conditions:  # every cell any tier may run (the union roster); the per-tier groups below say which cells run where
+- full_context
+- full_dual_relational
+- full_dual_content
+- full_gru  # recommended for tier 0; inclusion is decided before any new outcome is read
+- fixed_summary
+- fixed_segment
+- fixed_window
+# The paper's summary carriers (ordinary attention, amago-summary-v1 at C32/M4), fitted under this root:
+- raw_summary           # RSM (RSM-O, replacing rewrite), the method
+- raw_segment           # RSM w/o memory, the no-carry control
+- raw_summary_detach    # RSM with the carried memory detached at every boundary; CountRecall only
+- raw_summary_residual  # RSM-R (residual rewrite), the rewrite ablation
+- raw_window            # sliding window at RSM's state (amago-window-v1, W = 40); Key-to-Door only in this root
+model:
+  attention_backend: vanilla
+  width: 256
+  layers: 3
+  heads: 8
+  feedforward_multiplier: 4
+  dat:  # block v2: the DAT paper's configuration, unchanged by R1
+    layer_indices:  # dual attention in every layer, so relations compose across layers
+    - 0
+    - 1
+    - 2
+    relational_heads: 4  # 1:1 sensory/relational, the paper's split in every experiment
+    relation_channels: 8  # d_proj = d_h * n_ra / d_r = 32 * 4 / 8 = 16, the paper's rule
+    relation_projection_dim: 16
+    relation_activation: identity
+    symmetric_relations: true  # same/different kernels: position, value and rank equality
+    symbol_dim: 256
+    max_relative_distance: 500
+    relational_backend: dense
+    position_method: fixed
+    cache_dtype: float32
+    control_content_head_dim: 96  # R3: derived per resolved environment (capacity_matched_control_dims at the cell's clipping distance); 96/16 is the match at 500 (+2.5 %), recorded in systems.json
+    control_second_head_dim: 16
+  summary:
+    segment_length: 32  # C; fixed per environment by the contracts (32 for tiers 0-2, 64 for XLand), no sweep (R4)
+    memory_tokens: 4    # M
+    detach: none
+    position: segment-local
+    cache_dtype: float32
+  window:
+    segment_length: 40  # W: each contract overrides it; R3 refuses any value that is not the measured DAT state match (contracts.match_window_to_summary)
+    cache_dtype: float32
+# R4: the tier-specific primary/supplementary groups of docs/METHOD.md,
+# the qualification reference and the predeclared contrasts of docs/EXPERIMENTS.md section 7, keyed by
+# environment. Launches, completeness checks and reports read these groups; nothing forms an
+# all-conditions x all-environments product. `practical_effect` is the tier's delta in the units of its
+# contract's primary metric. A tier whose contract is not yet in this study says `contract: pending`.
+tiers:
+  dark_key_to_door:
+    tier: 0
+    purpose: Key-to-Door mechanism study
+    primary: [full_context, full_dual_relational, full_dual_content, fixed_summary, fixed_segment, fixed_window]
+    # (figure redesign, CONDITIONS "tier 0"): the ordinary-writer pair joins the GRU as tier-0
+    # supplements, the Key-to-Door half of the writer 2x2 at the same C32/M4 (`amago-summary-v1`, causal-prefix route);
+    # declared with its two companion rows before any of its panels exist; never gates the tier-0 report.
+    supplementary: [full_gru, raw_summary, raw_segment, raw_summary_residual, raw_window]  # GRU recommended, optional; inclusion decided before new outcomes are read
+    qualification_reference: full_context
+    practical_effect: 1.0  # one additional completed door per 500-call task
+    primary_contrasts:
+    - {name: DAT full - ordinary full, left: full_dual_relational, right: full_context}
+    - {name: DAT full - dual content, left: full_dual_relational, right: full_dual_content}
+    - {name: summary - segment, left: fixed_summary, right: fixed_segment}
+    - {name: summary - window, left: fixed_summary, right: fixed_window}
+    companion_contrasts:
+    - {name: full DAT - summary, left: full_dual_relational, right: fixed_summary}
+    - {name: full context - GRU, left: full_context, right: full_gru}
+    - {name: summary - GRU, left: fixed_summary, right: full_gru}
+    - {name: ordinary summary - ordinary segment, left: raw_summary, right: raw_segment}  # writer pair (EXPERIMENTS section 7)
+    - {name: DAT summary - ordinary summary, left: fixed_summary, right: raw_summary}  # writer pair; the interaction is reported descriptively
+    # The sliding-window baseline's rows, declared before any fit.
+    - {name: RSM - window, left: raw_summary, right: raw_window}
+    - {name: window - RSM no carry, left: raw_window, right: raw_segment}
+    - {name: full history - window, left: full_context, right: raw_window}
+  concentration:
+    tier: 1
+    purpose: ConcentrationEasy associative relational memory
+    primary: [full_context, full_dual_relational, full_dual_content, full_gru]
+    supplementary: [fixed_summary, fixed_segment, fixed_window]  # a separately tracked lower-priority panel
+    qualification_reference: full_context
+    practical_effect: 0.05  # pair fraction
+    primary_contrasts:
+    - {name: DAT full - ordinary full, left: full_dual_relational, right: full_context}
+    - {name: DAT full - dual content, left: full_dual_relational, right: full_dual_content}
+    - {name: DAT full - GRU, left: full_dual_relational, right: full_gru}
+    companion_contrasts:
+    - {name: dual content - ordinary, left: full_dual_content, right: full_context}
+    - {name: summary - segment, left: fixed_summary, right: fixed_segment}
+    - {name: summary - window, left: fixed_summary, right: fixed_window}
+  count_recall:
+    tier: 2
+    purpose: Official CountRecallMedium incremental summarisation
+    primary: [full_dual_relational, fixed_summary, fixed_segment]
+    # The bounded-state competitors and the
+    # ordinary/dual-content full-context pair run as supplementary cells after the nine primary budgets;
+    # they never gate the tier's completeness or its report and are launched through the generic planner.
+    supplementary: [full_gru, fixed_window, full_context, full_dual_content, raw_summary, raw_segment, raw_summary_detach, raw_summary_residual]  # raw_* added (plan priority 5, the ordinary-writer backbone 2x2); raw_summary_detach (paper split section 8)
+    qualification_reference: full_dual_relational
+    practical_effect: 0.05  # exact accuracy
+    primary_contrasts:
+    - {name: summary - segment, left: fixed_summary, right: fixed_segment}
+    companion_contrasts:
+    - {name: full DAT - summary, left: full_dual_relational, right: fixed_summary}
+    # Six companion rows over the supplementary
+    # cells, declared after the primary readout and the supplementary cells' development series had been
+    # seen and before their held-out panels were read (job 141085 wrote those panels after this edit).
+    # The GRU comparison and the backbone pair (ordinary writer against DAT writer at
+    # the same C32/M4) are companion rows only: the primary family and the tier's completeness rule are unchanged.
+    - {name: summary - GRU, left: fixed_summary, right: full_gru}
+    - {name: summary - window, left: fixed_summary, right: fixed_window}
+    - {name: DAT full - ordinary full, left: full_dual_relational, right: full_context}
+    - {name: DAT full - dual content, left: full_dual_relational, right: full_dual_content}
+    - {name: ordinary summary - ordinary segment, left: raw_summary, right: raw_segment}
+    - {name: DAT summary - ordinary summary, left: fixed_summary, right: raw_summary}
+    # (paper split, section 8): the truncated-gradient ablation, declared before any of its fits existed.
+    - {name: RSM - RSM detach, left: raw_summary, right: raw_summary_detach}
+    - {name: RSM detach - RSM no carry, left: raw_summary_detach, right: raw_segment}
+  xland_minigrid:
+    tier: 3
+    purpose: XLand one-rule extension (deferred R9; the current contract keeps the old task)
+    primary: [full_context, full_dual_relational, full_dual_content, fixed_summary, fixed_segment, fixed_window]
+    supplementary: []
+    qualification_reference: full_context
+    practical_effect: 0.05  # success probability
+    primary_contrasts:
+    - {name: DAT full - ordinary full, left: full_dual_relational, right: full_context}
+    - {name: DAT full - dual content, left: full_dual_relational, right: full_dual_content}
+    - {name: summary - segment, left: fixed_summary, right: fixed_segment}
+    - {name: summary - window, left: fixed_summary, right: fixed_window}
+    companion_contrasts:
+    - {name: full DAT - summary, left: full_dual_relational, right: fixed_summary}

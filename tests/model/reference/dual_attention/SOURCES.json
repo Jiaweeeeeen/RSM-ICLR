@@ -1,0 +1,190 @@
+{
+ "schema": "dat-integration-planning-sources.v1",
+ "prepared_date": "",
+ "status": "planning-only",
+ "project_revision": "6d19e32d4ddd5f9ada674a2d9ffe10cf0636bedc",
+ "upstream_sources": [
+  {
+   "source": "dat",
+   "commit": "dce218cbf5ec9aa7f90687c1323050a1fba17966",
+   "path": "dual_attention/dual_attention.py",
+   "url": "https://raw.githubusercontent.com/awni00/dual-attention/dce218cbf5ec9aa7f90687c1323050a1fba17966/dual_attention/dual_attention.py",
+   "sha256": "6f0c41efb003ac35763d7d86367346d9b498c645f4b3e0b7e57f889e95393f12",
+   "license": "MIT"
+  },
+  {
+   "source": "dat",
+   "commit": "dce218cbf5ec9aa7f90687c1323050a1fba17966",
+   "path": "dual_attention/relational_attention.py",
+   "url": "https://raw.githubusercontent.com/awni00/dual-attention/dce218cbf5ec9aa7f90687c1323050a1fba17966/dual_attention/relational_attention.py",
+   "sha256": "253f1fb922a90e6fb4c3ea9798b0fa1b51c0c17f70f35fbe66cb2e62a664987f",
+   "license": "MIT"
+  },
+  {
+   "source": "dat",
+   "commit": "dce218cbf5ec9aa7f90687c1323050a1fba17966",
+   "path": "dual_attention/attention.py",
+   "url": "https://raw.githubusercontent.com/awni00/dual-attention/dce218cbf5ec9aa7f90687c1323050a1fba17966/dual_attention/attention.py",
+   "sha256": "78f39cb9f69d102cf6f002118e42efd411eadbbebd3c6fec8c7ff13db0045582",
+   "license": "MIT"
+  },
+  {
+   "source": "dat",
+   "commit": "dce218cbf5ec9aa7f90687c1323050a1fba17966",
+   "path": "dual_attention/symbol_retrieval.py",
+   "url": "https://raw.githubusercontent.com/awni00/dual-attention/dce218cbf5ec9aa7f90687c1323050a1fba17966/dual_attention/symbol_retrieval.py",
+   "sha256": "216f956d97f239d6cfb4c8c5049806e555448071bb6236ad4701b9dbc8aff2da",
+   "license": "MIT"
+  },
+  {
+   "source": "dat",
+   "commit": "dce218cbf5ec9aa7f90687c1323050a1fba17966",
+   "path": "dual_attention/positional_encoding.py",
+   "url": "https://raw.githubusercontent.com/awni00/dual-attention/dce218cbf5ec9aa7f90687c1323050a1fba17966/dual_attention/positional_encoding.py",
+   "sha256": "111e236b794d26af19518883de788601c6843e69f8c46bebf9459beef7c53644",
+   "license": "MIT"
+  },
+  {
+   "source": "dat",
+   "commit": "dce218cbf5ec9aa7f90687c1323050a1fba17966",
+   "path": "dual_attention/dual_attn_blocks.py",
+   "url": "https://raw.githubusercontent.com/awni00/dual-attention/dce218cbf5ec9aa7f90687c1323050a1fba17966/dual_attention/dual_attn_blocks.py",
+   "sha256": "3823a2664765d86f9bea312ff5a128b01e463076a5c60a4aea00a90743e4e395",
+   "license": "MIT"
+  },
+  {
+   "source": "dat",
+   "commit": "dce218cbf5ec9aa7f90687c1323050a1fba17966",
+   "path": "LICENSE",
+   "url": "https://raw.githubusercontent.com/awni00/dual-attention/dce218cbf5ec9aa7f90687c1323050a1fba17966/LICENSE",
+   "sha256": "bc2d663d714439e178e8a4f8911822d0e017b3485f4ae32eb4f653d384e4837d",
+   "license": "MIT"
+  },
+  {
+   "source": "amago",
+   "commit": "0974781a9096ff43df1b708312256f96fc2ab127",
+   "path": "amago/nets/transformer.py",
+   "url": "https://raw.githubusercontent.com/UT-Austin-RPL/amago/0974781a9096ff43df1b708312256f96fc2ab127/amago/nets/transformer.py",
+   "sha256": "e15bf42ffe7a8afa0ec1f54b795cfffec865ff30e5ed09a4bc7a1fb6efded9d1",
+   "license": "MIT"
+  },
+  {
+   "source": "amago",
+   "commit": "0974781a9096ff43df1b708312256f96fc2ab127",
+   "path": "amago/nets/traj_encoders.py",
+   "url": "https://raw.githubusercontent.com/UT-Austin-RPL/amago/0974781a9096ff43df1b708312256f96fc2ab127/amago/nets/traj_encoders.py",
+   "sha256": "4c7cecab8a11f1da637d8addc3631a2352ddc1691a3aeab2ad2ad660252fdb7b",
+   "license": "MIT"
+  },
+  {
+   "source": "amago",
+   "commit": "0974781a9096ff43df1b708312256f96fc2ab127",
+   "path": "amago/nets/utils.py",
+   "url": "https://raw.githubusercontent.com/UT-Austin-RPL/amago/0974781a9096ff43df1b708312256f96fc2ab127/amago/nets/utils.py",
+   "sha256": "e82a08ba638798bf1b0d51cc1f5195c8c7676d5e48b0ede280881b4c42245048",
+   "license": "MIT"
+  },
+  {
+   "source": "amago",
+   "commit": "0974781a9096ff43df1b708312256f96fc2ab127",
+   "path": "amago/nets/tstep_encoders.py",
+   "url": "https://raw.githubusercontent.com/UT-Austin-RPL/amago/0974781a9096ff43df1b708312256f96fc2ab127/amago/nets/tstep_encoders.py",
+   "sha256": "ad1acaf5abb769dc44721c6f1a6f439da06d19214a7f573a757c297a7815599e",
+   "license": "MIT"
+  },
+  {
+   "source": "amago",
+   "commit": "0974781a9096ff43df1b708312256f96fc2ab127",
+   "path": "amago/agent.py",
+   "url": "https://raw.githubusercontent.com/UT-Austin-RPL/amago/0974781a9096ff43df1b708312256f96fc2ab127/amago/agent.py",
+   "sha256": "98c574610128201a7606e67a2e1b8b308ca08f9a4d500177b31d99cab46f3e3d",
+   "license": "MIT"
+  },
+  {
+   "source": "amago",
+   "commit": "0974781a9096ff43df1b708312256f96fc2ab127",
+   "path": "amago/experiment.py",
+   "url": "https://raw.githubusercontent.com/UT-Austin-RPL/amago/0974781a9096ff43df1b708312256f96fc2ab127/amago/experiment.py",
+   "sha256": "ca109f8f9041baafe1228859c9cab56b29a1e9cd4be1feb99b0174bcc94566c1",
+   "license": "MIT"
+  },
+  {
+   "source": "amago",
+   "commit": "0974781a9096ff43df1b708312256f96fc2ab127",
+   "path": "amago/cli_utils.py",
+   "url": "https://raw.githubusercontent.com/UT-Austin-RPL/amago/0974781a9096ff43df1b708312256f96fc2ab127/amago/cli_utils.py",
+   "sha256": "facb8d4dc23a0d3ebbcd11b73405e68cc38470a9803fb54cc2a59d677cd2ea99",
+   "license": "MIT"
+  },
+  {
+   "source": "amago",
+   "commit": "0974781a9096ff43df1b708312256f96fc2ab127",
+   "path": "amago/envs/builtin/half_cheetah_v4_vel.py",
+   "url": "https://raw.githubusercontent.com/UT-Austin-RPL/amago/0974781a9096ff43df1b708312256f96fc2ab127/amago/envs/builtin/half_cheetah_v4_vel.py",
+   "sha256": "2325c7d6c6fc1543d5c528e80de3b2caef51f1ddc17c3a0cf79f10c59fd6c465",
+   "license": "MIT"
+  },
+  {
+   "source": "amago",
+   "commit": "0974781a9096ff43df1b708312256f96fc2ab127",
+   "path": "examples/13_mazerunner_relabeling.py",
+   "url": "https://raw.githubusercontent.com/UT-Austin-RPL/amago/0974781a9096ff43df1b708312256f96fc2ab127/examples/13_mazerunner_relabeling.py",
+   "sha256": "714e689b5570469c750a88897a0c15188c171bb07eb05be2b4422952b27762d6",
+   "license": "MIT"
+  },
+  {
+   "source": "amago",
+   "commit": "0974781a9096ff43df1b708312256f96fc2ab127",
+   "path": "LICENSE",
+   "url": "https://raw.githubusercontent.com/UT-Austin-RPL/amago/0974781a9096ff43df1b708312256f96fc2ab127/LICENSE",
+   "sha256": "4c2535bbc23920b774693c9da72c65416bd93d165dcd9a9ab7eb8c8fd94b66d7",
+   "license": "MIT"
+  },
+  {
+   "source": "dat-paper",
+   "url": "https://raw.githubusercontent.com/mlresearch/v267/main/assets/altabaa25a/altabaa25a.pdf",
+   "sha256": "a8ebad365c8ccdafe6a5fed20b1f7faa3bda8d3bfcc5ee18a7ece3f62d32b8aa"
+  },
+  {
+   "source": "amago-paper",
+   "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/7204434dcb9383a1454dc1e97e58ea9c-Paper-Conference.pdf",
+   "sha256": "2ddd60f0911bb3df467c5d894f413ee15400143bd744f279f3202c1aa7e94666"
+  }
+ ],
+ "verified_installed_upstream_matches": [
+  "amago/nets/transformer.py",
+  "amago/nets/traj_encoders.py",
+  "amago/agent.py"
+ ],
+ "limitations": [
+  "Parameter counts in the integration plan are analytic proposed-model counts, pinned by tests/model/test_dat_diagnostics.py."
+ ],
+ "vendored_test_fixtures": {
+  "note": "Copied verbatim into tests/model/reference/dual_attention/ so the parity test compares against the pinned operator itself. Test fixtures only; nothing under reasoned_icrl/ imports them and DAT is not a runtime dependency.",
+  "root": "tests/model/reference/dual_attention",
+  "commit": "dce218cbf5ec9aa7f90687c1323050a1fba17966",
+  "license": "MIT",
+  "files": [
+   {
+    "path": "relational_attention.py",
+    "url": "https://raw.githubusercontent.com/awni00/dual-attention/dce218cbf5ec9aa7f90687c1323050a1fba17966/dual_attention/relational_attention.py",
+    "sha256": "253f1fb922a90e6fb4c3ea9798b0fa1b51c0c17f70f35fbe66cb2e62a664987f"
+   },
+   {
+    "path": "model_utils.py",
+    "url": "https://raw.githubusercontent.com/awni00/dual-attention/dce218cbf5ec9aa7f90687c1323050a1fba17966/dual_attention/model_utils.py",
+    "sha256": "9a9befe20cfc00bccb53aed220afdf7eb38bb77c7966b039c260a800e1d48fd3"
+   },
+   {
+    "path": "attention_utils.py",
+    "url": "https://raw.githubusercontent.com/awni00/dual-attention/dce218cbf5ec9aa7f90687c1323050a1fba17966/dual_attention/attention_utils.py",
+    "sha256": "9e7ba83c7a98222b9ffc6b3f58f2e554346444ceb4e87d790f6547fbd0ed531e"
+   },
+   {
+    "path": "LICENSE",
+    "url": "https://raw.githubusercontent.com/awni00/dual-attention/dce218cbf5ec9aa7f90687c1323050a1fba17966/LICENSE",
+    "sha256": "bc2d663d714439e178e8a4f8911822d0e017b3485f4ae32eb4f653d384e4837d"
+   }
+  ]
+ }
+}

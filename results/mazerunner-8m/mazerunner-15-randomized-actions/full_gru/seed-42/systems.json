@@ -1,0 +1,74 @@
+{
+  "parameters": {
+    "tokenizer": 27456,
+    "fusion": 0,
+    "backbone": 1103104,
+    "heads_and_other": 1968106
+  },
+  "peak_gpu_bytes": 563456512,
+  "cache_bytes": 49152,
+  "cache_float_bytes": 49152,
+  "cache_dtypes": [
+    "torch.float32"
+  ],
+  "peak_gpu_reserved_bytes": 668991488,
+  "checkpoint_seconds": 13.60655939381104,
+  "validation_seconds": 71.45993644651026,
+  "attention": {
+    "backend_map": {}
+  },
+  "runtime_seconds": 21824.754771510023,
+  "gradient_steps": 127872,
+  "context_actions": 500,
+  "nominal_collection_product": 8000000,
+  "measured": {
+    "scalar_training_transitions": 8000000,
+    "charged_calls": 8000000,
+    "physical_actions": 8000000,
+    "reset_only_steps": 0,
+    "tasks_started": 25147,
+    "tasks_completed": 25131,
+    "validation": {
+      "charged_calls": 160000,
+      "physical_actions": 160000,
+      "reset_only_steps": 0,
+      "tasks_started": 661,
+      "tasks_completed": 341
+    }
+  },
+  "resumes": [],
+  "sessions": [
+    {
+      "session": 1,
+      "labels": [
+        0,
+        999
+      ],
+      "gpu": "NVIDIA GeForce RTX 3090",
+      "slurm_job_id": null,
+      "hours": 6.062431880975006,
+      "ended": "completed"
+    }
+  ],
+  "state_match": null,
+  "persistent_state_bytes": 3072,
+  "state_tensor_bytes": {
+    "hidden": 3072
+  },
+  "shared_state_bytes": 0,
+  "decision_latency_seconds": 0.0004360899950067202,
+  "decision_latency_p95_seconds": 0.0005861093057319521,
+  "boundary_latency_seconds": null,
+  "boundary_latency_p95_seconds": null,
+  "boundary_latency_max_seconds": null,
+  "decision_flops_counted": 2097152,
+  "boundary_flops_counted": null,
+  "flops_method": "torch.utils.flop_counter.FlopCounterMode over one cached decision of the whole actor batch at the probe's last steady-state step (and its last boundary crossing for the summary carrier): matrix-multiply-class operators only; softmax, normalization and elementwise work excluded",
+  "latency_probe": {
+    "rows": 16,
+    "steps": 16,
+    "probes": 0,
+    "decisions_timed": 15,
+    "boundaries_timed": 0
+  }
+}

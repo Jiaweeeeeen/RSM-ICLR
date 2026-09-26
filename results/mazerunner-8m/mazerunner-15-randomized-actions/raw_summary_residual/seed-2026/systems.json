@@ -1,0 +1,325 @@
+{
+  "parameters": {
+    "tokenizer": 27456,
+    "fusion": 0,
+    "backbone": 2461476,
+    "heads_and_other": 1968106
+  },
+  "peak_gpu_bytes": 1343186432,
+  "cache_bytes": 3997888,
+  "cache_float_bytes": 3997696,
+  "cache_dtypes": [
+    "torch.float32",
+    "torch.int32",
+    "torch.int64"
+  ],
+  "peak_gpu_reserved_bytes": 1528823808,
+  "checkpoint_seconds": 3.5377002930035815,
+  "validation_seconds": 19.140388811996672,
+  "attention": {
+    "backend_map": {
+      "0": {
+        "content": "vanilla"
+      },
+      "1": {
+        "content": "vanilla"
+      },
+      "2": {
+        "content": "vanilla"
+      }
+    }
+  },
+  "runtime_seconds": 6750.1692125049885,
+  "gradient_steps": 127872,
+  "context_actions": 500,
+  "nominal_collection_product": 8000000,
+  "measured": {
+    "scalar_training_transitions": 8000000,
+    "charged_calls": 8000000,
+    "physical_actions": 8000000,
+    "reset_only_steps": 0,
+    "tasks_started": 29437,
+    "tasks_completed": 29421,
+    "validation": {
+      "charged_calls": 160000,
+      "physical_actions": 160000,
+      "reset_only_steps": 0,
+      "tasks_started": 729,
+      "tasks_completed": 409
+    },
+    "counters": "carried across resume"
+  },
+  "resumes": [
+    {
+      "actual_device": "cuda",
+      "allow_missing_replay": true,
+      "git_commit": "d5bf32a762c7108be307700e1b64ae46b459df38",
+      "git_dirty": true,
+      "gpu": "NVIDIA GeForce RTX 3090",
+      "host": "node-9",
+      "lockfile_sha256": "49250ac263c5106c3189d22bab1ca50f4908592db900344646b1367bc65ce336",
+      "next_epoch": 451,
+      "replay_deviation": null,
+      "resumed_label": 450,
+      "schema": "reasoned-icrl-resume.v1",
+      "slurm_job_id": "143808",
+      "wandb": {
+        "id": "0miqt0mo",
+        "name": "mazerunner-15-randomized-actions/raw_summary_residual/seed-2026",
+        "project": "reasoned-icrl",
+        "url": "https://wandb.ai/<entity>/reasoned-icrl/runs/0miqt0mo"
+      }
+    },
+    {
+      "actual_device": "cuda",
+      "allow_missing_replay": true,
+      "git_commit": "d5bf32a762c7108be307700e1b64ae46b459df38",
+      "git_dirty": true,
+      "gpu": "NVIDIA A30",
+      "host": "node-5",
+      "lockfile_sha256": "49250ac263c5106c3189d22bab1ca50f4908592db900344646b1367bc65ce336",
+      "next_epoch": 451,
+      "replay_deviation": null,
+      "resumed_label": 450,
+      "schema": "reasoned-icrl-resume.v1",
+      "slurm_job_id": "143811",
+      "wandb": {
+        "id": "0miqt0mo",
+        "name": "mazerunner-15-randomized-actions/raw_summary_residual/seed-2026",
+        "project": "reasoned-icrl",
+        "url": "https://wandb.ai/<entity>/reasoned-icrl/runs/0miqt0mo"
+      }
+    },
+    {
+      "actual_device": "cuda",
+      "allow_missing_replay": true,
+      "git_commit": "d5bf32a762c7108be307700e1b64ae46b459df38",
+      "git_dirty": true,
+      "gpu": "NVIDIA A30",
+      "host": "node-5",
+      "lockfile_sha256": "49250ac263c5106c3189d22bab1ca50f4908592db900344646b1367bc65ce336",
+      "next_epoch": 451,
+      "replay_deviation": null,
+      "resumed_label": 450,
+      "schema": "reasoned-icrl-resume.v1",
+      "slurm_job_id": "143811",
+      "wandb": {
+        "id": "0miqt0mo",
+        "name": "mazerunner-15-randomized-actions/raw_summary_residual/seed-2026",
+        "project": "reasoned-icrl",
+        "url": "https://wandb.ai/<entity>/reasoned-icrl/runs/0miqt0mo"
+      }
+    },
+    {
+      "actual_device": "cuda",
+      "allow_missing_replay": true,
+      "git_commit": "d5bf32a762c7108be307700e1b64ae46b459df38",
+      "git_dirty": true,
+      "gpu": "NVIDIA L40S",
+      "host": "node-8",
+      "lockfile_sha256": "49250ac263c5106c3189d22bab1ca50f4908592db900344646b1367bc65ce336",
+      "next_epoch": 451,
+      "replay_deviation": null,
+      "resumed_label": 450,
+      "schema": "reasoned-icrl-resume.v1",
+      "slurm_job_id": "143810",
+      "wandb": {
+        "id": "0miqt0mo",
+        "name": "mazerunner-15-randomized-actions/raw_summary_residual/seed-2026",
+        "project": "reasoned-icrl",
+        "url": "https://wandb.ai/<entity>/reasoned-icrl/runs/0miqt0mo"
+      }
+    },
+    {
+      "actual_device": "cuda",
+      "allow_missing_replay": true,
+      "git_commit": "8a1799e1a3538cf0161e22eff95d708728fab1f2",
+      "git_dirty": true,
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+      "host": "node-8",
+      "lockfile_sha256": "49250ac263c5106c3189d22bab1ca50f4908592db900344646b1367bc65ce336",
+      "next_epoch": 451,
+      "replay_deviation": {
+        "expected_files": 9421,
+        "missing_files": 1010,
+        "schema": "replay-resume-deviation.v1"
+      },
+      "resumed_label": 450,
+      "schema": "reasoned-icrl-resume.v1",
+      "slurm_job_id": "143816",
+      "wandb": {
+        "id": "0miqt0mo",
+        "name": "mazerunner-15-randomized-actions/raw_summary_residual/seed-2026",
+        "project": "reasoned-icrl",
+        "url": "https://wandb.ai/<entity>/reasoned-icrl/runs/0miqt0mo"
+      }
+    },
+    {
+      "actual_device": "cuda",
+      "allow_missing_replay": true,
+      "git_commit": "8a1799e1a3538cf0161e22eff95d708728fab1f2",
+      "git_dirty": true,
+      "gpu": "NVIDIA L40S",
+      "host": "node-8",
+      "lockfile_sha256": "49250ac263c5106c3189d22bab1ca50f4908592db900344646b1367bc65ce336",
+      "next_epoch": 451,
+      "replay_deviation": {
+        "expected_files": 9421,
+        "missing_files": 1010,
+        "schema": "replay-resume-deviation.v1"
+      },
+      "resumed_label": 450,
+      "schema": "reasoned-icrl-resume.v1",
+      "slurm_job_id": "143821",
+      "wandb": {
+        "id": "0miqt0mo",
+        "name": "mazerunner-15-randomized-actions/raw_summary_residual/seed-2026",
+        "project": "reasoned-icrl",
+        "url": "https://wandb.ai/<entity>/reasoned-icrl/runs/0miqt0mo"
+      }
+    },
+    {
+      "actual_device": "cuda",
+      "allow_missing_replay": true,
+      "git_commit": "8a1799e1a3538cf0161e22eff95d708728fab1f2",
+      "git_dirty": true,
+      "gpu": "NVIDIA L40S",
+      "host": "node-8",
+      "lockfile_sha256": "49250ac263c5106c3189d22bab1ca50f4908592db900344646b1367bc65ce336",
+      "next_epoch": 851,
+      "replay_deviation": {
+        "expected_files": 10000,
+        "missing_files": 525,
+        "schema": "replay-resume-deviation.v1"
+      },
+      "resumed_label": 850,
+      "schema": "reasoned-icrl-resume.v1",
+      "slurm_job_id": "143833",
+      "wandb": {
+        "id": "0miqt0mo",
+        "name": "mazerunner-15-randomized-actions/raw_summary_residual/seed-2026",
+        "project": "reasoned-icrl",
+        "url": "https://wandb.ai/<entity>/reasoned-icrl/runs/0miqt0mo"
+      }
+    }
+  ],
+  "sessions": [
+    {
+      "session": 1,
+      "labels": [
+        0,
+        450
+      ],
+      "gpu": "NVIDIA GeForce RTX 3090",
+      "slurm_job_id": "143693",
+      "hours_to_last_saved_label": 9.516829324430889,
+      "ended": "died; epochs after label 450 were recollected"
+    },
+    {
+      "session": 2,
+      "labels": [
+        451,
+        450
+      ],
+      "gpu": "NVIDIA GeForce RTX 3090",
+      "slurm_job_id": "143808",
+      "hours_to_last_saved_label": -0.28642272737291125,
+      "ended": "died; epochs after label 450 were recollected"
+    },
+    {
+      "session": 3,
+      "labels": [
+        451,
+        450
+      ],
+      "gpu": "NVIDIA A30",
+      "slurm_job_id": "143811",
+      "hours_to_last_saved_label": -2.486978282928467,
+      "ended": "died; epochs after label 450 were recollected"
+    },
+    {
+      "session": 4,
+      "labels": [
+        451,
+        450
+      ],
+      "gpu": "NVIDIA A30",
+      "slurm_job_id": "143811",
+      "hours_to_last_saved_label": -2.4883671718173557,
+      "ended": "died; epochs after label 450 were recollected"
+    },
+    {
+      "session": 5,
+      "labels": [
+        451,
+        450
+      ],
+      "gpu": "NVIDIA L40S",
+      "slurm_job_id": "143810",
+      "hours_to_last_saved_label": -2.489200505150689,
+      "ended": "died; epochs after label 450 were recollected"
+    },
+    {
+      "session": 6,
+      "labels": [
+        451,
+        450
+      ],
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+      "slurm_job_id": "143816",
+      "hours_to_last_saved_label": -3.4425338384840223,
+      "ended": "died; epochs after label 450 were recollected"
+    },
+    {
+      "session": 7,
+      "labels": [
+        451,
+        850
+      ],
+      "gpu": "NVIDIA L40S",
+      "slurm_job_id": "143821",
+      "hours_to_last_saved_label": 6.746425930460294,
+      "ended": "died; epochs after label 850 were recollected"
+    },
+    {
+      "session": 8,
+      "labels": [
+        851,
+        999
+      ],
+      "gpu": "NVIDIA L40S",
+      "slurm_job_id": "143833",
+      "hours": 1.875047003473608,
+      "ended": "completed"
+    }
+  ],
+  "state_match": null,
+  "persistent_state_bytes": 249868,
+  "state_tensor_bytes": {
+    "memory": 4096,
+    "lengths": 4,
+    "segment": 8,
+    "layer_0.content_keys": 40960,
+    "layer_0.content_values": 40960,
+    "layer_1.content_keys": 40960,
+    "layer_1.content_values": 40960,
+    "layer_2.content_keys": 40960,
+    "layer_2.content_values": 40960
+  },
+  "shared_state_bytes": 4096,
+  "decision_latency_seconds": 0.0041168332973029464,
+  "decision_latency_p95_seconds": 0.004214831610443071,
+  "boundary_latency_seconds": 0.03414288136991672,
+  "boundary_latency_p95_seconds": 0.03429051653802162,
+  "boundary_latency_max_seconds": 0.034292030992219225,
+  "decision_flops_counted": 81041408,
+  "boundary_flops_counted": 739194880,
+  "flops_method": "torch.utils.flop_counter.FlopCounterMode over one cached decision of the whole actor batch at the probe's last steady-state step (and its last boundary crossing for the summary carrier): matrix-multiply-class operators only; softmax, normalization and elementwise work excluded",
+  "latency_probe": {
+    "rows": 16,
+    "steps": 258,
+    "probes": 8,
+    "decisions_timed": 249,
+    "boundaries_timed": 8
+  }
+}

@@ -1,0 +1,113 @@
+protocol: count-recall-easy
+status: C1
+environment:
+  name: count_recall
+  benchmark: count-recall-easy
+  size: 2
+  attempts: 1
+  horizon: 51
+  parallel_envs: 16
+training:
+  epochs: 500
+  start_learning_epoch: 1
+  timesteps_per_epoch: 500
+  batches_per_epoch: 128
+  validation_timesteps: 51
+  validation_interval: 50
+  checkpoint_interval: 50
+  batch_size: 16
+  max_sequence_length: 51
+  trajectory_length: 52
+  replay_capacity: 10000
+  reward_multiplier: 100.0
+  epsilon_anneal_steps: 50000
+  learning_rate: 0.0001
+  warmup_steps: 128
+  gradient_clip: 1.0
+  weight_decay: 0.001
+  mixed_precision: 'no'
+  dataloader_workers: 0
+  torch_compile: false
+  exploration: epsilon_greedy
+  exploration_rollout_horizon: 51
+  verbose: false
+  native_agent:
+    tau: 0.0025
+evaluation:
+  splits:
+    development:
+      source: development
+      count: 64
+    final:
+      source: final
+      count: 256
+  rollout_seeds:
+  - 0
+  primary_metric: exact_accuracy
+  sampling_unit: stream
+  checkpoint_rule: best-development-primary-ties-earliest
+qualification:
+  reference: maximum of random, held-out count/time prior, and trained feedforward current-token accuracy;
+    missing trained reference blocks C2
+  minimum_improvement: 0.05
+  maximum_primary: 0.95
+  sustained_checkpoints: 3
+  maximum_fits: 2
+  maximum_device_hours: 24.0
+  fallback: One extended ordinary-transition retry at the declared 500-epoch/128-batch recipe replaces
+    the unused LR fallback. Together with the original pilot, maximum two ordinary fits. No automatic
+    further retuning; preserve negative evidence. All training, references, diagnostics and evaluations
+    charge the family 24-hour ceiling. The separately budgeted feedforward current-token reference uses
+    the same extended training budget. Easy-to-Medium promotion requires the existing saturation trigger
+    and a separately declared protocol/fit allowance.
+  evidence_diagnostic: Actual bounded public histories; exact equality of every current packet field,
+    RL2 feedback and time; conflicting correct answers/actions plus public-history resolution. Route ties
+    and weak random policies are not necessity evidence. See docs/DAT_BENCHMARK_M5_RETRY.md.
+documentation:
+  source:
+    amago: 3.4.0
+    environment: https://github.com/UT-Austin-RPL/amago/blob/v3.4.0/amago/envs/builtin/popgym_envs.py
+      (POPGym)
+    example: https://github.com/UT-Austin-RPL/amago/blob/v3.4.0/examples/03_popgym_suite.py
+    adapter: reasoned_icrl.environments.count_recall.CountRecallEnv; recipe resolved by experiments/benchmarks.py
+    popgym: 1.0.7
+    recipe_note: 'Prospectively revised: fresh 500-epoch fit, 16 actors, 500 decisions/actor/epoch,
+      128 batches/epoch, batch16; 4,000,000 scalar transitions and 63,872 updates. Learning rate 0.0001,
+      anneal50000, FP32, full context and native objectives retained. Replaces the unused LR retry; original
+      100-epoch negative evidence is historical.'
+  information:
+    observation: 'Native MultiDiscrete([2,2]); AMAGO POPGym produces Box(5): two length-2 one-hot fields
+      and timer/1000.'
+    action: Discrete(27), answer counts 0..26. Medium also has 27 actions, but four suit categories and
+      103 scored decisions.
+    feedback: Reset deals and counts the first value. Action at t is scored against the already-presented
+      query/count including value t. Final observation is not an additional scored query.
+    reward: Correct=+1/51; incorrect=-1/51. A full-stream native return equals 2*accuracy-1. Apply learner
+      reward multiplier only after logging native reward.
+    projection: Use the pinned AMAGO POPGym public one-hot/timer wrapper; never flatten info or get_state.
+    policy_fields:
+    - value_onehot
+    - query_onehot
+    - timer
+    - rl2_reward
+    - rl2_previous_action
+    excluded_fields:
+    - counts
+    - query_counts
+    - get_state
+    - state_space
+    - task_seed
+    - true_count_label
+  lifecycle:
+    task_variation: Fresh paired value/query decks; Easy uses one deck and colors.
+    persistence: Counts accumulate only within one episode; no meta-attempt wrapper.
+    termination: 51 answer actions; final dealt value empties deck; terminated=True, truncated=False.
+    bootstrap: No bootstrap at natural deck exhaustion; preserve terminal observation for the last scored
+      action.
+    reset: Fresh counts/decks and empty history at outer reset; 52 observation tokens for 51 actions.
+    relabeling: none
+  history:
+  - 'M5 historical: original 100-epoch ordinary pilot failed C2. Original diagnostic passes are superseded
+    by corrected full-input checks; original reported hours excluded external evaluation.'
+  - 'M5 pending: revised extended fit and corrected neural qualification have NOT been run. C1 is unchanged;
+    M5 exit remains not passed.'

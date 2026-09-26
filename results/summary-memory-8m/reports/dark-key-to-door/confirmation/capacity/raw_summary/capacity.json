@@ -1,0 +1,335 @@
+{
+  "cell": "raw_summary",
+  "split": "confirmation",
+  "delta": 1.0,
+  "horizons": [
+    500,
+    1000,
+    2000,
+    4000
+  ],
+  "reading_rule": "inside +-delta at 500 calls and in the last window at the longest horizon on every seed: M = 4 is not a tuned point; above M4 by at least delta (joint interval above zero, every seed): more summary helps; below M4 by at least delta: the arm is harder to learn at matched experience",
+  "arms": {
+    "M1": {
+      "verdict": "inconclusive",
+      "h500 first window": {
+        "estimate": 0.5455729166666666,
+        "lower": -2.824446614583333,
+        "upper": 4.096484374999999,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 3.953125,
+          "100": -2.0234375,
+          "2026": -0.29296875
+        }
+      },
+      "h500 last window": {
+        "estimate": 0.5455729166666666,
+        "lower": -2.7307617187499993,
+        "upper": 4.017089843749999,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 3.953125,
+          "100": -2.0234375,
+          "2026": -0.29296875
+        }
+      },
+      "h1000 first window": {
+        "estimate": 0.5455729166666666,
+        "lower": -2.85693359375,
+        "upper": 3.96748046875,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 3.953125,
+          "100": -2.0234375,
+          "2026": -0.29296875
+        }
+      },
+      "h1000 last window": {
+        "estimate": -0.55078125,
+        "lower": -3.937955729166666,
+        "upper": 3.621484374999998,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 3.95703125,
+          "100": -2.015625,
+          "2026": -3.59375
+        }
+      },
+      "h2000 first window": {
+        "estimate": 0.5455729166666666,
+        "lower": -2.8262044270833324,
+        "upper": 4.013867187499995,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 3.953125,
+          "100": -2.0234375,
+          "2026": -0.29296875
+        }
+      },
+      "h2000 last window": {
+        "estimate": -0.7330729166666666,
+        "lower": -3.517350260416666,
+        "upper": 2.4181315104166656,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 2.75,
+          "100": -1.640625,
+          "2026": -3.30859375
+        }
+      },
+      "h4000 first window": {
+        "estimate": 0.5455729166666666,
+        "lower": -2.692838541666664,
+        "upper": 3.993066406249995,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 3.953125,
+          "100": -2.0234375,
+          "2026": -0.29296875
+        }
+      },
+      "h4000 last window": {
+        "estimate": -0.6744791666666666,
+        "lower": -2.8127929687499993,
+        "upper": 1.8740885416666646,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 1.85546875,
+          "100": -1.51953125,
+          "2026": -2.359375
+        }
+      }
+    },
+    "M8": {
+      "verdict": "inconclusive",
+      "h500 first window": {
+        "estimate": 1.75390625,
+        "lower": -1.3008138020833333,
+        "upper": 4.730859374999998,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 2.4765625,
+          "100": -1.16796875,
+          "2026": 3.953125
+        }
+      },
+      "h500 last window": {
+        "estimate": 1.75390625,
+        "lower": -1.3017578124999982,
+        "upper": 4.7567708333333325,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 2.4765625,
+          "100": -1.16796875,
+          "2026": 3.953125
+        }
+      },
+      "h1000 first window": {
+        "estimate": 1.75390625,
+        "lower": -1.3154296874999996,
+        "upper": 4.785449218749998,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 2.4765625,
+          "100": -1.16796875,
+          "2026": 3.953125
+        }
+      },
+      "h1000 last window": {
+        "estimate": -0.4440104166666667,
+        "lower": -3.6064453124999982,
+        "upper": 2.363867187499997,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 1.34375,
+          "100": -3.640625,
+          "2026": 0.96484375
+        }
+      },
+      "h2000 first window": {
+        "estimate": 1.75390625,
+        "lower": -1.3596679687499995,
+        "upper": 4.821972656249998,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 2.4765625,
+          "100": -1.16796875,
+          "2026": 3.953125
+        }
+      },
+      "h2000 last window": {
+        "estimate": -0.7786458333333334,
+        "lower": -3.2475911458333333,
+        "upper": 1.6885742187499941,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 1.3359375,
+          "100": -3.44140625,
+          "2026": -0.23046875
+        }
+      },
+      "h4000 first window": {
+        "estimate": 1.75390625,
+        "lower": -1.4181315104166663,
+        "upper": 4.687532552083333,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 2.4765625,
+          "100": -1.16796875,
+          "2026": 3.953125
+        }
+      },
+      "h4000 last window": {
+        "estimate": -0.6627604166666666,
+        "lower": -2.855826822916666,
+        "upper": 1.2229492187499984,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 0.34375,
+          "100": -3.05859375,
+          "2026": 0.7265625
+        }
+      }
+    },
+    "M16": {
+      "verdict": "inconclusive",
+      "h500 first window": {
+        "estimate": 1.0455729166666667,
+        "lower": -1.668196614583333,
+        "upper": 3.683984374999998,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 1.21875,
+          "100": -1.0,
+          "2026": 2.91796875
+        }
+      },
+      "h500 last window": {
+        "estimate": 1.0455729166666667,
+        "lower": -1.4704752604166658,
+        "upper": 3.7332031249999993,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 1.21875,
+          "100": -1.0,
+          "2026": 2.91796875
+        }
+      },
+      "h1000 first window": {
+        "estimate": 1.0455729166666667,
+        "lower": -1.6683268229166661,
+        "upper": 3.7998697916666644,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 1.21875,
+          "100": -1.0,
+          "2026": 2.91796875
+        }
+      },
+      "h1000 last window": {
+        "estimate": 0.7760416666666666,
+        "lower": -0.8009765624999996,
+        "upper": 2.436946614583329,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 0.95703125,
+          "100": -0.328125,
+          "2026": 1.69921875
+        }
+      },
+      "h2000 first window": {
+        "estimate": 1.0455729166666667,
+        "lower": -1.694628906249999,
+        "upper": 3.5821289062499995,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 1.21875,
+          "100": -1.0,
+          "2026": 2.91796875
+        }
+      },
+      "h2000 last window": {
+        "estimate": 0.4921875,
+        "lower": -0.6524739583333331,
+        "upper": 1.5495117187499998,
+        "within_delta_every_seed": true,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 0.45703125,
+          "100": 0.46875,
+          "2026": 0.55078125
+        }
+      },
+      "h4000 first window": {
+        "estimate": 1.0455729166666667,
+        "lower": -1.6927734374999999,
+        "upper": 3.6748046874999982,
+        "within_delta_every_seed": false,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": 1.21875,
+          "100": -1.0,
+          "2026": 2.91796875
+        }
+      },
+      "h4000 last window": {
+        "estimate": -0.07161458333333333,
+        "lower": -1.2656575520833333,
+        "upper": 0.8359375,
+        "within_delta_every_seed": true,
+        "gain_every_seed": false,
+        "loss_every_seed": false,
+        "per_seed": {
+          "42": -0.6484375,
+          "100": 0.14453125,
+          "2026": 0.2890625
+        }
+      }
+    }
+  }
+}

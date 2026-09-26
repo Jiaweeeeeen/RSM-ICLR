@@ -1,0 +1,111 @@
+{
+  "parameters": {
+    "tokenizer": 25920,
+    "fusion": 0,
+    "backbone": 1103104,
+    "heads_and_other": 1942920
+  },
+  "peak_gpu_bytes": 307524608,
+  "cache_bytes": 49152,
+  "cache_float_bytes": 49152,
+  "cache_dtypes": [
+    "torch.float32"
+  ],
+  "peak_gpu_reserved_bytes": 379584512,
+  "checkpoint_seconds": 16.813233433291316,
+  "validation_seconds": 22.002262598718517,
+  "attention": {
+    "backend_map": {}
+  },
+  "runtime_seconds": 13963.785774052958,
+  "gradient_steps": 127872,
+  "context_actions": 257,
+  "nominal_collection_product": 8000000,
+  "measured": {
+    "scalar_training_transitions": 8000000,
+    "charged_calls": 8000000,
+    "physical_actions": 8000000,
+    "reset_only_steps": 0,
+    "tasks_started": 55323,
+    "tasks_completed": 55307,
+    "validation": {
+      "charged_calls": 41280,
+      "physical_actions": 41280,
+      "reset_only_steps": 0,
+      "tasks_started": 640,
+      "tasks_completed": 320
+    },
+    "counters": "carried across resume"
+  },
+  "resumes": [
+    {
+      "actual_device": "cuda",
+      "allow_missing_replay": true,
+      "git_commit": "685361b3fdc55484eeff9f2d2649d1e0b3b6939b",
+      "git_dirty": true,
+      "gpu": "NVIDIA A30",
+      "host": "node-5",
+      "lockfile_sha256": "49250ac263c5106c3189d22bab1ca50f4908592db900344646b1367bc65ce336",
+      "next_epoch": 351,
+      "replay_deviation": {
+        "expected_files": 10000,
+        "missing_files": 2357,
+        "schema": "replay-resume-deviation.v1"
+      },
+      "resumed_label": 350,
+      "schema": "reasoned-icrl-resume.v1",
+      "slurm_job_id": "143022",
+      "wandb": {
+        "id": "8rdgfz5u",
+        "name": "tmaze-passive-l32-256-v3/full_gru/seed-2026",
+        "project": "reasoned-icrl",
+        "url": "https://wandb.ai/<entity>/reasoned-icrl/runs/8rdgfz5u"
+      }
+    }
+  ],
+  "sessions": [
+    {
+      "session": 1,
+      "labels": [
+        0,
+        350
+      ],
+      "gpu": "NVIDIA GeForce RTX 3090",
+      "slurm_job_id": "142837",
+      "hours_to_last_saved_label": 2.534657482041253,
+      "ended": "died; epochs after label 350 were recollected"
+    },
+    {
+      "session": 2,
+      "labels": [
+        351,
+        999
+      ],
+      "gpu": "NVIDIA A30",
+      "slurm_job_id": "143022",
+      "hours": 3.8788293816813773,
+      "ended": "completed"
+    }
+  ],
+  "state_match": null,
+  "persistent_state_bytes": 3072,
+  "state_tensor_bytes": {
+    "hidden": 3072
+  },
+  "shared_state_bytes": 0,
+  "decision_latency_seconds": 0.0011956874203557768,
+  "decision_latency_p95_seconds": 0.0013278225320391354,
+  "boundary_latency_seconds": null,
+  "boundary_latency_p95_seconds": null,
+  "boundary_latency_max_seconds": null,
+  "decision_flops_counted": 2097152,
+  "boundary_flops_counted": null,
+  "flops_method": "torch.utils.flop_counter.FlopCounterMode over one cached decision of the whole actor batch at the probe's last steady-state step (and its last boundary crossing for the summary carrier): matrix-multiply-class operators only; softmax, normalization and elementwise work excluded",
+  "latency_probe": {
+    "rows": 16,
+    "steps": 16,
+    "probes": 0,
+    "decisions_timed": 15,
+    "boundaries_timed": 0
+  }
+}

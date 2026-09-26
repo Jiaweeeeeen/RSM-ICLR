@@ -1,0 +1,8 @@
+condition,first,last,centre,estimate,lower,upper,tasks,seeds,per_seed,history,split
+raw_summary,128,128,128.0,1.0,1.0,1.0,256,3,"{'42': 1.0, '100': 1.0, '2026': 1.0}",retained,confirmation
+raw_summary_residual,128,128,128.0,1.0,1.0,1.0,256,3,"{'42': 1.0, '100': 1.0, '2026': 1.0}",retained,confirmation
+raw_segment,128,128,128.0,0.5143229166666666,0.46484375,0.58203125,256,3,"{'42': 0.457031, '100': 0.542969, '2026': 0.542969}",retained,confirmation
+full_context,128,128,128.0,1.0,1.0,1.0,256,3,"{'42': 1.0, '100': 1.0, '2026': 1.0}",retained,confirmation
+full_gru,128,128,128.0,1.0,1.0,1.0,256,3,"{'42': 1.0, '100': 1.0, '2026': 1.0}",retained,confirmation
+memo,128,128,128.0,1.0,1.0,1.0,256,3,"{'42': 1.0, '100': 1.0, '2026': 1.0}",retained,confirmation
+memo_fixed,128,128,128.0,1.0,1.0,1.0,256,3,"{'42': 1.0, '100': 1.0, '2026': 1.0}",retained,confirmation

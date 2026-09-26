@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    env:
+      ACCELERATE_USE_CPU: "true"
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Install uv and Python
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          enable-cache: true
+          python-version: "3.12"
+          version: "0.11.28"
+      - name: Install frozen environment
+        run: uv sync --frozen
+      - name: Verify lockfile
+        run: uv lock --check
+      - name: Check formatting
+        run: uv run ruff format --check .
+      - name: Lint
+        run: uv run ruff check .
+      - name: Check strict typing
+        run: uv run mypy --strict reasoned_icrl scripts
+      - name: Test
+        run: uv run pytest -m "not slow"
+      - name: Exercise the scripts
+        run: |
+          uv run python scripts/train.py --help
+          uv run python scripts/evaluate.py --help

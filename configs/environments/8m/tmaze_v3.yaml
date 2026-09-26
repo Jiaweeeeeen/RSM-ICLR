@@ -1,0 +1,102 @@
+protocol: tmaze-passive-l32-256-v3   # v3: v2's task, penalty, schedule and recipe with the training corridor drawn per task from 32 to 256; evaluation at 128
+status: C0
+environment:
+  name: tmaze
+  benchmark: tmaze-passive-l32-256-v3
+  size: 128        # the evaluation corridor (development, final-revised and confirmation rosters): four lazy C32 rewrites between the cue and the junction
+  training_corridors: [32, 64, 96, 128, 160, 192, 224, 256]   # v3: every training task's corridor is drawn from these by its identity (one to eight rewrites), so the rewrite is trained under a variable number of repetitions
+  attempts: 1
+  horizon: 129     # the evaluation budget, L + 1 decisions at L = 128: 128 forward moves and one turn; no spare step (see documentation.lifecycle); a training task of corridor L runs exactly L + 1
+  movement_penalty: -0.0078125   # -1 / 128: AMAGO's examples/04_tmaze.py recipe, paid by every non-forward action before the final decision (TMazeAlt.reward_fn); the turn is paid by the cue alone
+  parallel_envs: 16
+training:
+  epochs: 1000     # 1000 x 500 x 16 = 8,000,000 charged training calls per fit, the matched budget of every paper cell
+  start_learning_epoch: 1
+  timesteps_per_epoch: 500
+  batches_per_epoch: 128
+  validation_timesteps: 129   # the validation actors run the development roster at corridor 128
+  validation_interval: 50
+  checkpoint_interval: 50
+  batch_size: 16
+  max_sequence_length: 257    # the longest training task (corridor 256 plus the turn) fits every carrier's context
+  trajectory_length: 258
+  replay_capacity: 10000
+  reward_multiplier: 100.0
+  epsilon_anneal_steps: 50000
+  learning_rate: 0.0001
+  warmup_steps: 128
+  gradient_clip: 1.0
+  weight_decay: 0.001
+  mixed_precision: 'no'
+  dataloader_workers: 0
+  torch_compile: false
+  exploration: tmaze_epsilon_greedy   # AMAGO's TMazeExploration: noise 0.5 / L inside the corridor, the annealed schedule on the first and last decisions (v2)
+  exploration_rollout_horizon: 257   # the schedule's bound; the wrapper reads the live task's corridor for its low-noise window
+  verbose: false
+  native_agent:
+    tau: 0.0025
+evaluation:
+  splits:
+    development:
+      source: development
+      count: 64
+    final:
+      source: final-revised
+      count: 256
+    confirmation:
+      source: confirmation  # the paper's one roster per environment (study protocol section 3): band 5,000,000-5,000,255
+      count: 256
+  rollout_seeds: [0]   # the task identity fixes the cue and the policy is greedy: one deterministic rollout per task
+  primary_metric: goal_success
+  sampling_unit: task
+  checkpoint_rule: collection-endpoint-primary-development-selected-secondary
+memory:
+  summary:
+    segment_length: 32   # C: four boundaries (records 32, 64, 96, 128) between the cue and the junction decision at record 128
+    memory_tokens: 4     # M
+  window:
+    segment_length: 40   # recorded geometry; no window fit belongs to this benchmark
+qualification:
+  reference: the larger of uniform-random success and the cue-blind forward-then-fixed-turn policy (0.5 in expectation) on the development roster
+  minimum_improvement: 0.25  # delta: a quarter of the roster, half of one cue class; per-seed success is close to 0, 0.5 or 1
+  maximum_primary: 0.95  # legacy loader field; the revised C2 has no cap
+  sustained_checkpoints: 3
+  maximum_fits: 18
+  maximum_device_hours: 24.0  # legacy loader field, unused by the revised gate; no time-based budget cutoff
+  fallback: Run every cell to 8M regardless of the ordinary reference's provisional qualification; preserve failures and negative evidence; no corridor shortening, no recipe tuning, no extra reference.
+  evidence_diagnostic: Every development task arrives at the junction with an identical complete policy input (packet, RL2, time) after the forward walk, and the correct turn is the cue shown at reset; at least 32 up/down pairs over at least 16 tasks; current-token and summary-cleared interventions are evaluator-only.
+documentation:
+  source:
+    amago: 3.4.0
+    popgym: not used
+    environment: https://github.com/UT-Austin-RPL/amago/blob/v3.4.0/amago/envs/builtin/tmaze.py (TMazeAltPassive; Ni et al. 2023, "When Do Transformers Shine in RL? Decoupling Memory from Credit Assignment", Memory-RL repository, movement penalty as modified by AMAGO)
+    adapter: reasoned_icrl.environments.tmaze.TMazeEnv; recipe resolved by experiments/benchmarks.py
+    recipe_note: 'Declared as the v3 protocol of the paper''s third benchmark: v2''s task, movement penalty, exploration schedule, rosters and 8M recipe (1000 x 500 x 16 charged training calls per fit, the CountRecall learner block, tau 0.0025, epsilon-greedy anneal 50,000 actor-local calls, FP32, complete-episode replay with gradients through every carried write), with the corridor of every training task drawn uniformly from the multiples of 32 between 32 and 256 by the task identity, so the rewrite is trained under one to eight repetitions instead of exactly four. The seven paper cells x seeds 42/100/2026. Evaluation contracts stay at corridor 128.'
+  information:
+    observation: 'Native Box(2) in [-1, 1]: [at_junction, cue_or_lateral]. At reset the agent stands on the oracle cell and sees [0, goal_side] with goal_side in {-1, +1}; every corridor observation is [0, 0]; at the junction the observation is [1, y] with y the lateral position (0 before the turn, then -1 or +1). ambiguous_position=True, expose_goal=False, add_timestep=False: the packet is stationary along the corridor and the junction is observable, which is what keeps the corridor-length extrapolation clean.'
+    action: 'Discrete(4): forward (+x), up (+y), back (-x), down (-y) in native index order. A move into a wall leaves the position unchanged and still costs a step.'
+    feedback: 'Native reward: the movement penalty -1/128 on every non-forward action before the final decision (TMazeAlt.reward_fn with penalty=-0.0078125, distract_reward 0), 0 on forward actions, and goal_reward 1 on the final decision when the agent stands on the goal side (0 otherwise, no penalty on that decision). RL2 previous action and reward are AMAGO''s, kept once. There are no reset-only steps.'
+    reward: 1 at the final step if the agent stands on the goal side of the junction, else 0, plus -1/128 per penalised move; the success indicator is the primary metric and the native return equals success plus the penalties. Store native feedback before reward_multiplier=100.
+    projection: Read the two native Box values as float32 (at_junction rescaled from [0, 1], cue_or_lateral already in [-1, 1]); nothing is recovered from the native coordinates, goal side or oracle flag.
+    policy_fields:
+    - at_junction
+    - cue_or_lateral
+    - rl2_reward
+    - rl2_previous_action
+    excluded_fields:
+    - x
+    - y
+    - goal_y
+    - oracle_visited
+    - time_step
+    - tmaze_map
+    - task_seed
+  lifecycle:
+    task_variation: The goal side is drawn from the task identity at each outer reset (the native random.choice under the actor-isolated task RNG). Under v3 a training task's corridor length is drawn from training_corridors by a generator seeded from the task identity alone (a string seed, independent of the cue draw); evaluation tasks keep the contract's corridor. The junction and the start are fixed.
+    persistence: One native episode per outer task; no internal attempts; history is retained for the whole episode and cleared at the outer reset. A training episode of corridor L is exactly L + 1 decisions, so lifetimes range from 33 to 257 records; the context (257) and the replay file (258) hold the longest.
+    termination: 'Exactly corridor_length + 1 = 129 decisions, terminated and truncated both true at the last step. The budget is exact: 128 forward moves reach the junction and the 129th decision is the turn, so a single wasted, lateral or backward move fails the episode. Pinned by tests/environments/test_tmaze.py. Because every corridor action of a successful episode is the forward move, the previous action the learner reads through RL2 cannot encode the cue; the contract keeps the budget exact rather than adding slack.'
+    bootstrap: No bootstrap at the finite-horizon terminal; preserve the final physical reward and terminal observation.
+    reset: Fresh cue and an independent empty actor history; 130 observations including reset and terminal.
+    relabeling: none
+  history:
+  - 'v3 (tmaze-passive-l32-256-v3): the training corridor drawn per task from 32 to 256.'

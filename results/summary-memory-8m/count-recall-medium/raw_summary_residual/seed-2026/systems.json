@@ -1,0 +1,166 @@
+{
+  "parameters": {
+    "tokenizer": 29760,
+    "fusion": 0,
+    "backbone": 2461476,
+    "heads_and_other": 2522198
+  },
+  "peak_gpu_bytes": 388763648,
+  "cache_bytes": 3997888,
+  "cache_float_bytes": 3997696,
+  "cache_dtypes": [
+    "torch.float32",
+    "torch.int32",
+    "torch.int64"
+  ],
+  "peak_gpu_reserved_bytes": 432013312,
+  "checkpoint_seconds": 23.887540188152343,
+  "validation_seconds": 61.701271063415334,
+  "attention": {
+    "backend_map": {
+      "0": {
+        "content": "vanilla"
+      },
+      "1": {
+        "content": "vanilla"
+      },
+      "2": {
+        "content": "vanilla"
+      }
+    }
+  },
+  "runtime_seconds": 46606.34767167794,
+  "gradient_steps": 127872,
+  "context_actions": 103,
+  "nominal_collection_product": 8000000,
+  "measured": {
+    "scalar_training_transitions": 8000000,
+    "charged_calls": 8000000,
+    "physical_actions": 8000000,
+    "reset_only_steps": 0,
+    "tasks_started": 77680,
+    "tasks_completed": 77664,
+    "validation": {
+      "charged_calls": 32960,
+      "physical_actions": 32960,
+      "reset_only_steps": 0,
+      "tasks_started": 640,
+      "tasks_completed": 320
+    },
+    "counters": "carried across resume"
+  },
+  "resumes": [
+    {
+      "actual_device": "cuda",
+      "allow_missing_replay": true,
+      "git_commit": "4c9d37361ef30be5f97aa9c79ca43a0adff964a6",
+      "git_dirty": true,
+      "gpu": "NVIDIA GeForce RTX 3090",
+      "host": "node-3",
+      "lockfile_sha256": "49250ac263c5106c3189d22bab1ca50f4908592db900344646b1367bc65ce336",
+      "next_epoch": 151,
+      "replay_deviation": {
+        "expected_files": 10000,
+        "missing_files": 1232,
+        "schema": "replay-resume-deviation.v1"
+      },
+      "resumed_label": 150,
+      "schema": "reasoned-icrl-resume.v1",
+      "slurm_job_id": "142496",
+      "wandb": {
+        "id": "na6mwt8w",
+        "name": "count-recall-medium/raw_summary_residual/seed-2026",
+        "project": "reasoned-icrl",
+        "url": "https://wandb.ai/<entity>/reasoned-icrl/runs/na6mwt8w"
+      }
+    },
+    {
+      "actual_device": "cuda",
+      "allow_missing_replay": true,
+      "git_commit": "4c9d37361ef30be5f97aa9c79ca43a0adff964a6",
+      "git_dirty": true,
+      "gpu": "NVIDIA GeForce RTX 3090",
+      "host": "node-3",
+      "lockfile_sha256": "49250ac263c5106c3189d22bab1ca50f4908592db900344646b1367bc65ce336",
+      "next_epoch": 151,
+      "replay_deviation": {
+        "expected_files": 10000,
+        "missing_files": 1232,
+        "schema": "replay-resume-deviation.v1"
+      },
+      "resumed_label": 150,
+      "schema": "reasoned-icrl-resume.v1",
+      "slurm_job_id": "142496",
+      "wandb": {
+        "id": "na6mwt8w",
+        "name": "count-recall-medium/raw_summary_residual/seed-2026",
+        "project": "reasoned-icrl",
+        "url": "https://wandb.ai/<entity>/reasoned-icrl/runs/na6mwt8w"
+      }
+    }
+  ],
+  "sessions": [
+    {
+      "session": 1,
+      "labels": [
+        0,
+        150
+      ],
+      "gpu": "NVIDIA GeForce RTX 3090",
+      "slurm_job_id": "142465",
+      "hours_to_last_saved_label": 2.2703736695316103,
+      "ended": "died; epochs after label 150 were recollected"
+    },
+    {
+      "session": 2,
+      "labels": [
+        151,
+        150
+      ],
+      "gpu": "NVIDIA GeForce RTX 3090",
+      "slurm_job_id": "142496",
+      "hours_to_last_saved_label": -0.6444434750742383,
+      "ended": "died; epochs after label 150 were recollected"
+    },
+    {
+      "session": 3,
+      "labels": [
+        151,
+        999
+      ],
+      "gpu": "NVIDIA GeForce RTX 3090",
+      "slurm_job_id": "142496",
+      "hours": 12.946207686577205,
+      "ended": "completed"
+    }
+  ],
+  "state_match": null,
+  "persistent_state_bytes": 249868,
+  "state_tensor_bytes": {
+    "memory": 4096,
+    "lengths": 4,
+    "segment": 8,
+    "layer_0.content_keys": 40960,
+    "layer_0.content_values": 40960,
+    "layer_1.content_keys": 40960,
+    "layer_1.content_values": 40960,
+    "layer_2.content_keys": 40960,
+    "layer_2.content_values": 40960
+  },
+  "shared_state_bytes": 4096,
+  "decision_latency_seconds": 0.012622890541382343,
+  "decision_latency_p95_seconds": 0.01282778400927782,
+  "boundary_latency_seconds": 0.10497579610091634,
+  "boundary_latency_p95_seconds": 0.10523350395960733,
+  "boundary_latency_max_seconds": 0.10526041896082461,
+  "decision_flops_counted": 81041408,
+  "boundary_flops_counted": 739194880,
+  "flops_method": "torch.utils.flop_counter.FlopCounterMode over one cached decision of the whole actor batch at the probe's last steady-state step (and its last boundary crossing for the summary carrier): matrix-multiply-class operators only; softmax, normalization and elementwise work excluded",
+  "latency_probe": {
+    "rows": 16,
+    "steps": 258,
+    "probes": 8,
+    "decisions_timed": 249,
+    "boundaries_timed": 8
+  }
+}

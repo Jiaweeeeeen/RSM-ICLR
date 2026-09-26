@@ -1,0 +1,12 @@
+protocol,split,checkpoint_rule,condition,dependence,metric,estimate,lower,upper,per_seed,seeds,tasks
+count-recall-medium,confirmation,endpoint,full_context,retained - current-token,exact_accuracy,0.9371966019417476,0.9198640397451457,0.9538465185072816,"42: +0.954, 100: +0.919, 2026: +0.938",3,256
+count-recall-medium,confirmation,endpoint,full_gru,retained - current-token,exact_accuracy,0.8581108414239482,0.8294125455097089,0.8950621966019418,"42: +0.896, 100: +0.850, 2026: +0.828",3,256
+count-recall-medium,confirmation,endpoint,memo,retained - current-token,exact_accuracy,0.917627427184466,0.9073842662823626,0.9272859147451457,"42: +0.907, 100: +0.918, 2026: +0.927",3,256
+count-recall-medium,confirmation,endpoint,memo_fixed,retained - current-token,exact_accuracy,0.9054662216828481,0.8935167627427186,0.9153904985841425,"42: +0.892, 100: +0.912, 2026: +0.913",3,256
+count-recall-medium,confirmation,endpoint,raw_segment,retained - current-token,exact_accuracy,0.5310224514563107,0.5188346986245954,0.5429839199029125,"42: +0.541, 100: +0.527, 2026: +0.525",3,256
+count-recall-medium,confirmation,endpoint,raw_summary,retained - current-token,exact_accuracy,0.950584041262136,0.9468674150485438,0.9539353256472491,"42: +0.950, 100: +0.950, 2026: +0.952",3,256
+count-recall-medium,confirmation,endpoint,raw_summary_residual,retained - current-token,exact_accuracy,0.9518608414239482,0.9465384177791262,0.9563994867516181,"42: +0.947, 100: +0.954, 2026: +0.954",3,256
+count-recall-medium,confirmation,endpoint,memo,retained - summary-cleared,exact_accuracy,0.6471354166666667,0.6384632888349514,0.6567487105582525,"42: +0.638, 100: +0.646, 2026: +0.657",3,256
+count-recall-medium,confirmation,endpoint,memo_fixed,retained - summary-cleared,exact_accuracy,0.6427740695792881,0.6222305445995145,0.6645175970873786,"42: +0.621, 100: +0.642, 2026: +0.665",3,256
+count-recall-medium,confirmation,endpoint,raw_summary,retained - summary-cleared,exact_accuracy,0.6796242920711975,0.6763238900687701,0.6824812904530745,"42: +0.678, 100: +0.679, 2026: +0.682",3,256
+count-recall-medium,confirmation,endpoint,raw_summary_residual,retained - summary-cleared,exact_accuracy,0.6812803398058254,0.675780301881068,0.6852624393203883,"42: +0.675, 100: +0.684, 2026: +0.684",3,256

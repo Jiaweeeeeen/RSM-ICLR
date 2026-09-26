@@ -1,0 +1,6 @@
+history,budget,window,name,left,right,estimate,lower,upper,seed_42,seed_100,seed_2026,every_seed_gain,every_seed_loss,joint_above_zero,joint_below_zero
+summary-cleared,4000,last,RSM-O - RSM-R,raw_summary,raw_summary_residual,0.3528645833333333,-1.2580729166666662,2.121484374999998,0.1484375,0.1796875,0.73046875,False,False,False,False
+summary-cleared,4000,last,RSM-O - Memo,raw_summary,memo,1.9544270833333333,-0.4260742187499995,4.816634114583332,0.421875,4.40234375,1.0390625,False,False,False,False
+summary-cleared,4000,last,RSM-O - Memo fixed,raw_summary,memo_fixed,3.0091145833333335,0.19648437500000024,6.073242187499998,5.984375,1.046875,1.99609375,True,False,True,False
+summary-cleared,4000,last,RSM-R - Memo,raw_summary_residual,memo,1.6015625,-0.9102213541666665,4.526334635416657,0.2734375,4.22265625,0.30859375,False,False,False,False
+summary-cleared,4000,last,RSM-R - Memo fixed,raw_summary_residual,memo_fixed,2.65625,-0.3450520833333333,5.734863281249997,5.8359375,0.8671875,1.265625,False,False,False,False

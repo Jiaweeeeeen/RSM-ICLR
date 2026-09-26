@@ -1,0 +1,120 @@
+{
+  "parameters": {
+    "tokenizer": 29760,
+    "fusion": 0,
+    "backbone": 2391844,
+    "heads_and_other": 2522198
+  },
+  "peak_gpu_bytes": 304772096,
+  "cache_bytes": 10223680,
+  "cache_float_bytes": 10223616,
+  "cache_dtypes": [
+    "torch.float32",
+    "torch.int32"
+  ],
+  "peak_gpu_reserved_bytes": 333447168,
+  "checkpoint_seconds": 22.258697787008714,
+  "validation_seconds": 83.4236342869699,
+  "attention": {
+    "backend_map": {
+      "0": {
+        "content": "vanilla"
+      },
+      "1": {
+        "content": "vanilla"
+      },
+      "2": {
+        "content": "vanilla"
+      }
+    }
+  },
+  "runtime_seconds": 42636.19804010005,
+  "gradient_steps": 127872,
+  "context_actions": 103,
+  "nominal_collection_product": 8000000,
+  "measured": {
+    "scalar_training_transitions": 8000000,
+    "charged_calls": 8000000,
+    "physical_actions": 8000000,
+    "reset_only_steps": 0,
+    "tasks_started": 77680,
+    "tasks_completed": 77664,
+    "validation": {
+      "charged_calls": 32960,
+      "physical_actions": 32960,
+      "reset_only_steps": 0,
+      "tasks_started": 640,
+      "tasks_completed": 320
+    },
+    "counters": "carried across resume"
+  },
+  "resumes": [
+    {
+      "actual_device": "cuda",
+      "allow_missing_replay": true,
+      "git_commit": "bff6e405c9ced599fe9ac75cd4c51c3a8aab612d",
+      "git_dirty": true,
+      "gpu": "NVIDIA RTX 6000 Ada Generation",
+      "host": "node-3",
+      "lockfile_sha256": "49250ac263c5106c3189d22bab1ca50f4908592db900344646b1367bc65ce336",
+      "next_epoch": 51,
+      "replay_deviation": null,
+      "resumed_label": 50,
+      "schema": "reasoned-icrl-resume.v1",
+      "slurm_job_id": "140759",
+      "wandb": {
+        "id": "txafkt12",
+        "name": "count-recall-medium/full_context/seed-100",
+        "project": "reasoned-icrl",
+        "url": "https://wandb.ai/<entity>/reasoned-icrl/runs/txafkt12"
+      }
+    }
+  ],
+  "sessions": [
+    {
+      "session": 1,
+      "labels": [
+        0,
+        50
+      ],
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+      "slurm_job_id": "140814",
+      "hours_to_last_saved_label": 0.5467883454428779,
+      "ended": "died; epochs after label 50 were recollected"
+    },
+    {
+      "session": 2,
+      "labels": [
+        51,
+        999
+      ],
+      "gpu": "NVIDIA RTX 6000 Ada Generation",
+      "slurm_job_id": "140759",
+      "hours": 11.843388344472235,
+      "ended": "completed"
+    }
+  ],
+  "state_match": null,
+  "persistent_state_bytes": 638980,
+  "state_tensor_bytes": {
+    "key_cache": 319488,
+    "val_cache": 319488,
+    "seq_lens": 4
+  },
+  "shared_state_bytes": 0,
+  "decision_latency_seconds": 0.023226897659090657,
+  "decision_latency_p95_seconds": 0.024235229310579597,
+  "boundary_latency_seconds": null,
+  "boundary_latency_p95_seconds": null,
+  "boundary_latency_max_seconds": null,
+  "decision_flops_counted": 81532928,
+  "boundary_flops_counted": null,
+  "flops_method": "torch.utils.flop_counter.FlopCounterMode over one cached decision of the whole actor batch at the probe's last steady-state step (and its last boundary crossing for the summary carrier): matrix-multiply-class operators only; softmax, normalization and elementwise work excluded",
+  "latency_probe": {
+    "rows": 16,
+    "steps": 16,
+    "probes": 0,
+    "decisions_timed": 15,
+    "boundaries_timed": 0
+  }
+}

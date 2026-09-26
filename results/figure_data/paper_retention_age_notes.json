@@ -1,0 +1,9 @@
+{
+  "notes": {
+    "figure": "CountRecall accuracy by evidence age (summary rewrites since the queried category was first dealt), every compared memory, 95 % joint intervals",
+    "missing": []
+  },
+  "sources": [
+    "notebooks/outputs/data/figure3_beyond_the_training_horizon_countrecall_retention.csv"
+  ]
+}

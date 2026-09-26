@@ -1,0 +1,148 @@
+protocol: xland-r1-9x9-one-rule-goal-visible-fixed-layout-5x128-v1
+status: C0
+environment:
+  name: xland_one_rule
+  benchmark: xland-r1-9x9-one-rule-goal-visible-fixed-layout-5x128-v1
+  size: 9
+  attempts: 5          # five attempts per lifetime, the same initial layout restored at each
+  scored_from: 4       # the primary endpoint is success averaged over attempts 4-5
+  horizon: 128         # physical actions per attempt (the native limit for this room is 243)
+  encoder: xland
+  parallel_envs: 16
+  curriculum:          # matched curriculum, applied at the actor's next outer reset (the XLand protocol)
+    warmup_calls: 1000000   # global charged calls: warmup lifetimes only below this (62,500 per actor)
+    mixed_calls: 2000000    # warmup/primary at 0.5 each below this (125,000 per actor); primary only after
+    mixed_probability: 0.5
+training:
+  epochs: 1000  # 1000 x 500 x 16 = 8,000,000 nominal collected decisions including the curriculum; the measured count is recorded
+  start_learning_epoch: 3
+  timesteps_per_epoch: 500
+  batches_per_epoch: 128
+  validation_timesteps: 644
+  validation_interval: 50
+  checkpoint_interval: 25  # the development grid in M calls (0, 0.8, 1, 1.6, 2, 2.4, 3.2, 4, 4.8, 5.6, 6.4, 7.2, 8) needs labels 125 and 250 at the curriculum boundaries; the driver reads the declared grid, the pruner keeps the two newest training states
+  batch_size: 16
+  max_sequence_length: 644  # 5 x 128 physical actions + 4 reset-only decisions
+  trajectory_length: 645    # plus the initial record
+  replay_capacity: 10000
+  reward_multiplier: 10.0
+  epsilon_anneal_steps: 62500  # actor-local calls: 1M global at 16 actors, the randomized-per-actor ceiling 1 -> 0.05
+  learning_rate: 0.0001
+  warmup_steps: 128
+  gradient_clip: 2.0
+  weight_decay: 0.001
+  mixed_precision: 'no'
+  dataloader_workers: 0
+  torch_compile: false
+  exploration: epsilon_greedy
+  exploration_rollout_horizon: 644
+  verbose: false
+evaluation:
+  splits:
+    development:
+      source: development   # the manifest's 64 development tasks, band 1,000,000-1,000,063
+      count: 64
+    final:
+      source: final-revised # the manifest's 256 fresh final tasks, band 4,000,000-4,000,255
+      count: 256
+  rollout_seeds:  # the declared layout roots: development scores replicates 7/17, final 7/17/27
+  - 7
+  - 17
+  - 27
+  primary_metric: success_last2  # sampled-policy success averaged over attempts 4-5; greedy is secondary
+  retention: complete            # every attempt of the lifetime is exported
+  sampling_unit: task
+  checkpoint_rule: collection-endpoint-primary-development-selected-secondary
+memory:
+  summary:
+    segment_length: 64   # C: the 644-decision lifetime carries more records than tier 0
+    memory_tokens: 4     # M
+  window:
+    segment_length: 72   # W: the measured byte match against the C64/M4 summary carrier, verified at resolution
+qualification:
+  reference: the stronger of uniform-random and public-current reactive success on attempts 4-5,
+    measured before any fit on the same development tasks and layout roots
+  minimum_improvement: 0.1
+  maximum_primary: 0.95
+  sustained_checkpoints: 3
+  maximum_fits: 3
+  maximum_device_hours: 72.0
+  fallback: 'C2 is read on development-only checkpoints 6.4/7.2/8M of the ordinary full_context
+    reference at seed 42, then confirmed on seeds 100/2026 (across-seed mean and at least two of
+    three seed means clear the margin at each checkpoint). A failure closes this bounded attempt
+    with a failed/limited report; no easier final task selection, no recipe change under the same
+    identity, and the six-cell matrix is not run.'
+  evidence_diagnostic: 'C3: the common controlled-history coverage plus a retained-minus-attempt-cleared
+    benefit of at least 0.05, positive in at least two seeds with a task-conditional lower bound
+    above zero, on histories that require different hidden precursors under the same public goal
+    and layout. Learning without C3 is policy learning, not demonstrated adaptation.'
+documentation:
+  source:
+    simulator: xminigrid 0.9.3, XLand-MiniGrid-R1-9x9, benchmark small-1m (small_1m_v3, SHA-256
+      c9c8ec0ec06d6337481e07c13872cd89df201e787093fc718e7ec368910195bf), https://github.com/dunnolab/xland-minigrid
+    manifest: configs/manifests/xland-one-rule-v1.json, built by scripts/build_xland_one_rule_manifest.py
+      (selection seed 20260913; 16 goal objects x two families x 7/2/8; 224/64/256 tasks in 32 strata)
+    adapter: reasoned_icrl.environments.xland_one_rule.XLandOneRuleEnv (a subclass of the broad-corpus
+      adapter with manifest rulesets, fixed lifetime layouts and the curriculum); packets read by the
+      xland trunk of model/step_encoder.py
+    amago: 3.4.0 (learner, actor-critic, replay, exploration unchanged from the shared trainer)
+    recipe_note: 'The fixed recipe of docs/research/XLAND_ONE_RULE_PLAN.md: 8M charged calls including
+      warmup, 1,000 epochs x 500 calls x 16 actors, learning from epoch 3, 128 batches of 16, replay of
+      10,000 completed eligible lifetimes with full-task gradients and rebuild, AdamW 1e-4 with 128-update
+      warmup, clip 2, weight decay 0.001, epsilon 1 -> 0.05 over 62,500 actor-local calls, width 256 /
+      3 layers / 8 heads. The scalar critic is the matched AMAGO actor-critic; the retired two-hot
+      declaration of the broad-corpus contract is not carried.'
+  information:
+    observation: 'The native partial view (5 x 5 x 2: tile id 0..12, colour id 0..11), the direction
+      one-hot (4) and the attempt-done flag, the visible goal encoding (5 ids in 0..14) and the step
+      within the attempt over 128; 61 packet values in [-1, 1]. Identical fields to the broad-corpus
+      adapter.'
+    action: 'Discrete(6): forward, turn right, turn left, pick up, put down, toggle, in native order.'
+    feedback: 'Native reward 1 - 0.9 * step / 128 once, when the goal condition holds; 0 otherwise.
+      Reset-only steps pay 0. Stored before reward_multiplier=10. Previous action and reward once, in RL2.'
+    reward: Store native feedback before reward_multiplier=10.
+    projection: 'Read the view, direction and the visible goal; never the rule encoding, the manifest
+      row, the layout index, the pool or the simulator state.'
+    policy_fields:
+    - grid_tile
+    - grid_color
+    - direction
+    - attempt_done
+    - goal
+    - attempt_time
+    - rl2_reward
+    - rl2_previous_action
+    excluded_fields:
+    - rule_encoding
+    - rules
+    - precursor
+    - init_tiles
+    - manifest_row
+    - task_id
+    - layout_index
+    - layout_key
+    - pool
+    - family
+    - state
+    - grid
+    - agent_position
+    - carry
+    - success_label
+    - witness
+  lifecycle:
+    task_variation: 'One manifest task per outer reset (training: uniform over the 224 training tasks,
+      as a warmup or primary lifetime by the curriculum phase; evaluation: the declared roster in order).
+      The layout is fixed for the lifetime and restored at every attempt; the next lifetime draws a
+      fresh layout index (training: at or above 1,000 from the actor RNG; evaluation: the rollout root).'
+    persistence: The goal, the hidden rule and the initial layout persist for all five attempts.
+    termination: 'An attempt ends at the goal or after 128 physical actions; the following decision
+      restores the initial layout without executing its action. The outer task ends with the fifth
+      attempt (terminated and truncated). At most 644 charged calls and 645 records.'
+    bootstrap: No value bootstrap at the outer terminal; attempt completion is not a learner terminal.
+    reset: Retain history across attempts and reset-only steps; clear at outer reset.
+    curriculum: 'Warmup lifetimes are the training rows with the rule removed and the goal object in
+      the precursor slot; they carry native rewards and are tagged in the replay file name. The learner
+      samples warmup files only while its measured charged calls are below 2M, and primary files from
+      1M; warmup records stay on disk until the FIFO evicts them and are never relabelled.'
+    relabeling: none
+  history: []

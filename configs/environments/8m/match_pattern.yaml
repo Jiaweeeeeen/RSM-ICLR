@@ -1,0 +1,81 @@
+protocol: match-pattern-symbolic-v1
+status: C0
+environment:
+  name: match_pattern
+  benchmark: match-pattern-symbolic-v1
+  size: 64
+  attempts: 1
+  horizon: 7
+  parallel_envs: 16
+training:
+  epochs: 1000
+  start_learning_epoch: 1
+  timesteps_per_epoch: 500
+  batches_per_epoch: 128
+  validation_timesteps: 7
+  validation_interval: 50
+  checkpoint_interval: 50
+  batch_size: 16
+  max_sequence_length: 7
+  trajectory_length: 8
+  replay_capacity: 10000
+  reward_multiplier: 100.0
+  epsilon_anneal_steps: 50000
+  learning_rate: 0.0001
+  warmup_steps: 128
+  gradient_clip: 1.0
+  weight_decay: 0.001
+  mixed_precision: 'no'
+  dataloader_workers: 0
+  torch_compile: false
+  exploration: epsilon_greedy
+  exploration_rollout_horizon: 7
+  verbose: false
+  retain_training_state: true
+  native_agent:
+    tau: 0.0025
+evaluation:
+  retention: complete
+  splits:
+    development: {source: development, count: 1536}
+    development-bindings: {source: development-bindings, count: 1536}
+    final: {source: final, count: 6144}
+    final-bindings: {source: final-bindings, count: 6144}
+  rollout_seeds: [0]
+  primary_metric: exact_accuracy
+  sampling_unit: example
+  checkpoint_rule: collection-endpoint-primary-development-selected-secondary
+qualification:
+  reference: maximum of exact uniform-binary expectation and public-current nonmatch accuracy
+  minimum_improvement: 0.40
+  maximum_primary: 0.90
+  sustained_checkpoints: 3
+  maximum_fits: 12
+  maximum_device_hours: 192.0
+  fallback: Preserve a failed 8M ordinary pilot; no automatic recipe change or easier task. Comparison requires three-seed C1/C2/C3 admission.
+  evidence_diagnostic: At least 32 complete-current-input alias pairs across 16 development examples; query-only history clearing preserves public inputs and time.
+documentation:
+  source:
+    environment: new sequential symbolic RL adaptation of Relational Games match-pattern
+    adapter: reasoned_icrl.environments.match_pattern.MatchPatternEnv
+    manifest: configs/manifests/match-pattern-symbolic-v1.json
+  information:
+    observation: 64 symbol one-hots, six slot one-hots, reveal/query/terminal phase one-hots
+    action: Discrete(2); query 0 nonmatch, 1 match; every reveal executes and records 0
+    reward: reveal 0, correct query +1, incorrect query -1; return = 2*accuracy-1
+    loss: query-only actor and critic losses; complete causal public history; native AMAGO normalization
+    policy_fields: [symbol, slot, phase, rl2_reward, rl2_previous_action]
+    excluded_fields: [pattern, label, task_id, group_hash, split, evaluator_record]
+  lifecycle:
+    reset: first reveal; empty carrier and RL2 independently per actor
+    termination: six forced reveal advances and one answer; seven charged calls, eight stored observations
+    bootstrap: terminal answer, no bootstrap; preserve physical reward and terminal observation
+    relabeling: none
+  match_pattern:
+    generator_seed: 20260916
+    learning_accuracy: 0.90
+    history_margin: 0.10
+    practical_effect: 0.05
+    qualification_labels: [900, 950, 999]
+    bootstrap_seed: 20260916
+    bootstrap_draws: 10000

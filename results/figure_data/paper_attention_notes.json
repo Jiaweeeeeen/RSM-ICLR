@@ -1,0 +1,14 @@
+{
+  "notes": {
+    "figure": "attention of RSM's decisions on the summary and the read-bias dose",
+    "missing": []
+  },
+  "sources": [
+    "outputs/summary-memory-8m/reports/count-recall-medium/confirmation/attention/dose.csv",
+    "outputs/summary-memory-8m/reports/count-recall-medium/confirmation/attention/profile.csv",
+    "outputs/summary-memory-8m/reports/count-recall-medium/confirmation/attention/readings.csv",
+    "outputs/summary-memory-8m/reports/native-keydoor-fixed500-first8/confirmation/attention/dose.csv",
+    "outputs/summary-memory-8m/reports/native-keydoor-fixed500-first8/confirmation/attention/profile.csv",
+    "outputs/summary-memory-8m/reports/native-keydoor-fixed500-first8/confirmation/attention/readings.csv"
+  ]
+}

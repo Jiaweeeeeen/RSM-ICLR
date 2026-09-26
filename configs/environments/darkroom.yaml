@@ -1,0 +1,94 @@
+protocol: darkroom-5x5-quadrant-v1
+status: C1
+environment:
+  name: darkroom
+  benchmark: darkroom-5x5-quadrant-v1
+  goal_partition: quadrant-v1
+  size: 5
+  attempts: 5
+  horizon: 32
+  parallel_envs: 8
+training:
+  epochs: 200
+  start_learning_epoch: 1
+  timesteps_per_epoch: 160
+  batches_per_epoch: 16
+  validation_timesteps: 160
+  validation_interval: 10
+  checkpoint_interval: 10
+  batch_size: 4
+  max_sequence_length: 160
+  trajectory_length: 160
+  replay_capacity: 4096
+  reward_multiplier: 100.0
+  epsilon_anneal_steps: 32000
+  learning_rate: 0.0001
+  warmup_steps: 64
+  gradient_clip: 1.0
+  weight_decay: 0.001
+  mixed_precision: 'no'
+  dataloader_workers: 0
+  torch_compile: false
+  exploration: bilevel_epsilon_greedy
+  exploration_rollout_horizon: 160
+  verbose: false
+evaluation:
+  splits:
+    train:
+      source: train
+      count: 15
+    development:
+      source: iid
+      count: 5
+    final:
+      source: ood
+      count: 4
+  rollout_seeds:
+  - 0
+  primary_metric: attempt_success
+  sampling_unit: task
+  checkpoint_rule: best-development-primary-ties-earliest
+qualification:
+  reference: random-policy mean attempt success on the development goal roster
+  minimum_improvement: 0.1
+  maximum_primary: 0.95
+  sustained_checkpoints: 3
+  maximum_fits: 2
+  maximum_device_hours: 8.0
+  fallback: No retuning cycle is declared; DarkRoom is the development and regression reference
+    of the Stage-1 ablation, not a paper benchmark.
+  evidence_diagnostic: The first attempt's public outcome packet reveals the goal cell; identical
+    memoryless inputs at the start of attempt two require incompatible first moves for different
+    goals, and a public-history controller solves attempt two from the remembered outcome alone.
+documentation:
+  source:
+    environment: reasoned_icrl.environments.darkroom.DarkRoomEnv (project-owned)
+    example: AMAGO v3.4.0 examples/02_darkroom.py (protocol inspiration only)
+    adapter: recipe resolved by experiments/benchmarks.py
+  information:
+    observation: Position (2), attempt index, step in attempt, step in task, attempt boundary flag;
+      every value rescaled to [-1, 1].
+    action: Discrete(5); up, right, down, left, stay.
+    feedback: Reward 1 on reaching the hidden goal, which ends the attempt; the attempt otherwise
+      ends at the 32-step horizon. Five attempts per task.
+    reward: Unit reward once per successful attempt; a task return of at most 5.
+    projection: Direct; no upstream wrapper.
+    policy_fields:
+    - position
+    - attempt
+    - attempt_step
+    - task_step
+    - attempt_boundary
+    - rl2_reward
+    - rl2_previous_action
+    excluded_fields:
+    - goal
+    - evaluator_task_index
+  lifecycle:
+    task_variation: Hidden goal cell drawn from the quadrant partition of the 5x5 grid.
+    persistence: The goal persists for five attempts; the agent restarts at the centre each attempt.
+    termination: The fifth attempt boundary truncates the outer task.
+    bootstrap: No bootstrap at the outer boundary.
+    reset: Internal attempt resets keep history; an outer reset clears it.
+    relabeling: none
+  history: []

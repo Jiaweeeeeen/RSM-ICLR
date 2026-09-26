@@ -1,0 +1,5 @@
+condition,first,last,centre,estimate,lower,upper,tasks,seeds,per_seed,split
+raw_summary,1,32,16.5,0.9960530598958334,0.992919921875,0.9984537760416666,256,3,"{'42': 0.996826, '100': 0.997925, '2026': 0.993408}",confirmation
+raw_summary,33,64,48.5,0.0,0.0,0.0,256,3,"{'42': 0.0, '100': 0.0, '2026': 0.0}",confirmation
+raw_summary,65,96,80.5,0.0,0.0,0.0,256,3,"{'42': 0.0, '100': 0.0, '2026': 0.0}",confirmation
+raw_summary,97,103,100.0,0.0,0.0,0.0,256,3,"{'42': 0.0, '100': 0.0, '2026': 0.0}",confirmation

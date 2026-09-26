@@ -1,0 +1,27 @@
+# Retired Stage-1 roster, kept as a test fixture so the five matched history
+# conditions (feedforward/raw/raw_bypass/transition/transition_bypass) stay
+# exercised. Not launchable: the study itself was retired.
+name: stage1
+output_root: outputs/stage1
+contracts:
+- ../../../configs/environments/darkroom.yaml
+- ../../../configs/environments/dark_key_to_door.yaml
+- ../../../configs/environments/count_recall.yaml
+- ../../../configs/environments/mazerunner.yaml
+- ../../../configs/environments/concentration.yaml
+training_seeds:
+- 0
+- 1
+- 2
+conditions:
+- feedforward
+- raw
+- raw_bypass
+- transition
+- transition_bypass
+model:
+  attention_backend: vanilla
+  width: 256
+  layers: 3
+  heads: 8
+  feedforward_multiplier: 4

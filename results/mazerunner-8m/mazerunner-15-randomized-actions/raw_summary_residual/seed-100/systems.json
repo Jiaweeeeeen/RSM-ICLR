@@ -1,0 +1,267 @@
+{
+  "parameters": {
+    "tokenizer": 27456,
+    "fusion": 0,
+    "backbone": 2461476,
+    "heads_and_other": 1968106
+  },
+  "peak_gpu_bytes": 1391944704,
+  "cache_bytes": 3997888,
+  "cache_float_bytes": 3997696,
+  "cache_dtypes": [
+    "torch.float32",
+    "torch.int32",
+    "torch.int64"
+  ],
+  "peak_gpu_reserved_bytes": 1535115264,
+  "checkpoint_seconds": 9.055846530070994,
+  "validation_seconds": 111.06183378398418,
+  "attention": {
+    "backend_map": {
+      "0": {
+        "content": "vanilla"
+      },
+      "1": {
+        "content": "vanilla"
+      },
+      "2": {
+        "content": "vanilla"
+      }
+    }
+  },
+  "runtime_seconds": 24916.105906518,
+  "gradient_steps": 127872,
+  "context_actions": 500,
+  "nominal_collection_product": 8000000,
+  "measured": {
+    "scalar_training_transitions": 8000000,
+    "charged_calls": 8000000,
+    "physical_actions": 8000000,
+    "reset_only_steps": 0,
+    "tasks_started": 30801,
+    "tasks_completed": 30785,
+    "validation": {
+      "charged_calls": 160000,
+      "physical_actions": 160000,
+      "reset_only_steps": 0,
+      "tasks_started": 720,
+      "tasks_completed": 400
+    },
+    "counters": "carried across resume"
+  },
+  "resumes": [
+    {
+      "actual_device": "cuda",
+      "allow_missing_replay": true,
+      "git_commit": "d5bf32a762c7108be307700e1b64ae46b459df38",
+      "git_dirty": true,
+      "gpu": "NVIDIA L40S",
+      "host": "node-8",
+      "lockfile_sha256": "49250ac263c5106c3189d22bab1ca50f4908592db900344646b1367bc65ce336",
+      "next_epoch": 451,
+      "replay_deviation": null,
+      "resumed_label": 450,
+      "schema": "reasoned-icrl-resume.v1",
+      "slurm_job_id": "143809",
+      "wandb": {
+        "id": "fjqo9n4m",
+        "name": "mazerunner-15-randomized-actions/raw_summary_residual/seed-100",
+        "project": "reasoned-icrl",
+        "url": "https://wandb.ai/<entity>/reasoned-icrl/runs/fjqo9n4m"
+      }
+    },
+    {
+      "actual_device": "cuda",
+      "allow_missing_replay": true,
+      "git_commit": "d5bf32a762c7108be307700e1b64ae46b459df38",
+      "git_dirty": true,
+      "gpu": "NVIDIA RTX 6000 Ada Generation",
+      "host": "node-3",
+      "lockfile_sha256": "49250ac263c5106c3189d22bab1ca50f4908592db900344646b1367bc65ce336",
+      "next_epoch": 601,
+      "replay_deviation": {
+        "expected_files": 10000,
+        "missing_files": 136,
+        "schema": "replay-resume-deviation.v1"
+      },
+      "resumed_label": 600,
+      "schema": "reasoned-icrl-resume.v1",
+      "slurm_job_id": "143812",
+      "wandb": {
+        "id": "fjqo9n4m",
+        "name": "mazerunner-15-randomized-actions/raw_summary_residual/seed-100",
+        "project": "reasoned-icrl",
+        "url": "https://wandb.ai/<entity>/reasoned-icrl/runs/fjqo9n4m"
+      }
+    },
+    {
+      "actual_device": "cuda",
+      "allow_missing_replay": true,
+      "git_commit": "d5bf32a762c7108be307700e1b64ae46b459df38",
+      "git_dirty": true,
+      "gpu": "NVIDIA A100-PCIE-40GB",
+      "host": "node-7",
+      "lockfile_sha256": "49250ac263c5106c3189d22bab1ca50f4908592db900344646b1367bc65ce336",
+      "next_epoch": 601,
+      "replay_deviation": {
+        "expected_files": 10000,
+        "missing_files": 414,
+        "schema": "replay-resume-deviation.v1"
+      },
+      "resumed_label": 600,
+      "schema": "reasoned-icrl-resume.v1",
+      "slurm_job_id": "143814",
+      "wandb": {
+        "id": "fjqo9n4m",
+        "name": "mazerunner-15-randomized-actions/raw_summary_residual/seed-100",
+        "project": "reasoned-icrl",
+        "url": "https://wandb.ai/<entity>/reasoned-icrl/runs/fjqo9n4m"
+      }
+    },
+    {
+      "actual_device": "cuda",
+      "allow_missing_replay": true,
+      "git_commit": "8a1799e1a3538cf0161e22eff95d708728fab1f2",
+      "git_dirty": true,
+      "gpu": "NVIDIA L40S",
+      "host": "node-8",
+      "lockfile_sha256": "49250ac263c5106c3189d22bab1ca50f4908592db900344646b1367bc65ce336",
+      "next_epoch": 601,
+      "replay_deviation": {
+        "expected_files": 10000,
+        "missing_files": 589,
+        "schema": "replay-resume-deviation.v1"
+      },
+      "resumed_label": 600,
+      "schema": "reasoned-icrl-resume.v1",
+      "slurm_job_id": "143819",
+      "wandb": {
+        "id": "fjqo9n4m",
+        "name": "mazerunner-15-randomized-actions/raw_summary_residual/seed-100",
+        "project": "reasoned-icrl",
+        "url": "https://wandb.ai/<entity>/reasoned-icrl/runs/fjqo9n4m"
+      }
+    },
+    {
+      "actual_device": "cuda",
+      "allow_missing_replay": true,
+      "git_commit": "8a1799e1a3538cf0161e22eff95d708728fab1f2",
+      "git_dirty": true,
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+      "host": "node-8",
+      "lockfile_sha256": "49250ac263c5106c3189d22bab1ca50f4908592db900344646b1367bc65ce336",
+      "next_epoch": 601,
+      "replay_deviation": {
+        "expected_files": 10000,
+        "missing_files": 589,
+        "schema": "replay-resume-deviation.v1"
+      },
+      "resumed_label": 600,
+      "schema": "reasoned-icrl-resume.v1",
+      "slurm_job_id": "143821",
+      "wandb": {
+        "id": "fjqo9n4m",
+        "name": "mazerunner-15-randomized-actions/raw_summary_residual/seed-100",
+        "project": "reasoned-icrl",
+        "url": "https://wandb.ai/<entity>/reasoned-icrl/runs/fjqo9n4m"
+      }
+    }
+  ],
+  "sessions": [
+    {
+      "session": 1,
+      "labels": [
+        0,
+        450
+      ],
+      "gpu": "NVIDIA GeForce RTX 3090",
+      "slurm_job_id": "143693",
+      "hours_to_last_saved_label": 9.568165605531798,
+      "ended": "died; epochs after label 450 were recollected"
+    },
+    {
+      "session": 2,
+      "labels": [
+        451,
+        600
+      ],
+      "gpu": "NVIDIA L40S",
+      "slurm_job_id": "143809",
+      "hours_to_last_saved_label": 1.9769524147113164,
+      "ended": "died; epochs after label 600 were recollected"
+    },
+    {
+      "session": 3,
+      "labels": [
+        601,
+        600
+      ],
+      "gpu": "NVIDIA RTX 6000 Ada Generation",
+      "slurm_job_id": "143812",
+      "hours_to_last_saved_label": -0.15665869639979468,
+      "ended": "died; epochs after label 600 were recollected"
+    },
+    {
+      "session": 4,
+      "labels": [
+        601,
+        600
+      ],
+      "gpu": "NVIDIA A100-PCIE-40GB",
+      "slurm_job_id": "143814",
+      "hours_to_last_saved_label": -0.7086031408442391,
+      "ended": "died; epochs after label 600 were recollected"
+    },
+    {
+      "session": 5,
+      "labels": [
+        601,
+        600
+      ],
+      "gpu": "NVIDIA L40S",
+      "slurm_job_id": "143819",
+      "hours_to_last_saved_label": -1.368880918622017,
+      "ended": "died; epochs after label 600 were recollected"
+    },
+    {
+      "session": 6,
+      "labels": [
+        601,
+        999
+      ],
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+      "slurm_job_id": "143821",
+      "hours": 6.9211405295883335,
+      "ended": "completed"
+    }
+  ],
+  "state_match": null,
+  "persistent_state_bytes": 249868,
+  "state_tensor_bytes": {
+    "memory": 4096,
+    "lengths": 4,
+    "segment": 8,
+    "layer_0.content_keys": 40960,
+    "layer_0.content_values": 40960,
+    "layer_1.content_keys": 40960,
+    "layer_1.content_values": 40960,
+    "layer_2.content_keys": 40960,
+    "layer_2.content_values": 40960
+  },
+  "shared_state_bytes": 4096,
+  "decision_latency_seconds": 0.006540276305834168,
+  "decision_latency_p95_seconds": 0.008144267596071586,
+  "boundary_latency_seconds": 0.04820162837495445,
+  "boundary_latency_p95_seconds": 0.053203085545101204,
+  "boundary_latency_max_seconds": 0.053447737998794764,
+  "decision_flops_counted": 81041408,
+  "boundary_flops_counted": 739194880,
+  "flops_method": "torch.utils.flop_counter.FlopCounterMode over one cached decision of the whole actor batch at the probe's last steady-state step (and its last boundary crossing for the summary carrier): matrix-multiply-class operators only; softmax, normalization and elementwise work excluded",
+  "latency_probe": {
+    "rows": 16,
+    "steps": 258,
+    "probes": 8,
+    "decisions_timed": 249,
+    "boundaries_timed": 8
+  }
+}

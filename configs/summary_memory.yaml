@@ -1,0 +1,64 @@
+# RETIRED. This is the 4M roster; the active study is
+# configs/summary_memory_8m.yaml. Nothing in the active code base selects this
+# file — it loads only when its path is passed explicitly, so that the 4M
+# records, checkpoints and the evidence ledger stay interpretable. Do not start
+# new fits from it, and do not edit its recipe: doing so would change what the
+# historical runs mean. Its environment contracts under configs/environments/
+# are kept for the same reason and are bound to no active study.
+name: summary_memory
+output_root: outputs/summary-memory
+contracts:
+- environments/dark_key_to_door.yaml
+- environments/concentration.yaml
+- environments/xland_minigrid.yaml
+- environments/count_recall_hard.yaml
+- environments/mazerunner_15_randomized.yaml
+training_seeds:
+- 0
+- 1
+- 2
+pilot_seeds: []
+conditions:
+- raw
+- raw_dat
+- raw_dual_content  # the outcome-conditioned launch of decision 20 is retired; this roster reproduces the 4M study only
+- raw_gru
+- raw_segment
+- raw_summary
+- raw_dat_segment
+- raw_dat_summary
+- raw_dat_summary_relational_write_off
+- raw_dual_content_summary
+- raw_window
+model:
+  attention_backend: vanilla
+  width: 256
+  layers: 3
+  heads: 8
+  feedforward_multiplier: 4
+  dat:  # block v2: the DAT paper's configuration
+    layer_indices:  # dual attention in every layer, so relations compose across layers
+    - 0
+    - 1
+    - 2
+    relational_heads: 4  # 1:1 sensory/relational, the paper's split in every experiment
+    relation_channels: 8  # d_proj = d_h * n_ra / d_r = 32 * 4 / 8 = 16, the paper's rule
+    relation_projection_dim: 16
+    relation_activation: identity
+    symmetric_relations: true  # same/different kernels: position, value and rank equality
+    symbol_dim: 256
+    max_relative_distance: 500
+    relational_backend: dense
+    position_method: fixed
+    cache_dtype: float32
+    control_content_head_dim: 96  # matched at D=500 (+2.5 %); bounded cells derive 64/16 at M+C+M
+    control_second_head_dim: 16
+  summary:
+    segment_length: 32
+    memory_tokens: 4
+    detach: none
+    position: segment-local
+    cache_dtype: float32
+  window:
+    segment_length: 40  # equal allocated bytes with the summary cache (M + C + M slots)
+    cache_dtype: float32

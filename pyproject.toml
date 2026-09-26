@@ -1,0 +1,134 @@
+[project]
+name = "reasoned-context-rl"
+version = "0.8.0"
+description = "Recurrent Summary Memory: bounded-state in-context reinforcement learning"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+authors = [{ name = "Reasoned Context RL contributors" }]
+keywords = [
+  "in-context reinforcement learning",
+  "representation learning",
+  "meta reinforcement learning",
+]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+  "amago @ git+https://github.com/UT-Austin-RPL/amago.git@v3.4.0",
+  "gin-config==0.5.0",
+  "gymnasium==0.29.1",
+  "matplotlib>=3.10,<4",
+  "numpy>=1.26,<3",
+  "popgym==1.0.7",
+  "pyyaml>=6,<7",
+  "scipy>=1.14,<2",
+  "torch>=2.11,<2.14",
+]
+
+[project.optional-dependencies]
+cuda = [
+  "amago[flash] @ git+https://github.com/UT-Austin-RPL/amago.git@v3.4.0 ; sys_platform == 'linux'",
+]
+# The XLand-MiniGrid extension (decision 15): the pinned JAX simulator runs on
+# the CPU beside the PyTorch learner; nothing else imports it.
+xland = [
+  "xminigrid==0.9.3",
+  "jax==0.11.1",
+  "jaxlib==0.11.1",
+]
+
+[dependency-groups]
+dev = [
+  "ipywidgets>=8,<9",
+  "jupyterlab>=4,<5",
+  "mypy>=1.14",
+  "nbclient>=0.10,<1",
+  "nbformat>=5,<6",
+  "pip-audit>=2.9",
+  "pre-commit>=4",
+  "pytest>=8",
+  "ruff>=0.9",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["reasoned_icrl"]
+
+[tool.uv]
+package = true
+default-groups = ["dev"]
+required-version = ">=0.11.28,<0.12"
+
+[tool.uv.extra-build-dependencies]
+flash-attn = [{ requirement = "torch", match-runtime = true }]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+# Vendored upstream sources are pinned by hash and must stay byte-identical;
+# research documents are prose, and their illustrative snippets are not source.
+extend-exclude = ["tests/model/reference", "docs"]
+
+[tool.ruff.lint]
+select = ["B", "E", "F", "I", "RUF", "SIM", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+"notebooks/*.ipynb" = ["E501", "E701", "E702"]
+"notebooks/figure_summary_length.ipynb" = ["E501", "E701", "E702", "RUF001", "RUF002", "B008"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["reasoned_icrl"]
+combine-as-imports = true
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["reasoned_icrl", "scripts"]
+
+[[tool.mypy.overrides]]
+module = [
+  "amago",
+  "amago.*",
+  "gin",
+  "gymnasium",
+  "gymnasium.*",
+  "popgym",
+  "popgym.*",
+  "yaml",
+  "jax",
+  "jax.*",
+  "xminigrid",
+  "xminigrid.*",
+]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["scipy", "scipy.*"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = [
+  "reasoned_icrl.runtime.environments",
+  "reasoned_icrl.runtime.amago",
+  "reasoned_icrl.model.step_encoder",
+  "reasoned_icrl.runtime.experiment",
+  "reasoned_icrl.runtime.replay",
+]
+disable_error_code = ["arg-type", "misc", "no-any-return", "type-arg"]
+
+[tool.pytest.ini_options]
+addopts = ["--strict-config", "--strict-markers"]
+testpaths = ["tests"]
+markers = [
+  "slow: bounded native AMAGO smoke training",
+  "cuda: native GPU qualification; requirements follow each test runtime",
+]

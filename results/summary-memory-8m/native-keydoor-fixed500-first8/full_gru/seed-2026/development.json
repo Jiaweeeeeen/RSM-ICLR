@@ -1,0 +1,120 @@
+{
+  "condition": "full_gru",
+  "development_evaluation_seconds": 202.87,
+  "endpoint_epoch": 999,
+  "endpoint_reached": true,
+  "metric": "doors_completed",
+  "modes": {
+    "attempt-cleared": 1.515625,
+    "retained": 32.03125
+  },
+  "protocol": "native-keydoor-fixed500-first8",
+  "run_directory": "outputs/summary-memory-8m/native-keydoor-fixed500-first8/full_gru/seed-2026",
+  "schema": "summary-memory-development.v2",
+  "seed": 2026,
+  "selected_epoch": 900,
+  "selected_primary": 32.03125,
+  "series": [
+    {
+      "epoch": 50,
+      "evaluation_seconds": 8.20550673600519,
+      "primary": 1.125
+    },
+    {
+      "epoch": 100,
+      "evaluation_seconds": 8.449918785947375,
+      "primary": 4.328125
+    },
+    {
+      "epoch": 150,
+      "evaluation_seconds": 8.248752447078004,
+      "primary": 8.546875
+    },
+    {
+      "epoch": 200,
+      "evaluation_seconds": 8.63224437693134,
+      "primary": 7.359375
+    },
+    {
+      "epoch": 250,
+      "evaluation_seconds": 8.343908509938046,
+      "primary": 14.953125
+    },
+    {
+      "epoch": 300,
+      "evaluation_seconds": 8.235557249980047,
+      "primary": 16.1875
+    },
+    {
+      "epoch": 350,
+      "evaluation_seconds": 8.438455599942245,
+      "primary": 23.984375
+    },
+    {
+      "epoch": 400,
+      "evaluation_seconds": 8.646418070071377,
+      "primary": 25.96875
+    },
+    {
+      "epoch": 450,
+      "evaluation_seconds": 8.3139918850502,
+      "primary": 17.140625
+    },
+    {
+      "epoch": 500,
+      "evaluation_seconds": 8.529568605008535,
+      "primary": 23.359375
+    },
+    {
+      "epoch": 550,
+      "evaluation_seconds": 8.628466136055067,
+      "primary": 29.015625
+    },
+    {
+      "epoch": 600,
+      "evaluation_seconds": 8.323694535065442,
+      "primary": 28.671875
+    },
+    {
+      "epoch": 650,
+      "evaluation_seconds": 8.54936380800791,
+      "primary": 25.0625
+    },
+    {
+      "epoch": 700,
+      "evaluation_seconds": 8.504732333938591,
+      "primary": 26.953125
+    },
+    {
+      "epoch": 750,
+      "evaluation_seconds": 8.351765550905839,
+      "primary": 23.3125
+    },
+    {
+      "epoch": 800,
+      "evaluation_seconds": 8.43896249809768,
+      "primary": 29.515625
+    },
+    {
+      "epoch": 850,
+      "evaluation_seconds": 8.614416572963819,
+      "primary": 29.484375
+    },
+    {
+      "epoch": 900,
+      "evaluation_seconds": 8.407518897904083,
+      "primary": 32.03125
+    },
+    {
+      "epoch": 950,
+      "evaluation_seconds": 8.443966352962889,
+      "primary": 27.015625
+    },
+    {
+      "epoch": 999,
+      "evaluation_seconds": 8.433045309968293,
+      "primary": 25.796875
+    }
+  ],
+  "task_cap": null
+}

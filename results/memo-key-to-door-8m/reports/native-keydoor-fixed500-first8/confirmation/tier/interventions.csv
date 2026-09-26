@@ -1,0 +1,12 @@
+protocol,split,checkpoint_rule,condition,dependence,metric,estimate,lower,upper,per_seed,seeds,tasks
+native-keydoor-fixed500-first8,confirmation,endpoint,full_context,retained - attempt-cleared,doors_completed,24.4375,22.086881510416667,26.7984375,"42: +25.520, 100: +25.074, 2026: +22.719",3,256
+native-keydoor-fixed500-first8,confirmation,endpoint,full_gru,retained - attempt-cleared,doors_completed,28.080729166666668,23.261490885416666,31.98056640625,"42: +31.465, 100: +29.133, 2026: +23.645",3,256
+native-keydoor-fixed500-first8,confirmation,endpoint,memo,retained - attempt-cleared,doors_completed,26.266927083333332,23.61279296875,29.2333984375,"42: +24.719, 100: +28.387, 2026: +25.695",3,256
+native-keydoor-fixed500-first8,confirmation,endpoint,memo_fixed,retained - attempt-cleared,doors_completed,23.776041666666668,20.62099609375,26.589876302083333,"42: +25.234, 100: +25.348, 2026: +20.746",3,256
+native-keydoor-fixed500-first8,confirmation,endpoint,raw_segment,retained - attempt-cleared,doors_completed,-0.171875,-0.8633138020833333,0.6406901041666663,"42: -0.707, 100: +0.086, 2026: +0.105",3,256
+native-keydoor-fixed500-first8,confirmation,endpoint,raw_summary,retained - attempt-cleared,doors_completed,26.75,23.648177083333334,30.259960937499994,"42: +24.816, 100: +29.910, 2026: +25.523",3,256
+native-keydoor-fixed500-first8,confirmation,endpoint,raw_summary_residual,retained - attempt-cleared,doors_completed,27.47265625,25.249967447916667,29.747428385416665,"42: +28.160, 100: +26.414, 2026: +27.844",3,256
+native-keydoor-fixed500-first8,confirmation,endpoint,memo,retained - summary-cleared,doors_completed,25.869791666666668,23.47047526041667,28.57724609375,"42: +24.645, 100: +27.715, 2026: +25.250",3,256
+native-keydoor-fixed500-first8,confirmation,endpoint,memo_fixed,retained - summary-cleared,doors_completed,23.432291666666668,20.846126302083334,25.929882812499997,"42: +24.855, 100: +24.176, 2026: +21.266",3,256
+native-keydoor-fixed500-first8,confirmation,endpoint,raw_summary,retained - summary-cleared,doors_completed,25.7265625,22.88271484375,28.794335937499998,"42: +24.250, 100: +28.383, 2026: +24.547",3,256
+native-keydoor-fixed500-first8,confirmation,endpoint,raw_summary_residual,retained - summary-cleared,doors_completed,26.252604166666668,23.52734375,28.793001302083333,"42: +26.402, 100: +24.359, 2026: +27.996",3,256

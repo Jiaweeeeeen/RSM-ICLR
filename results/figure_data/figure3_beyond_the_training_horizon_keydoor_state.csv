@@ -1,0 +1,7 @@
+environment,condition,horizon,records,accounting,bytes,peak_bytes,mean_bytes,allocated_bytes,seeds_measured,method
+keydoor,raw_summary,4000,4001,peak,249868,249868,249868,249868,3,measured (fixed state)
+keydoor,raw_summary_residual,4000,4001,peak,249868,249868,249868,249868,3,measured (fixed state)
+keydoor,full_context,4000,4001,peak,24582148,24582148,12294148,3078148,3,"one cache slot per record, peak at the last record"
+keydoor,full_gru,4000,4001,peak,3072,3072,3072,3072,3,measured (fixed state)
+keydoor,memo,4000,4001,peak,3244044,3244044,1625463,589836,3,peak of the recorded per-slot schedule within the task
+keydoor,memo_fixed,4000,4001,peak,3244044,3244044,1625463,589836,3,peak of the recorded per-slot schedule within the task

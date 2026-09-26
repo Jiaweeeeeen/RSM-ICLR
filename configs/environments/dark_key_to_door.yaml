@@ -1,0 +1,113 @@
+protocol: native-keydoor-fixed500-first8
+status: C1
+environment:
+  name: dark_key_to_door
+  benchmark: native-keydoor-fixed500-first8
+  size: 8
+  attempts: 8
+  horizon: 50
+  meta_horizon: 500
+  randomized_actions: false
+  parallel_envs: 16
+training:
+  epochs: 500
+  start_learning_epoch: 1
+  timesteps_per_epoch: 500
+  batches_per_epoch: 128
+  validation_timesteps: 500
+  validation_interval: 50
+  checkpoint_interval: 50
+  batch_size: 16
+  max_sequence_length: 500
+  trajectory_length: 501
+  replay_capacity: 10000
+  reward_multiplier: 100.0
+  epsilon_anneal_steps: 50000
+  learning_rate: 0.0001
+  warmup_steps: 128
+  gradient_clip: 1.0
+  weight_decay: 0.001
+  mixed_precision: 'no'
+  dataloader_workers: 0
+  torch_compile: false
+  exploration: bilevel_epsilon_greedy
+  exploration_rollout_horizon: 500
+  verbose: false
+evaluation:
+  splits:
+    development:
+      source: development
+      count: 64
+    final:
+      source: final
+      count: 256
+  rollout_seeds:
+  - 0
+  primary_metric: door_success_first8
+  sampling_unit: task
+  checkpoint_rule: best-development-primary-ties-earliest
+qualification:
+  reference: random-policy first-eight-attempt success on the same development task roster
+  minimum_improvement: 0.1
+  maximum_primary: 0.95
+  sustained_checkpoints: 3
+  maximum_fits: 2
+  maximum_device_hours: 24.0
+  fallback: One extended ordinary-transition retry at the declared 500-epoch/128-batch recipe replaces
+    the unused LR fallback. Together with the original pilot, maximum two ordinary fits. No automatic
+    further retuning; preserve negative evidence. All training, references, diagnostics and evaluations
+    charge the family 24-hour ceiling.
+  evidence_diagnostic: Actual bounded public histories; exact equality of every current packet field,
+    RL2 feedback and time; conflicting correct answers/actions plus public-history resolution. Route ties
+    and weak random policies are not necessity evidence. See docs/DAT_BENCHMARK_M5_RETRY.md.
+documentation:
+  source:
+    amago: 3.4.0
+    environment: https://github.com/UT-Austin-RPL/amago/blob/v3.4.0/amago/envs/builtin/toy_gym.py (RoomKeyDoor)
+    example: https://github.com/UT-Austin-RPL/amago/blob/v3.4.0/examples/05_dark_key_door.py
+    adapter: reasoned_icrl.environments.dark_key_to_door_native.DarkKeyToDoorNativeEnv; recipe resolved
+      by experiments/benchmarks.py
+    popgym: not used
+    recipe_note: 'Prospectively revised: fresh 500-epoch fit, 16 actors, 500 decisions/actor/epoch,
+      128 batches/epoch, batch16; 4,000,000 scalar transitions and 63,872 updates. Learning rate 0.0001,
+      anneal50000, FP32, full context and native objectives retained. Replaces the unused LR retry; original
+      100-epoch negative evidence is historical.'
+  information:
+    observation: 'Box(4): [x/8, y/8, has_key, physical_time/50]; dark=True.'
+    action: 'Discrete(5): left/up/right/down/stay in native index order.'
+    feedback: Native v3.4.0 observation has no embedded previous action/reward. Keep them once in AMAGO
+      RL2. Reset-only selected actions are not physical actions.
+    reward: 1 on key acquisition, 1 on door completion; at most 2 per physical attempt. Reset-only steps
+      reward 0. Store native feedback before reward_multiplier=100.
+    projection: Read the four public Box values directly as float32; no key/door coordinate recovery.
+    policy_fields:
+    - position_x
+    - position_y
+    - has_key
+    - episode_time
+    - rl2_reward
+    - rl2_previous_action
+    excluded_fields:
+    - key
+    - goal
+    - start
+    - dirs
+    - task_seed
+    - success_label
+    - optimal_path
+  lifecycle:
+    task_variation: New hidden start/key/door locations at each outer reset; fixed native action directions.
+    persistence: Start/key/door locations persist for all 500 meta steps; possession resets per physical
+      attempt.
+    termination: An attempt ends at door completion or 50 physical actions; a subsequent step resets without
+      executing its action. Outer terminated=True and truncated=True at global_time=500.
+    bootstrap: No value bootstrap at the outer finite-horizon terminal; physical attempt completion is
+      not a learner terminal.
+    reset: Retain history during physical/reset-only steps; clear at outer reset. Include initial token
+      plus up to 500 step tokens.
+    relabeling: none
+  history:
+  - 'M5 historical: original 100-epoch ordinary pilot failed C2. Original diagnostic passes are superseded
+    by corrected full-input checks; original reported hours excluded external evaluation.'
+  - 'M5 pending: revised extended fit and corrected neural qualification have NOT been run. C1 is unchanged;
+    M5 exit remains not passed.'

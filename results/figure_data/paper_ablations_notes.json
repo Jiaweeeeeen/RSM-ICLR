@@ -1,0 +1,13 @@
+{
+  "notes": {
+    "figure": "carrying the summary and replacing versus adding on the long-running tasks",
+    "missing": []
+  },
+  "sources": [
+    "notebooks/outputs/data/figure3_beyond_the_training_horizon_keydoor_windows.csv",
+    "notebooks/outputs/data/figure_mazerunner_map_change_per_map.csv",
+    "notebooks/outputs/data/figure_mazerunner_repeated_laps_windows.csv",
+    "outputs/mazerunner-8m/reports/mazerunner/confirmation/laps/attempt-cleared/goals_per_window.csv",
+    "outputs/memo-key-to-door-8m/reports/dark-key-to-door/confirmation/horizon/h4000/windows.csv"
+  ]
+}

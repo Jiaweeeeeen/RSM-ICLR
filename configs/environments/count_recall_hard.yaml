@@ -1,0 +1,110 @@
+protocol: count-recall-hard
+status: C0
+environment:
+  name: count_recall
+  benchmark: count-recall-hard
+  size: 13
+  attempts: 1
+  horizon: 207
+  parallel_envs: 16
+training:
+  epochs: 500
+  start_learning_epoch: 1
+  timesteps_per_epoch: 500
+  batches_per_epoch: 128
+  validation_timesteps: 207
+  validation_interval: 50
+  checkpoint_interval: 50
+  batch_size: 16
+  max_sequence_length: 207
+  trajectory_length: 208
+  replay_capacity: 10000
+  reward_multiplier: 100.0
+  epsilon_anneal_steps: 50000
+  learning_rate: 0.0001
+  warmup_steps: 128
+  gradient_clip: 1.0
+  weight_decay: 0.001
+  mixed_precision: 'no'
+  dataloader_workers: 0
+  torch_compile: false
+  exploration: epsilon_greedy
+  exploration_rollout_horizon: 207
+  verbose: false
+  native_agent:
+    tau: 0.0025
+evaluation:
+  splits:
+    development:
+      source: development
+      count: 64
+    final:
+      source: final
+      count: 256
+  rollout_seeds:
+  - 0
+  primary_metric: exact_accuracy
+  sampling_unit: stream
+  checkpoint_rule: best-development-primary-ties-earliest
+qualification:
+  reference: maximum of random, held-out count/time prior, and trained feedforward current-token accuracy;
+    missing trained reference blocks C2. The summary-memory plan additionally reads a 0.80 competence
+    screen on the raw reference's selected development accuracy (task M5.3).
+  minimum_improvement: 0.05
+  maximum_primary: 0.95
+  sustained_checkpoints: 3
+  maximum_fits: 2
+  maximum_device_hours: 24.0
+  fallback: Recipe changes apply to every cell of the protocol at once under the summary-memory change
+    protocol (implementation plan section 2) and are logged there; a raw reference below the 0.80 screen but
+    rising extends the recipe for every cell (fallback F3), one flat at the ceiling keeps the ordinary cells
+    as a reported partial result. All training, references, diagnostics and evaluations charge the family
+    24-hour ceiling. The separately budgeted feedforward current-token reference uses the same training block.
+  evidence_diagnostic: Actual bounded public histories; exact equality of every current packet field,
+    RL2 feedback and time; conflicting correct answers/actions plus public-history resolution. Route ties
+    and weak random policies are not necessity evidence. See docs/DAT_BENCHMARK_M5_RETRY.md.
+documentation:
+  source:
+    amago: 3.4.0
+    environment: https://github.com/UT-Austin-RPL/amago/blob/v3.4.0/amago/envs/builtin/popgym_envs.py
+      (POPGym)
+    example: https://github.com/UT-Austin-RPL/amago/blob/v3.4.0/examples/03_popgym_suite.py
+    adapter: reasoned_icrl.environments.count_recall.CountRecallEnv (variant hard); recipe resolved by
+      experiments/benchmarks.py
+    popgym: 1.0.7
+    recipe_note: 'Declared for the summary-memory study (task M5.1): the M5 training block
+      of count_recall.yaml on the Hard deck; 500 epochs, 16 actors, 500 decisions/actor/epoch, 128 batches/epoch,
+      batch 16; 4,000,000 scalar transitions and 63,872 updates. Learning rate 0.0001, anneal 50000, FP32,
+      full context (207 decisions, 208 tokens) and native objectives retained.'
+  information:
+    observation: 'Native MultiDiscrete([13,13]) over four decks of ranks; AMAGO POPGym produces Box(27): two
+      length-13 one-hot fields (dealt value, queried value) and timer/1000.'
+    action: Discrete(17), answer counts 0..16. Every rank is dealt exactly 16 times, so no larger count
+      can occur; Easy and Medium answer from 27 counts and are separate protocols.
+    feedback: Reset deals and counts the first value. Action at t is scored against the already-presented
+      query/count including value t. Final observation is not an additional scored query.
+    reward: Correct=+1/207; incorrect=-1/207. A full-stream native return equals 2*accuracy-1. Apply learner
+      reward multiplier only after logging native reward.
+    projection: Use the pinned AMAGO POPGym public one-hot/timer wrapper; never flatten info or get_state.
+    policy_fields:
+    - value_onehot
+    - query_onehot
+    - timer
+    - rl2_reward
+    - rl2_previous_action
+    excluded_fields:
+    - counts
+    - query_counts
+    - get_state
+    - state_space
+    - task_seed
+    - true_count_label
+  lifecycle:
+    task_variation: Fresh paired value/query decks; Hard uses four decks and ranks (13 categories).
+    persistence: Counts accumulate only within one episode; no meta-attempt wrapper.
+    termination: 207 answer actions; final dealt value empties the deck; terminated=True, truncated=False.
+    bootstrap: No bootstrap at natural deck exhaustion; preserve terminal observation for the last scored
+      action.
+    reset: Fresh counts/decks and empty history at outer reset; 208 observation tokens for 207 actions.
+    relabeling: none
+  history: []

@@ -1,0 +1,201 @@
+{
+  "parameters": {
+    "tokenizer": 25920,
+    "fusion": 0,
+    "backbone": 2461476,
+    "heads_and_other": 1942920
+  },
+  "peak_gpu_bytes": 763974656,
+  "cache_bytes": 3997888,
+  "cache_float_bytes": 3997696,
+  "cache_dtypes": [
+    "torch.float32",
+    "torch.int32",
+    "torch.int64"
+  ],
+  "peak_gpu_reserved_bytes": 857735168,
+  "checkpoint_seconds": 6.593741179000062,
+  "validation_seconds": 12.832031816033123,
+  "attention": {
+    "backend_map": {
+      "0": {
+        "content": "vanilla"
+      },
+      "1": {
+        "content": "vanilla"
+      },
+      "2": {
+        "content": "vanilla"
+      }
+    }
+  },
+  "runtime_seconds": 16800.16351397999,
+  "gradient_steps": 127872,
+  "context_actions": 257,
+  "nominal_collection_product": 8000000,
+  "measured": {
+    "scalar_training_transitions": 8000000,
+    "charged_calls": 8000000,
+    "physical_actions": 8000000,
+    "reset_only_steps": 0,
+    "tasks_started": 55020,
+    "tasks_completed": 55004,
+    "validation": {
+      "charged_calls": 41280,
+      "physical_actions": 41280,
+      "reset_only_steps": 0,
+      "tasks_started": 640,
+      "tasks_completed": 320
+    },
+    "counters": "carried across resume"
+  },
+  "resumes": [
+    {
+      "actual_device": "cuda",
+      "allow_missing_replay": true,
+      "git_commit": "685361b3fdc55484eeff9f2d2649d1e0b3b6939b",
+      "git_dirty": true,
+      "gpu": "NVIDIA L40S",
+      "host": "node-8",
+      "lockfile_sha256": "49250ac263c5106c3189d22bab1ca50f4908592db900344646b1367bc65ce336",
+      "next_epoch": 301,
+      "replay_deviation": {
+        "expected_files": 10000,
+        "missing_files": 219,
+        "schema": "replay-resume-deviation.v1"
+      },
+      "resumed_label": 300,
+      "schema": "reasoned-icrl-resume.v1",
+      "slurm_job_id": "143194",
+      "wandb": {
+        "id": "ykk5hi4d",
+        "name": "tmaze-passive-l32-256-v3/raw_segment/seed-100",
+        "project": "reasoned-icrl",
+        "url": "https://wandb.ai/<entity>/reasoned-icrl/runs/ykk5hi4d"
+      }
+    },
+    {
+      "actual_device": "cuda",
+      "allow_missing_replay": true,
+      "git_commit": "685361b3fdc55484eeff9f2d2649d1e0b3b6939b",
+      "git_dirty": true,
+      "gpu": "NVIDIA A30",
+      "host": "node-5",
+      "lockfile_sha256": "49250ac263c5106c3189d22bab1ca50f4908592db900344646b1367bc65ce336",
+      "next_epoch": 301,
+      "replay_deviation": {
+        "expected_files": 10000,
+        "missing_files": 219,
+        "schema": "replay-resume-deviation.v1"
+      },
+      "resumed_label": 300,
+      "schema": "reasoned-icrl-resume.v1",
+      "slurm_job_id": "143022",
+      "wandb": {
+        "id": "ykk5hi4d",
+        "name": "tmaze-passive-l32-256-v3/raw_segment/seed-100",
+        "project": "reasoned-icrl",
+        "url": "https://wandb.ai/<entity>/reasoned-icrl/runs/ykk5hi4d"
+      }
+    },
+    {
+      "actual_device": "cuda",
+      "allow_missing_replay": true,
+      "git_commit": "7759a28aa64d3d7328d595d3976cee88c7cf2271",
+      "git_dirty": true,
+      "gpu": "NVIDIA L40S",
+      "host": "node-8",
+      "lockfile_sha256": "49250ac263c5106c3189d22bab1ca50f4908592db900344646b1367bc65ce336",
+      "next_epoch": 501,
+      "replay_deviation": {
+        "expected_files": 10000,
+        "missing_files": 1436,
+        "schema": "replay-resume-deviation.v1"
+      },
+      "resumed_label": 500,
+      "schema": "reasoned-icrl-resume.v1",
+      "slurm_job_id": "143194",
+      "wandb": {
+        "id": "ykk5hi4d",
+        "name": "tmaze-passive-l32-256-v3/raw_segment/seed-100",
+        "project": "reasoned-icrl",
+        "url": "https://wandb.ai/<entity>/reasoned-icrl/runs/ykk5hi4d"
+      }
+    }
+  ],
+  "sessions": [
+    {
+      "session": 1,
+      "labels": [
+        0,
+        300
+      ],
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+      "slurm_job_id": "143105",
+      "hours_to_last_saved_label": 3.2928210602204007,
+      "ended": "died; epochs after label 300 were recollected"
+    },
+    {
+      "session": 2,
+      "labels": [
+        301,
+        300
+      ],
+      "gpu": "NVIDIA L40S",
+      "slurm_job_id": "143194",
+      "hours_to_last_saved_label": -0.47465891698996227,
+      "ended": "died; epochs after label 300 were recollected"
+    },
+    {
+      "session": 3,
+      "labels": [
+        301,
+        500
+      ],
+      "gpu": "NVIDIA A30",
+      "slurm_job_id": "143022",
+      "hours_to_last_saved_label": 4.471312916742431,
+      "ended": "died; epochs after label 500 were recollected"
+    },
+    {
+      "session": 4,
+      "labels": [
+        501,
+        999
+      ],
+      "gpu": "NVIDIA L40S",
+      "slurm_job_id": "143194",
+      "hours": 4.6667120872166645,
+      "ended": "completed"
+    }
+  ],
+  "state_match": null,
+  "persistent_state_bytes": 249868,
+  "state_tensor_bytes": {
+    "memory": 4096,
+    "lengths": 4,
+    "segment": 8,
+    "layer_0.content_keys": 40960,
+    "layer_0.content_values": 40960,
+    "layer_1.content_keys": 40960,
+    "layer_1.content_values": 40960,
+    "layer_2.content_keys": 40960,
+    "layer_2.content_values": 40960
+  },
+  "shared_state_bytes": 4096,
+  "decision_latency_seconds": 0.004106562252866617,
+  "decision_latency_p95_seconds": 0.0042038472020067275,
+  "boundary_latency_seconds": 0.03392892162446515,
+  "boundary_latency_p95_seconds": 0.03407693490589736,
+  "boundary_latency_max_seconds": 0.03413069000816904,
+  "decision_flops_counted": 81041408,
+  "boundary_flops_counted": 730806272,
+  "flops_method": "torch.utils.flop_counter.FlopCounterMode over one cached decision of the whole actor batch at the probe's last steady-state step (and its last boundary crossing for the summary carrier): matrix-multiply-class operators only; softmax, normalization and elementwise work excluded",
+  "latency_probe": {
+    "rows": 16,
+    "steps": 258,
+    "probes": 8,
+    "decisions_timed": 249,
+    "boundaries_timed": 8
+  }
+}

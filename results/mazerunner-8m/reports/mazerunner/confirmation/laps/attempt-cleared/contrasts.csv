@@ -1,0 +1,16 @@
+history,budget,window,name,left,right,estimate,lower,upper,seed_42,seed_100,seed_2026,every_seed_gain,every_seed_loss,joint_above_zero,joint_below_zero
+attempt-cleared,4000,last,RSM-O - RSM-R,raw_summary,raw_summary_residual,0.93359375,-2.87509765625,4.164127604166667,2.8203125,-2.9921875,2.97265625,False,False,False,False
+attempt-cleared,4000,last,RSM-O - w/o memory,raw_summary,raw_segment,3.9739583333333335,0.2655273437500002,7.694075520833334,3.73828125,0.26171875,7.921875,False,False,True,False
+attempt-cleared,4000,last,RSM-O - full history,raw_summary,full_context,21.444010416666668,18.144108072916666,24.59944661458333,22.80078125,18.6796875,22.8515625,True,False,True,False
+attempt-cleared,4000,last,RSM-O - GRU,raw_summary,full_gru,6.483072916666667,4.3500000000000005,8.621582031249996,8.0390625,5.28515625,6.125,True,False,True,False
+attempt-cleared,4000,last,RSM-O - Memo,raw_summary,memo,0.005208333333333333,-2.358138020833333,2.351757812499999,1.34765625,-1.7734375,0.44140625,False,False,False,False
+attempt-cleared,4000,last,RSM-O - Memo fixed,raw_summary,memo_fixed,3.4440104166666665,-2.0071289062499944,8.747688802083331,8.21484375,-3.046875,5.1640625,False,False,False,False
+attempt-cleared,4000,last,RSM-R - w/o memory,raw_summary_residual,raw_segment,3.0403645833333335,0.49186197916666724,5.441569010416666,0.91796875,3.25390625,4.94921875,False,False,True,False
+attempt-cleared,4000,last,RSM-R - full history,raw_summary_residual,full_context,20.510416666666668,17.930859375,23.29186197916667,19.98046875,21.671875,19.87890625,True,False,True,False
+attempt-cleared,4000,last,RSM-R - GRU,raw_summary_residual,full_gru,5.549479166666667,2.71484375,8.53662109375,5.21875,8.27734375,3.15234375,True,False,True,False
+attempt-cleared,4000,last,RSM-R - Memo,raw_summary_residual,memo,-0.9283854166666666,-3.2867187499999995,1.761751302083333,-1.47265625,1.21875,-2.53125,False,False,False,False
+attempt-cleared,4000,last,RSM-R - Memo fixed,raw_summary_residual,memo_fixed,2.5104166666666665,-0.7502604166666662,5.856966145833332,5.39453125,-0.0546875,2.19140625,False,False,False,False
+attempt-cleared,4000,last,full history - w/o memory,full_context,raw_segment,-17.470052083333332,-20.36468098958333,-14.464778645833334,-19.0625,-18.41796875,-14.9296875,False,True,False,True
+attempt-cleared,4000,last,GRU - w/o memory,full_gru,raw_segment,-2.5091145833333335,-5.923730468749999,1.3074218749999993,-4.30078125,-5.0234375,1.796875,False,False,False,False
+attempt-cleared,4000,last,Memo - w/o memory,memo,raw_segment,3.96875,0.9489257812500005,7.3518229166666655,2.390625,2.03515625,7.48046875,True,False,True,False
+attempt-cleared,4000,last,Memo fixed - w/o memory,memo_fixed,raw_segment,0.5299479166666666,-3.9432617187499965,4.2265625,-4.4765625,3.30859375,2.7578125,False,False,False,False

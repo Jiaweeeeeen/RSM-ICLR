@@ -1,0 +1,94 @@
+name: memo_count_recall_8m
+output_root: outputs/memo-count-recall-8m  # the comparator's own root; the 8M study root is read, never written
+contracts:
+- environments/8m/count_recall.yaml   # the tier-2 contract, unchanged: task, 8M recipe, rosters (plus its `confirmation` split)
+training_seeds:
+- 42
+- 100
+- 2026
+pilot_seeds: []
+conditions:  # the union roster every name of this study resolves through
+- memo                  # fitted under this root: Memo (AMAGO adaptation, matched 8M), jittered training segments (ME5)
+- memo_fixed            # fitted under this root: the same recipe with training-segment jitter 0 (ME5)
+- fixed_summary         # frozen reference endpoints of the 8M root (tier 2, label 999), re-scored on the confirmation split
+- full_dual_relational
+- full_gru
+- fixed_window
+- fixed_segment         # figure refinement: Figure 2's DAT segment column and the summary - segment contrast on the confirmation roster
+- full_context          # paper split (docs/EXPERIMENTS.md section 3): the full-history reference of the bounded-summary paper, re-scored on the confirmation split
+- raw_summary           # Figure 3's ordinary-writer rows (tier-2 supplements, 8M root), re-scored on the confirmation roster
+- raw_segment
+- raw_summary_residual  # the residual-rewrite carrier, frozen 8M-root reference once fitted
+model:
+  attention_backend: vanilla
+  width: 256
+  layers: 3
+  heads: 8
+  feedforward_multiplier: 4
+  dat:  # block v2: the DAT paper's configuration, unchanged by R1
+    layer_indices:  # dual attention in every layer, so relations compose across layers
+    - 0
+    - 1
+    - 2
+    relational_heads: 4  # 1:1 sensory/relational, the paper's split in every experiment
+    relation_channels: 8  # d_proj = d_h * n_ra / d_r = 32 * 4 / 8 = 16, the paper's rule
+    relation_projection_dim: 16
+    relation_activation: identity
+    symmetric_relations: true  # same/different kernels: position, value and rank equality
+    symbol_dim: 256
+    max_relative_distance: 500
+    relational_backend: dense
+    position_method: fixed
+    cache_dtype: float32
+    control_content_head_dim: 96  # R3: derived per resolved environment (capacity_matched_control_dims at the cell's clipping distance); 96/16 is the match at 500 (+2.5 %), recorded in systems.json
+    control_second_head_dim: 16
+  summary:  # the frozen `fixed_summary` reference's identity, as in the 8M study (the contract overrides C32/M4)
+    segment_length: 32
+    memory_tokens: 4    # M
+    detach: none
+    position: segment-local
+    cache_dtype: float32
+  window:  # the frozen `fixed_window` reference's identity (the contract overrides W = 40)
+    segment_length: 40
+    cache_dtype: float32
+  memo:  # the ME0 locked recipe, unchanged on CountRecall: L = 32 records per segment, S = 4 summary tokens per boundary (three boundaries per 104-record stream, 48 cache slots per layer)
+    segment_length: 32
+    summary_tokens: 4
+    carry: accumulate            # summaries are appended, never overwritten (Memo's method; overwrite would be RMT)
+    training_segment_jitter: 0.2 # `memo`: one uniform draw per learner forward from [26, 38]; `memo_fixed` derives 0 from its condition row; rollout and rebuild at 32 for both
+    detach: none                 # full-task gradients through every accumulated summary
+    position: concatenated       # positions are the slot index of [summaries | records | queries]
+    cache_dtype: float32
+tiers:
+  count_recall:
+    tier: 2
+    purpose: Memo comparator on CountRecallMedium (published-method comparator at matched 8M experience)
+    primary: [memo, memo_fixed]
+    supplementary: []
+    reference_cells: [fixed_summary, full_dual_relational, full_gru, fixed_window, fixed_segment, raw_summary, raw_segment, full_context, raw_summary_residual]  # frozen 8M endpoints, read from reference_root, never fitted here; raw_summary/raw_segment joined (Figures 2/3 refinement), full_context (paper split, section 3), each before its confirmation panel was read
+    reference_root: outputs/summary-memory-8m
+    qualification_reference: full_dual_relational  # tier 2's qualification (R8, C2/C3 pass) is inherited through the frozen reference; no new gate is run
+    practical_effect: 0.05  # the tier-2 margin: exact accuracy
+    primary_contrasts:
+    - {name: summary - Memo, left: fixed_summary, right: memo}
+    companion_contrasts:  # declared with the figure redesign, before any panel exists (EXPERIMENTS section 7)
+    - {name: summary - Memo fixed, left: fixed_summary, right: memo_fixed}
+    - {name: Memo - Memo fixed, left: memo, right: memo_fixed}
+    - {name: full DAT - Memo, left: full_dual_relational, right: memo}
+    - {name: GRU - Memo, left: full_gru, right: memo}
+    - {name: summary - segment, left: fixed_summary, right: fixed_segment}  # The carrier's own gain on the confirmation roster, beside the Memo rows (Figure 2)
+    # Paper split (docs/EXPERIMENTS.md section 4): the bounded-summary paper's contrast family on the ordinary writer (RSM = raw_summary),
+    # declared before the full_context confirmation panel existed; Memo - Memo fixed is the row above.
+    - {name: RSM - RSM no carry, left: raw_summary, right: raw_segment}
+    - {name: full history - RSM, left: full_context, right: raw_summary}
+    - {name: RSM - Memo, left: raw_summary, right: memo}
+    - {name: RSM - Memo fixed, left: raw_summary, right: memo_fixed}
+    - {name: RSM - GRU, left: raw_summary, right: full_gru}
+    # The residual-rewrite carrier, frozen from the 8M root once its endpoints land, read with RSM's
+    # family; declared before any of its confirmation panels exists. The paper's final method is chosen by the rule in that entry.
+    - {name: RSM residual - RSM, left: raw_summary_residual, right: raw_summary}
+    - {name: RSM residual - RSM no carry, left: raw_summary_residual, right: raw_segment}
+    - {name: full history - RSM residual, left: full_context, right: raw_summary_residual}
+    - {name: RSM residual - Memo, left: raw_summary_residual, right: memo}
+    - {name: RSM residual - Memo fixed, left: raw_summary_residual, right: memo_fixed}
+    - {name: RSM residual - GRU, left: raw_summary_residual, right: full_gru}

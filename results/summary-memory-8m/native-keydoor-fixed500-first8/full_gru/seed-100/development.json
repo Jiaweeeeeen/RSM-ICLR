@@ -1,0 +1,120 @@
+{
+  "condition": "full_gru",
+  "development_evaluation_seconds": 202.2,
+  "endpoint_epoch": 999,
+  "endpoint_reached": true,
+  "metric": "doors_completed",
+  "modes": {
+    "attempt-cleared": 1.03125,
+    "retained": 30.3125
+  },
+  "protocol": "native-keydoor-fixed500-first8",
+  "run_directory": "outputs/summary-memory-8m/native-keydoor-fixed500-first8/full_gru/seed-100",
+  "schema": "summary-memory-development.v2",
+  "seed": 100,
+  "selected_epoch": 550,
+  "selected_primary": 30.3125,
+  "series": [
+    {
+      "epoch": 50,
+      "evaluation_seconds": 7.916821532999165,
+      "primary": 0.765625
+    },
+    {
+      "epoch": 100,
+      "evaluation_seconds": 8.229878067038953,
+      "primary": 2.96875
+    },
+    {
+      "epoch": 150,
+      "evaluation_seconds": 8.185089795966633,
+      "primary": 4.234375
+    },
+    {
+      "epoch": 200,
+      "evaluation_seconds": 8.60371886298526,
+      "primary": 7.484375
+    },
+    {
+      "epoch": 250,
+      "evaluation_seconds": 8.254755888017826,
+      "primary": 11.90625
+    },
+    {
+      "epoch": 300,
+      "evaluation_seconds": 8.35866465093568,
+      "primary": 17.984375
+    },
+    {
+      "epoch": 350,
+      "evaluation_seconds": 8.288500039023347,
+      "primary": 24.875
+    },
+    {
+      "epoch": 400,
+      "evaluation_seconds": 9.050829370971769,
+      "primary": 25.515625
+    },
+    {
+      "epoch": 450,
+      "evaluation_seconds": 8.356572669930756,
+      "primary": 26.375
+    },
+    {
+      "epoch": 500,
+      "evaluation_seconds": 8.323232423979789,
+      "primary": 22.796875
+    },
+    {
+      "epoch": 550,
+      "evaluation_seconds": 8.539100675028749,
+      "primary": 30.3125
+    },
+    {
+      "epoch": 600,
+      "evaluation_seconds": 8.390452640946023,
+      "primary": 26.21875
+    },
+    {
+      "epoch": 650,
+      "evaluation_seconds": 8.44094682391733,
+      "primary": 29.109375
+    },
+    {
+      "epoch": 700,
+      "evaluation_seconds": 8.707558412919752,
+      "primary": 29.171875
+    },
+    {
+      "epoch": 750,
+      "evaluation_seconds": 8.494060283061117,
+      "primary": 27.25
+    },
+    {
+      "epoch": 800,
+      "evaluation_seconds": 8.421125113032758,
+      "primary": 21.5625
+    },
+    {
+      "epoch": 850,
+      "evaluation_seconds": 8.485250919940881,
+      "primary": 28.15625
+    },
+    {
+      "epoch": 900,
+      "evaluation_seconds": 8.320434750057757,
+      "primary": 29.375
+    },
+    {
+      "epoch": 950,
+      "evaluation_seconds": 8.250081914942712,
+      "primary": 29.140625
+    },
+    {
+      "epoch": 999,
+      "evaluation_seconds": 8.47567541396711,
+      "primary": 26.90625
+    }
+  ],
+  "task_cap": null
+}
